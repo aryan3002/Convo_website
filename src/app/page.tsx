@@ -42,7 +42,7 @@ function HeroSection() {
           >
             <Badge variant="neon" className="mb-6">
               <Sparkles className="w-3 h-3 mr-1" />
-              Now in Private Beta
+              Coming Soon
             </Badge>
           </motion.div>
           
@@ -55,6 +55,20 @@ function HeroSection() {
             Bookings that feel like{" "}
             <span className="gradient-text neon-glow">texting</span>
           </motion.h1>
+          
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="mb-6"
+          >
+            <div className="inline-block relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink blur-xl opacity-30 animate-pulse-glow"></div>
+              <h2 className="relative text-2xl md:text-3xl font-bold tracking-wider uppercase gradient-text neon-glow px-6 py-2">
+                Coming Soon
+              </h2>
+            </div>
+          </motion.div>
           
           <motion.p
             initial={{ opacity: 0, y: 20 }}
