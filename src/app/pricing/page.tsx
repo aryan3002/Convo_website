@@ -40,7 +40,7 @@ function PricingHero() {
           >
             <Badge variant="neon" className="mb-6">
               <Sparkles className="w-3 h-3 mr-1" />
-              Simple Pricing
+              Early Access
             </Badge>
           </motion.div>
 
@@ -60,53 +60,49 @@ function PricingHero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground"
           >
-            Start free, upgrade when you&apos;re ready. No hidden fees, no long-term contracts.
+            Early Access Pricing — we&apos;re onboarding our first customers and finalizing pricing based on real usage.
           </motion.p>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mt-4"
+          >
+            <Badge variant="secondary" className="text-xs">
+              Founding customers receive preferential rates
+            </Badge>
+          </motion.div>
         </div>
       </div>
     </section>
   )
 }
 
-// Pricing Toggle
-function PricingToggle({ isAnnual, setIsAnnual }: { isAnnual: boolean; setIsAnnual: (value: boolean) => void }) {
+// Pricing Disclaimer
+function PricingDisclaimer() {
   return (
-    <div className="flex items-center justify-center gap-4 mb-12">
-      <span className={`text-sm font-medium transition-colors ${!isAnnual ? 'text-foreground' : 'text-muted-foreground'}`}>
-        Monthly
-      </span>
-      <button
-        onClick={() => setIsAnnual(!isAnnual)}
-        className="relative w-14 h-7 rounded-full bg-white/10 border border-white/20 transition-colors"
-      >
-        <motion.div
-          className="absolute top-1 w-5 h-5 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple"
-          animate={{ left: isAnnual ? '32px' : '4px' }}
-          transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-        />
-      </button>
-      <span className={`text-sm font-medium transition-colors ${isAnnual ? 'text-foreground' : 'text-muted-foreground'}`}>
-        Annual
-        <Badge variant="success" className="ml-2">Save 20%</Badge>
-      </span>
+    <div className="text-center mb-8">
+      <p className="text-sm text-muted-foreground">
+        Early Access Pricing — we&apos;re onboarding our first customers and finalizing pricing based on real usage.
+      </p>
     </div>
   )
 }
 
 // Pricing Cards
 function PricingCards() {
-  const [isAnnual, setIsAnnual] = useState(false)
-
   const plans = [
     {
       name: "Starter",
-      description: "Perfect for small salons just getting started",
-      price: isAnnual ? 49 : 59,
-      perLocation: true,
+      description: "Perfect for small salons getting started",
+      priceText: "Early Access",
+      priceSubtext: null,
       popular: false,
+      foundingBadge: false,
       features: [
         { name: "Chat booking widget", included: true },
-        { name: "Up to 100 bookings/month", included: true },
+        { name: "Scales with your business", included: true },
         { name: "Basic dashboard", included: true },
         { name: "Email confirmations", included: true },
         { name: "Calendar invite (.ics)", included: true },
@@ -115,19 +111,20 @@ function PricingCards() {
         { name: "Priority support", included: false },
         { name: "Custom branding", included: false },
       ],
-      cta: "Start Free Trial",
+      cta: "Request Early Access",
       ctaVariant: "glass" as const,
     },
     {
       name: "Pro",
-      description: "For growing salons that want the full experience",
-      price: isAnnual ? 149 : 179,
-      perLocation: true,
+      description: "Special pricing for early adopters",
+      priceText: "Founding Customer",
+      priceSubtext: null,
       popular: true,
+      foundingBadge: true,
       features: [
         { name: "Everything in Starter", included: true },
-        { name: "Unlimited bookings", included: true },
-        { name: "Voice agent (100 min/mo)", included: true },
+        { name: "Scales with your business", included: true },
+        { name: "High-volume voice usage", included: true },
         { name: "Call transcripts & summaries", included: true },
         { name: "Advanced analytics", included: true },
         { name: "Customer profiles", included: true },
@@ -135,19 +132,20 @@ function PricingCards() {
         { name: "Priority support", included: true },
         { name: "Custom branding", included: false },
       ],
-      cta: "Start Free Trial",
+      cta: "Request Early Access",
       ctaVariant: "neon" as const,
     },
     {
       name: "Enterprise",
       description: "For multi-location salons with custom needs",
-      price: null,
-      perLocation: false,
+      priceText: "Custom",
+      priceSubtext: null,
       popular: false,
+      foundingBadge: false,
       features: [
         { name: "Everything in Pro", included: true },
         { name: "Unlimited locations", included: true },
-        { name: "Unlimited voice minutes", included: true },
+        { name: "High-volume voice usage", included: true },
         { name: "Custom AI training", included: true },
         { name: "Dedicated account manager", included: true },
         { name: "Custom integrations", included: true },
@@ -155,7 +153,7 @@ function PricingCards() {
         { name: "On-premise option", included: true },
         { name: "Custom branding", included: true },
       ],
-      cta: "Contact Sales",
+      cta: "Talk to Us",
       ctaVariant: "glass" as const,
     },
   ]
@@ -163,7 +161,7 @@ function PricingCards() {
   return (
     <section className="py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <PricingToggle isAnnual={isAnnual} setIsAnnual={setIsAnnual} />
+        <PricingDisclaimer />
 
         <StaggeredContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.15}>
           {plans.map((plan, index) => (
@@ -180,7 +178,10 @@ function PricingCards() {
                   )}
                   
                   <CardHeader>
-                    {plan.popular && (
+                    {plan.foundingBadge && (
+                      <Badge variant="neon" className="w-fit mb-2">Founding Plan</Badge>
+                    )}
+                    {plan.popular && !plan.foundingBadge && (
                       <Badge variant="neon" className="w-fit mb-2">Most Popular</Badge>
                     )}
                     <CardTitle className="text-2xl">{plan.name}</CardTitle>
@@ -189,19 +190,10 @@ function PricingCards() {
 
                   <CardContent className="flex-1">
                     <div className="mb-6">
-                      {plan.price !== null ? (
-                        <div className="flex items-baseline gap-1">
-                          <span className="text-4xl font-bold">${plan.price}</span>
-                          <span className="text-muted-foreground">
-                            /month{plan.perLocation && ' per location'}
-                          </span>
-                        </div>
-                      ) : (
-                        <div className="text-4xl font-bold">Custom</div>
-                      )}
-                      {isAnnual && plan.price && (
-                        <p className="text-sm text-muted-foreground mt-1">
-                          Billed annually (${plan.price * 12}/year)
+                      <div className="text-4xl font-bold gradient-text mb-2">{plan.priceText}</div>
+                      {plan.priceSubtext && (
+                        <p className="text-sm text-muted-foreground">
+                          {plan.priceSubtext}
                         </p>
                       )}
                     </div>
@@ -250,27 +242,27 @@ function AddOnsSection() {
   const addons = [
     {
       icon: Phone,
-      name: "Additional Voice Minutes",
-      description: "Need more voice agent capacity? Add minutes to any plan.",
-      price: "$0.10/minute",
+      name: "Additional Voice Capacity",
+      description: "Need more voice agent capacity? Scale with your business.",
+      price: "Available",
     },
     {
       icon: MessageSquare,
       name: "SMS Reminders",
       description: "Reduce no-shows with automated SMS appointment reminders.",
-      price: "$0.02/SMS",
+      price: "Available",
     },
     {
       icon: Users,
       name: "Additional Locations",
       description: "Add more salon locations to your Starter or Pro plan.",
-      price: "50% of base plan",
+      price: "Available",
     },
     {
       icon: Shield,
       name: "Priority Support",
       description: "Get dedicated support with faster response times.",
-      price: "$49/month",
+      price: "Available",
     },
   ]
 
@@ -311,9 +303,9 @@ function AddOnsSection() {
 function FeatureComparison() {
   const features = [
     { feature: "Chat booking widget", starter: true, pro: true, enterprise: true },
-    { feature: "Monthly bookings", starter: "100", pro: "Unlimited", enterprise: "Unlimited" },
+    { feature: "Booking capacity", starter: "Scales", pro: "Scales", enterprise: "Scales" },
     { feature: "Dashboard access", starter: "Basic", pro: "Full", enterprise: "Full + Custom" },
-    { feature: "Voice agent minutes", starter: false, pro: "100/mo", enterprise: "Unlimited" },
+    { feature: "Voice agent", starter: false, pro: "High-volume", enterprise: "High-volume" },
     { feature: "Call transcripts", starter: false, pro: true, enterprise: true },
     { feature: "Email confirmations", starter: true, pro: true, enterprise: true },
     { feature: "SMS notifications", starter: false, pro: true, enterprise: true },
@@ -405,28 +397,28 @@ function FeatureComparison() {
 function FAQSection() {
   const faqs = [
     {
-      question: "Is there a free trial?",
-      answer: "Yes! All plans come with a 14-day free trial. No credit card required to start. You'll have full access to all features in your chosen plan during the trial period.",
+      question: "How does Early Access pricing work?",
+      answer: "We're currently onboarding our first customers and finalizing pricing based on real usage patterns. Early Access customers will get preferential rates and be locked into founding customer pricing even after we set final prices.",
     },
     {
-      question: "What happens if I exceed my booking limit?",
-      answer: "On the Starter plan, if you exceed 100 bookings in a month, we'll notify you and suggest upgrading to Pro. Your existing bookings won't be affected, but new bookings will be paused until the next billing cycle or you upgrade.",
+      question: "What are founding customer benefits?",
+      answer: "Founding customers receive special pricing, priority support, direct input into product development, and long-term rate protection. You'll be grandfathered into your initial pricing structure.",
     },
     {
-      question: "Can I change plans later?",
-      answer: "Absolutely! You can upgrade or downgrade your plan at any time. When upgrading, you'll get immediate access to new features. When downgrading, changes take effect at the start of your next billing cycle.",
+      question: "When will final pricing be announced?",
+      answer: "We're finalizing pricing based on real usage from our early access period. Final pricing will be announced after we've gathered sufficient data from founding customers. Early customers may receive long-term discounts.",
     },
     {
-      question: "How does per-location pricing work?",
-      answer: "Each salon location requires its own subscription. If you have multiple locations, you can either subscribe to individual Starter/Pro plans for each, or contact us about our Enterprise plan which includes unlimited locations.",
+      question: "How do I request early access?",
+      answer: "Click 'Request Early Access' on any plan to start a conversation with our team. We'll discuss your salon's needs and get you set up quickly.",
     },
     {
-      question: "What's included in Voice Agent minutes?",
-      answer: "Voice Agent minutes are the total duration of AI-handled phone calls. The Pro plan includes 100 minutes per month. Additional minutes can be purchased at $0.10/minute. Enterprise plans include unlimited minutes.",
+      question: "Can I switch plans later?",
+      answer: "Yes! During early access, we're flexible with plan changes as we learn what works best for different salon sizes. Your founding customer benefits will carry over.",
     },
     {
-      question: "Do you offer refunds?",
-      answer: "Yes, we offer a 30-day money-back guarantee on all plans. If you're not satisfied with Convo, contact us within 30 days of your first payment for a full refund.",
+      question: "What happens after early access ends?",
+      answer: "Early access customers will be notified before any pricing changes. You'll have the option to lock in founding customer rates or adjust your plan as needed.",
     },
   ]
 
@@ -479,13 +471,13 @@ function CTASection() {
                 Ready to modernize your bookings?
               </h2>
               <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
-                Start your 14-day free trial today. No credit card required.
+                Join our founding customers and get preferential rates.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button variant="neon" size="xl" asChild>
                   <Link href="/contact">
-                    Start Free Trial
+                    Request Early Access
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
                 </Button>
@@ -496,6 +488,10 @@ function CTASection() {
 
               <p className="text-sm text-muted-foreground mt-6">
                 Questions? <Link href="/contact" className="text-primary hover:underline">Talk to our team</Link>
+              </p>
+              
+              <p className="text-xs text-muted-foreground mt-8 max-w-2xl mx-auto">
+                Pricing will be finalized after early access. Early customers may receive long-term discounts.
               </p>
             </div>
           </Card>
