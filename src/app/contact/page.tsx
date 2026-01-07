@@ -317,55 +317,6 @@ function ContactForm() {
   )
 }
 
-// Office Locations (Placeholder)
-function OfficeSection() {
-  const offices = [
-    {
-      city: "San Francisco",
-      address: "548 Market St, Suite 45000",
-      timezone: "PST (UTC-8)",
-      type: "Headquarters",
-    },
-    {
-      city: "New York",
-      address: "350 Fifth Avenue, 21st Floor",
-      timezone: "EST (UTC-5)",
-      type: "Sales Office",
-    },
-  ]
-
-  return (
-    <section className="py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Our Offices</h2>
-          <p className="text-lg text-muted-foreground">
-            While we work remotely, you can find us in these locations.
-          </p>
-        </AnimatedSection>
-
-        <StaggeredContainer className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto" staggerDelay={0.15}>
-          {offices.map((office, index) => (
-            <StaggeredItem key={index}>
-              <HoverLift>
-                <Card glass className="p-6 text-center">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <MapPin className="w-6 h-6 text-primary" />
-                  </div>
-                  <Badge variant="secondary" className="mb-2">{office.type}</Badge>
-                  <h3 className="text-xl font-semibold mb-2">{office.city}</h3>
-                  <p className="text-sm text-muted-foreground mb-1">{office.address}</p>
-                  <p className="text-xs text-muted-foreground">{office.timezone}</p>
-                </Card>
-              </HoverLift>
-            </StaggeredItem>
-          ))}
-        </StaggeredContainer>
-      </div>
-    </section>
-  )
-}
-
 // FAQ CTA
 function FAQCTA() {
   return (
@@ -405,7 +356,6 @@ export default function ContactPage() {
     <>
       <ContactHero />
       <ContactForm />
-      <OfficeSection />
       <FAQCTA />
     </>
   )

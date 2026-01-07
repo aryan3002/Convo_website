@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import {
@@ -29,14 +29,22 @@ import {
   Star,
   TrendingUp,
   FileText,
+  MapPin,
+  X,
+  Navigation,
+  Globe,
+  Smartphone,
+  Zap,
+  Check,
+  ChevronDown,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { AnimatedSection } from "@/components/animations"
+import { AnimatedSection, StaggeredContainer, StaggeredItem, HoverLift } from "@/components/animations"
 
-// Demo Hero
+// Demo Hero - Updated with new copy
 function DemoHero() {
   return (
     <section className="relative py-16 md:py-24 overflow-hidden">
@@ -49,7 +57,7 @@ function DemoHero() {
           >
             <Badge variant="neon" className="mb-6">
               <Play className="w-3 h-3 mr-1" />
-              Interactive Demo
+              Try the Customer Experience
             </Badge>
           </motion.div>
 
@@ -57,21 +65,940 @@ function DemoHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-5xl font-bold tracking-tight mb-6"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6"
           >
-            See Convo in action
+            <span className="gradient-text neon-glow">Bookings that feel like texting</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg text-muted-foreground mb-8"
+            className="text-lg md:text-xl text-muted-foreground mb-8"
           >
-            Explore realistic mockups of our chat booking, voice agent, and owner dashboard.
-            Use the demo script below to guide your walkthrough.
+            Works directly from Google Maps — no website required.
+            <br className="hidden md:block" />
+            See how customers can book your salon in seconds.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-wrap items-center justify-center gap-4"
+          >
+            <Button variant="neon" size="xl" asChild>
+              <a href="#google-maps-demo">
+                Try the Demo
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </a>
+            </Button>
+            <Button variant="glass" size="xl" asChild>
+              <a href="#how-it-works">
+                See How It Works for Owners
+                <ChevronDown className="w-5 h-5 ml-2" />
+              </a>
+            </Button>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Google Maps Demo with Booking Modal
+function GoogleMapsDemo() {
+  const [showInfoWindow, setShowInfoWindow] = useState(true)
+  const [showBookingModal, setShowBookingModal] = useState(false)
+  const [showVoiceModal, setShowVoiceModal] = useState(false)
+  const [bookingStep, setBookingStep] = useState(0)
+  const [selectedService, setSelectedService] = useState<string | null>(null)
+  const [selectedTime, setSelectedTime] = useState<string | null>(null)
+  const [messages, setMessages] = useState<Array<{ role: "agent" | "user"; text: string; typing?: boolean }>>([])
+  const [isTyping, setIsTyping] = useState(false)
+  
+  // Voice modal state
+  const [voiceStep, setVoiceStep] = useState(0)
+  const [callDuration, setCallDuration] = useState(0)
+  const [voiceTranscript, setVoiceTranscript] = useState<Array<{ speaker: "ai" | "user"; text: string }>>([])
+  const [isCallActive, setIsCallActive] = useState(false)
+
+  const services = [
+    { name: "Men's Haircut", price: "$35", duration: "30 min" },
+    { name: "Women's Haircut", price: "$55", duration: "45 min" },
+    { name: "Balayage", price: "$180", duration: "2 hrs" },
+    { name: "Beard Trim", price: "$15", duration: "15 min" },
+  ]
+
+  const timeSlots = [
+    "Today, 2:00 PM",
+    "Today, 3:30 PM",
+    "Today, 5:00 PM",
+    "Tomorrow, 10:00 AM",
+    "Tomorrow, 11:30 AM",
+    "Tomorrow, 2:00 PM",
+  ]
+
+  // AI greeting text as specified
+  const aiGreeting = "Hi — welcome to Convo Salon. What would you like to book today?"
+  
+  // Voice AI greeting
+  const voiceAiGreeting = "Hi, thanks for calling Convo Salon. I'm the AI assistant. How can I help you today?"
+
+  const addMessage = useCallback((role: "agent" | "user", text: string) => {
+    setIsTyping(true)
+    setMessages(prev => [...prev, { role, text, typing: role === "agent" }])
+    
+    if (role === "agent") {
+      setTimeout(() => {
+        setMessages(prev => prev.map((m, i) => 
+          i === prev.length - 1 ? { ...m, typing: false } : m
+        ))
+        setIsTyping(false)
+      }, 1000)
+    } else {
+      setIsTyping(false)
+    }
+  }, [])
+
+  const startBooking = () => {
+    // Analytics: chat_booking_started would fire here
+    setShowBookingModal(true)
+    setShowInfoWindow(false)
+    setBookingStep(0)
+    setMessages([])
+    setSelectedService(null)
+    setSelectedTime(null)
+    
+    // Initial AI greeting
+    setTimeout(() => {
+      addMessage("agent", aiGreeting)
+    }, 500)
+  }
+  
+  // Voice call functions
+  const startVoiceCall = () => {
+    // Analytics: map_call_clicked would fire here
+    setShowVoiceModal(true)
+    setShowInfoWindow(false)
+    setVoiceStep(0)
+    setCallDuration(0)
+    setVoiceTranscript([])
+    setIsCallActive(true)
+    
+    // Analytics: voice_call_started would fire here
+    
+    // Initial AI greeting after "connecting"
+    setTimeout(() => {
+      setVoiceTranscript([{ speaker: "ai", text: voiceAiGreeting }])
+    }, 1500)
+  }
+  
+  // Call duration timer
+  useEffect(() => {
+    let interval: NodeJS.Timeout
+    if (isCallActive) {
+      interval = setInterval(() => {
+        setCallDuration(prev => prev + 1)
+      }, 1000)
+    }
+    return () => clearInterval(interval)
+  }, [isCallActive])
+  
+  const handleVoiceOption = (option: string) => {
+    if (option === "book") {
+      setVoiceTranscript(prev => [...prev, { speaker: "user", text: "I'd like to book an appointment" }])
+      setTimeout(() => {
+        setVoiceTranscript(prev => [...prev, { speaker: "ai", text: "Of course! What service would you like to book? We offer haircuts, balayage, beard trims, and more." }])
+        setVoiceStep(1)
+      }, 1000)
+    } else if (option === "services") {
+      setVoiceTranscript(prev => [...prev, { speaker: "user", text: "What services do you offer?" }])
+      setTimeout(() => {
+        setVoiceTranscript(prev => [...prev, { speaker: "ai", text: "We offer Men's Haircuts for $35, Women's Haircuts for $55, Balayage starting at $180, and Beard Trims for $15. Would you like to book any of these?" }])
+        setVoiceStep(1)
+      }, 1000)
+    } else if (option === "hours") {
+      setVoiceTranscript(prev => [...prev, { speaker: "user", text: "What are your salon hours?" }])
+      setTimeout(() => {
+        setVoiceTranscript(prev => [...prev, { speaker: "ai", text: "We're open Monday through Saturday, 9 AM to 8 PM, and Sunday 10 AM to 6 PM. Would you like to book an appointment?" }])
+        setVoiceStep(1)
+      }, 1000)
+    }
+  }
+  
+  const handleVoiceServiceSelect = (service: string) => {
+    setVoiceTranscript(prev => [...prev, { speaker: "user", text: `I'd like a ${service}` }])
+    setTimeout(() => {
+      setVoiceTranscript(prev => [...prev, { speaker: "ai", text: `Great! For the ${service}, I have availability today at 2 PM, 3:30 PM, or tomorrow at 10 AM. Which time works best for you?` }])
+      setVoiceStep(2)
+    }, 1000)
+  }
+  
+  const handleVoiceTimeSelect = (time: string) => {
+    setVoiceTranscript(prev => [...prev, { speaker: "user", text: time }])
+    setTimeout(() => {
+      setVoiceTranscript(prev => [...prev, { speaker: "ai", text: "Perfect! Your appointment is confirmed. You'll receive a confirmation text shortly. Is there anything else I can help you with?" }])
+      setVoiceStep(3)
+      // Analytics: voice_booking_completed would fire here
+    }, 1000)
+  }
+  
+  const endVoiceCall = () => {
+    if (voiceStep === 3) {
+      setVoiceTranscript(prev => [...prev, { speaker: "user", text: "No, that's all. Thank you!" }])
+      setTimeout(() => {
+        setVoiceTranscript(prev => [...prev, { speaker: "ai", text: "You're welcome! We look forward to seeing you. Goodbye!" }])
+        setTimeout(() => {
+          setIsCallActive(false)
+          setVoiceStep(4) // Show completion
+        }, 1500)
+      }, 800)
+    } else {
+      setIsCallActive(false)
+      resetVoiceDemo()
+    }
+  }
+  
+  const resetVoiceDemo = () => {
+    setShowVoiceModal(false)
+    setShowInfoWindow(true)
+    setVoiceStep(0)
+    setCallDuration(0)
+    setVoiceTranscript([])
+    setIsCallActive(false)
+  }
+  
+  const formatCallDuration = (seconds: number) => {
+    const mins = Math.floor(seconds / 60)
+    const secs = seconds % 60
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`
+  }
+
+  const selectService = (service: string) => {
+    setSelectedService(service)
+    addMessage("user", `I'd like to book a ${service}`)
+    
+    setTimeout(() => {
+      addMessage("agent", `Great choice! I have the following times available for ${service}. Which works best for you?`)
+      setBookingStep(1)
+    }, 1500)
+  }
+
+  const selectTime = (time: string) => {
+    setSelectedTime(time)
+    addMessage("user", time)
+    
+    setTimeout(() => {
+      addMessage("agent", "Perfect! Let me confirm your booking...")
+      setTimeout(() => {
+        setBookingStep(2)
+        addMessage("agent", `✅ You're all set!\n\n**${selectedService}**\n📅 ${time}\n📍 Convo Salon\n\nYou'll receive a confirmation text shortly. See you soon!`)
+      }, 1500)
+    }, 1000)
+  }
+
+  const resetDemo = () => {
+    setShowBookingModal(false)
+    setShowInfoWindow(true)
+    setBookingStep(0)
+    setMessages([])
+    setSelectedService(null)
+    setSelectedTime(null)
+  }
+
+  return (
+    <section className="py-16" id="google-maps-demo">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="mb-8 text-center">
+          <Badge variant="secondary" className="mb-4">
+            <MapPin className="w-3 h-3 mr-1" />
+            Interactive Demo
+          </Badge>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Experience booking from Google Maps
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Click on the salon marker, then tap "Book via Chat" or "Call" to see how customers can book — whether they prefer texting or calling.
+          </p>
+        </AnimatedSection>
+
+        <div className="relative max-w-4xl mx-auto">
+          {/* Google Maps Simulation */}
+          <Card glass className="overflow-hidden">
+            {/* Maps Header Bar */}
+            <div className="bg-white dark:bg-gray-900 p-3 border-b border-white/10 flex items-center gap-3">
+              <div className="flex items-center gap-2 flex-1">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-green-500 flex items-center justify-center">
+                  <MapPin className="w-4 h-4 text-white" />
+                </div>
+                <div className="flex-1">
+                  <input 
+                    type="text" 
+                    value="Convo Salon" 
+                    readOnly
+                    className="w-full bg-gray-100 dark:bg-gray-800 rounded-full px-4 py-1.5 text-sm"
+                  />
+                </div>
+              </div>
+              <Button variant="ghost" size="icon" className="shrink-0">
+                <Navigation className="w-4 h-4" />
+              </Button>
+            </div>
+
+            {/* Map Area */}
+            <div className="relative h-[400px] md:h-[500px] bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-800 dark:to-gray-900 overflow-hidden">
+              {/* Fake map grid pattern */}
+              <div className="absolute inset-0 opacity-20">
+                <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+                      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#grid)" />
+                </svg>
+              </div>
+
+              {/* Fake roads */}
+              <div className="absolute top-1/2 left-0 right-0 h-2 bg-gray-400 dark:bg-gray-600 opacity-50"></div>
+              <div className="absolute top-0 bottom-0 left-1/3 w-2 bg-gray-400 dark:bg-gray-600 opacity-50"></div>
+              <div className="absolute top-1/4 left-0 right-0 h-1 bg-gray-400 dark:bg-gray-600 opacity-30"></div>
+
+              {/* Marker */}
+              <motion.div 
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full cursor-pointer z-10"
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ type: "spring", delay: 0.3 }}
+                onClick={() => setShowInfoWindow(true)}
+              >
+                <div className="relative">
+                  <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center shadow-lg">
+                    <Scissors className="w-5 h-5 text-white" />
+                  </div>
+                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-r-[8px] border-t-[10px] border-l-transparent border-r-transparent border-t-red-500"></div>
+                  {/* Pulse effect */}
+                  <div className="absolute inset-0 rounded-full bg-red-500 animate-ping opacity-25"></div>
+                </div>
+              </motion.div>
+
+              {/* Info Window */}
+              <AnimatePresence>
+                {showInfoWindow && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.9, y: 10 }}
+                    className="absolute top-[calc(50%-120px)] left-1/2 -translate-x-1/2 w-[280px] z-20"
+                  >
+                    <Card className="bg-white dark:bg-gray-900 shadow-2xl border-0 overflow-hidden">
+                      <div className="p-4">
+                        <div className="flex items-start justify-between mb-2">
+                          <div>
+                            <h3 className="font-semibold text-gray-900 dark:text-white">Convo Salon</h3>
+                            <div className="flex items-center gap-1 mt-1">
+                              <div className="flex">
+                                {[1,2,3,4,5].map((i) => (
+                                  <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                                ))}
+                              </div>
+                              <span className="text-xs text-gray-500">(128 reviews)</span>
+                            </div>
+                          </div>
+                          <button 
+                            onClick={() => setShowInfoWindow(false)}
+                            className="text-gray-400 hover:text-gray-600"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+                        <p className="text-xs text-gray-500 mb-1">Hair Salon · 0.3 mi</p>
+                        <p className="text-xs text-green-600 dark:text-green-400 mb-3">Open · Closes 8 PM</p>
+                        
+                        {/* Book via Chat CTA - Primary action */}
+                        <Button 
+                          variant="neon" 
+                          className="w-full mb-2"
+                          onClick={startBooking}
+                        >
+                          <MessageSquare className="w-4 h-4 mr-2" />
+                          Book via Chat
+                        </Button>
+                        
+                        <div className="flex gap-2">
+                          <button 
+                            onClick={startVoiceCall}
+                            className="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 px-3 rounded-md border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                          >
+                            <div className="flex items-center gap-1">
+                              <Phone className="w-3 h-3" />
+                              <span className="text-xs font-medium">Call</span>
+                            </div>
+                            <span className="text-[10px] text-neon-blue">AI answers instantly</span>
+                          </button>
+                          <Button variant="outline" size="sm" className="flex-1 text-xs">
+                            <Navigation className="w-3 h-3 mr-1" />
+                            Directions
+                          </Button>
+                        </div>
+                      </div>
+                    </Card>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Voice Agent Modal */}
+              <AnimatePresence>
+                {showVoiceModal && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-30 p-4"
+                  >
+                    <motion.div
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.9, opacity: 0 }}
+                      className="w-full max-w-sm"
+                    >
+                      <Card glass className="overflow-hidden">
+                        {/* Call Header */}
+                        <div className="p-6 text-center border-b border-white/10">
+                          <div className="relative w-20 h-20 mx-auto mb-4">
+                            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center">
+                              <Scissors className="w-10 h-10 text-white" />
+                            </div>
+                            {isCallActive && (
+                              <>
+                                <div className="absolute inset-0 rounded-full border-4 border-neon-blue animate-ping opacity-20"></div>
+                                <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-neon-mint flex items-center justify-center">
+                                  <Volume2 className="w-3 h-3 text-white animate-pulse" />
+                                </div>
+                              </>
+                            )}
+                          </div>
+                          <h3 className="font-semibold text-lg">
+                            {isCallActive ? "Convo Salon" : "Call Ended"}
+                          </h3>
+                          <p className="text-sm text-muted-foreground">
+                            {isCallActive ? "Connected to AI Assistant" : "Thank you for calling"}
+                          </p>
+                          {isCallActive && (
+                            <Badge variant="neon" className="mt-2">
+                              <Clock className="w-3 h-3 mr-1" />
+                              {formatCallDuration(callDuration)}
+                            </Badge>
+                          )}
+                          
+                          {/* Waveform animation */}
+                          {isCallActive && (
+                            <div className="flex items-center justify-center gap-1 mt-4 h-8">
+                              {[...Array(5)].map((_, i) => (
+                                <motion.div
+                                  key={i}
+                                  className="w-1 bg-neon-blue rounded-full"
+                                  animate={{
+                                    height: [8, 24, 8],
+                                  }}
+                                  transition={{
+                                    duration: 0.8,
+                                    repeat: Infinity,
+                                    delay: i * 0.1,
+                                  }}
+                                />
+                              ))}
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Transcript */}
+                        <div className="max-h-[200px] overflow-y-auto p-4 space-y-3">
+                          <AnimatePresence>
+                            {voiceTranscript.map((line, index) => (
+                              <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className={`flex gap-2 ${line.speaker === "user" ? "justify-end" : "justify-start"}`}
+                              >
+                                <div className={`max-w-[85%] p-2 rounded-lg text-xs ${
+                                  line.speaker === "user" 
+                                    ? "bg-primary/20 text-primary-foreground" 
+                                    : "bg-white/10"
+                                }`}>
+                                  <span className="font-medium text-[10px] text-muted-foreground block mb-1">
+                                    {line.speaker === "ai" ? "🤖 AI" : "👤 You"}
+                                  </span>
+                                  {line.text}
+                                </div>
+                              </motion.div>
+                            ))}
+                          </AnimatePresence>
+                        </div>
+
+                        {/* Voice Options */}
+                        {voiceStep === 0 && voiceTranscript.length > 0 && (
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="p-4 border-t border-white/10 space-y-2"
+                          >
+                            <p className="text-[10px] text-muted-foreground text-center mb-2">Tap to respond:</p>
+                            <Button variant="outline" size="sm" className="w-full text-xs" onClick={() => handleVoiceOption("book")}>
+                              📅 Book an appointment
+                            </Button>
+                            <Button variant="outline" size="sm" className="w-full text-xs" onClick={() => handleVoiceOption("services")}>
+                              💇 Ask about services
+                            </Button>
+                            <Button variant="outline" size="sm" className="w-full text-xs" onClick={() => handleVoiceOption("hours")}>
+                              🕐 Salon hours
+                            </Button>
+                          </motion.div>
+                        )}
+                        
+                        {/* Service Selection */}
+                        {voiceStep === 1 && (
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="p-4 border-t border-white/10"
+                          >
+                            <p className="text-[10px] text-muted-foreground text-center mb-2">Select a service:</p>
+                            <div className="grid grid-cols-2 gap-2">
+                              {services.map((service) => (
+                                <Button
+                                  key={service.name}
+                                  variant="outline"
+                                  size="sm"
+                                  className="text-[10px] h-auto py-2"
+                                  onClick={() => handleVoiceServiceSelect(service.name)}
+                                >
+                                  {service.name}
+                                </Button>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                        
+                        {/* Time Selection */}
+                        {voiceStep === 2 && (
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="p-4 border-t border-white/10"
+                          >
+                            <p className="text-[10px] text-muted-foreground text-center mb-2">Select a time:</p>
+                            <div className="grid grid-cols-1 gap-2">
+                              <Button variant="outline" size="sm" className="text-xs" onClick={() => handleVoiceTimeSelect("Today at 2 PM")}>
+                                Today at 2 PM
+                              </Button>
+                              <Button variant="outline" size="sm" className="text-xs" onClick={() => handleVoiceTimeSelect("Today at 3:30 PM")}>
+                                Today at 3:30 PM
+                              </Button>
+                              <Button variant="outline" size="sm" className="text-xs" onClick={() => handleVoiceTimeSelect("Tomorrow at 10 AM")}>
+                                Tomorrow at 10 AM
+                              </Button>
+                            </div>
+                          </motion.div>
+                        )}
+                        
+                        {/* Call Completed */}
+                        {voiceStep === 4 && (
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="p-4 border-t border-white/10 text-center"
+                          >
+                            <div className="w-12 h-12 rounded-full bg-neon-mint/20 flex items-center justify-center mx-auto mb-3">
+                              <CheckCircle2 className="w-6 h-6 text-neon-mint" />
+                            </div>
+                            <p className="text-sm font-medium mb-1">Booking Confirmed!</p>
+                            <p className="text-xs text-muted-foreground mb-4">
+                              This is how easy voice booking works.
+                            </p>
+                            <Button variant="neon" size="sm" className="w-full" onClick={resetVoiceDemo}>
+                              Try Again
+                            </Button>
+                          </motion.div>
+                        )}
+
+                        {/* End Call Button */}
+                        {isCallActive && (
+                          <div className="p-4 border-t border-white/10 flex justify-center">
+                            <Button
+                              variant="destructive"
+                              size="lg"
+                              className="rounded-full w-14 h-14 bg-red-500 hover:bg-red-600"
+                              onClick={endVoiceCall}
+                            >
+                              <PhoneOff className="w-6 h-6" />
+                            </Button>
+                          </div>
+                        )}
+                      </Card>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Booking Modal */}
+              <AnimatePresence>
+                {showBookingModal && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-end md:items-center justify-center z-30 p-4"
+                  >
+                    <motion.div
+                      initial={{ y: 100, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: 100, opacity: 0 }}
+                      className="w-full max-w-md"
+                    >
+                      <Card glass className="overflow-hidden max-h-[80vh] flex flex-col">
+                        {/* Chat Header */}
+                        <div className="p-4 border-b border-white/10 flex items-center justify-between shrink-0">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center">
+                              <Scissors className="w-5 h-5 text-white" />
+                            </div>
+                            <div>
+                              <p className="font-medium">Convo Salon</p>
+                              <div className="flex items-center gap-1">
+                                <div className="w-2 h-2 rounded-full bg-neon-mint" />
+                                <span className="text-xs text-muted-foreground">AI Assistant</span>
+                              </div>
+                            </div>
+                          </div>
+                          <Button variant="ghost" size="icon" onClick={resetDemo}>
+                            <X className="w-4 h-4" />
+                          </Button>
+                        </div>
+
+                        {/* Messages */}
+                        <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-[200px] max-h-[300px]">
+                          <AnimatePresence>
+                            {messages.map((message, index) => (
+                              <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+                              >
+                                <div
+                                  className={`max-w-[80%] p-3 rounded-2xl text-sm whitespace-pre-line ${
+                                    message.role === "user"
+                                      ? "bg-primary text-primary-foreground rounded-br-sm"
+                                      : "bg-white/10 border border-white/10 rounded-bl-sm"
+                                  }`}
+                                >
+                                  {message.typing ? (
+                                    <div className="flex gap-1">
+                                      <span className="w-2 h-2 rounded-full bg-current animate-bounce" style={{ animationDelay: "0ms" }} />
+                                      <span className="w-2 h-2 rounded-full bg-current animate-bounce" style={{ animationDelay: "150ms" }} />
+                                      <span className="w-2 h-2 rounded-full bg-current animate-bounce" style={{ animationDelay: "300ms" }} />
+                                    </div>
+                                  ) : (
+                                    message.text
+                                  )}
+                                </div>
+                              </motion.div>
+                            ))}
+                          </AnimatePresence>
+                        </div>
+
+                        {/* Service Selection */}
+                        {bookingStep === 0 && !isTyping && messages.length > 0 && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="p-4 border-t border-white/10 shrink-0"
+                          >
+                            <p className="text-xs text-muted-foreground mb-3">Choose a service:</p>
+                            <div className="grid grid-cols-2 gap-2">
+                              {services.map((service) => (
+                                <Button
+                                  key={service.name}
+                                  variant="outline"
+                                  size="sm"
+                                  className="justify-start h-auto py-2 px-3"
+                                  onClick={() => selectService(service.name)}
+                                >
+                                  <div className="text-left">
+                                    <p className="text-xs font-medium">{service.name}</p>
+                                    <p className="text-[10px] text-muted-foreground">{service.price} · {service.duration}</p>
+                                  </div>
+                                </Button>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+
+                        {/* Time Selection */}
+                        {bookingStep === 1 && !isTyping && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="p-4 border-t border-white/10 shrink-0"
+                          >
+                            <p className="text-xs text-muted-foreground mb-3">Available times:</p>
+                            <div className="grid grid-cols-2 gap-2">
+                              {timeSlots.map((time) => (
+                                <Button
+                                  key={time}
+                                  variant="outline"
+                                  size="sm"
+                                  className="text-xs"
+                                  onClick={() => selectTime(time)}
+                                >
+                                  {time}
+                                </Button>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+
+                        {/* Booking Confirmed */}
+                        {bookingStep === 2 && !isTyping && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="p-4 border-t border-white/10 shrink-0"
+                          >
+                            <div className="flex items-center justify-center gap-2 mb-4">
+                              <div className="w-12 h-12 rounded-full bg-neon-mint/20 flex items-center justify-center">
+                                <CheckCircle2 className="w-6 h-6 text-neon-mint" />
+                              </div>
+                            </div>
+                            <p className="text-center text-sm text-muted-foreground mb-4">
+                              Booking confirmed! This is how easy it is.
+                            </p>
+                            <Button variant="neon" className="w-full" onClick={resetDemo}>
+                              Try Again
+                            </Button>
+                          </motion.div>
+                        )}
+                      </Card>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Google branding simulation */}
+              <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-white/90 dark:bg-gray-900/90 rounded px-2 py-1 text-xs text-gray-600 dark:text-gray-400">
+                <Globe className="w-3 h-3" />
+                <span>Map Simulation</span>
+              </div>
+            </div>
+          </Card>
+
+          {/* Hint text */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+            className="text-center text-sm text-muted-foreground mt-4"
+          >
+            👆 Click the marker, then try "Book via Chat" OR "Call" — Convo handles both!
           </motion.p>
         </div>
+      </div>
+    </section>
+  )
+}
+
+// Customer Flow Visual
+function CustomerFlowVisual() {
+  const steps = [
+    {
+      icon: Smartphone,
+      title: "Open Google Maps",
+      description: "Customer searches for salons nearby",
+      color: "neon-blue",
+    },
+    {
+      icon: MapPin,
+      title: "Tap Business",
+      description: "Views your salon profile",
+      color: "neon-purple",
+    },
+    {
+      icon: MessageSquare,
+      title: "Chat OR Call",
+      description: "Both connect to Convo AI",
+      color: "neon-pink",
+    },
+    {
+      icon: CheckCircle2,
+      title: "Booked Instantly",
+      description: "Confirmed in seconds",
+      color: "neon-mint",
+    },
+  ]
+
+  return (
+    <section className="py-16 overflow-hidden">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="text-center mb-12">
+          <Badge variant="secondary" className="mb-4">
+            <Zap className="w-3 h-3 mr-1" />
+            Customer Journey
+          </Badge>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Booking in seconds, not minutes
+          </h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">
+            Whether customers prefer texting or calling — Convo handles both.
+            <br className="hidden md:block" />
+            No app downloads. No account creation. Just tap and book.
+          </p>
+        </AnimatedSection>
+
+        <div className="relative">
+          {/* Connection line */}
+          <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-neon-blue via-neon-purple to-neon-mint -translate-y-1/2 z-0" />
+
+          <StaggeredContainer className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 relative z-10" staggerDelay={0.15}>
+            {steps.map((step, index) => (
+              <StaggeredItem key={index}>
+                <HoverLift>
+                  <div className="flex flex-col items-center text-center">
+                    <div className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-${step.color}/10 flex items-center justify-center mb-4 relative`}>
+                      <step.icon className={`w-8 h-8 md:w-10 md:h-10 text-${step.color}`} />
+                      <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-background border-2 border-white/10 flex items-center justify-center text-xs font-bold">
+                        {index + 1}
+                      </div>
+                    </div>
+                    <h3 className="font-semibold mb-1 text-sm md:text-base">{step.title}</h3>
+                    <p className="text-xs md:text-sm text-muted-foreground">{step.description}</p>
+                  </div>
+                </HoverLift>
+              </StaggeredItem>
+            ))}
+          </StaggeredContainer>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Owner Education Section - How It Works Without a Website
+function OwnerEducationSection() {
+  const features = [
+    {
+      icon: MapPin,
+      title: "Add Link to Google Business Profile",
+      description: "Just paste your Convo booking link into your Google Business Profile. Takes 2 minutes, no technical skills needed.",
+    },
+    {
+      icon: MessageSquare,
+      title: "Customer Taps 'Book via Chat'",
+      description: "When customers find you on Google Maps, they see a direct booking button. No website visit required.",
+    },
+    {
+      icon: Phone,
+      title: "Customer Taps 'Call' → AI Answers",
+      description: "When customers tap 'Call' on Google Maps, Convo answers automatically and books the appointment. No missed calls, ever.",
+    },
+    {
+      icon: Sparkles,
+      title: "Convo AI Handles Everything",
+      description: "Same AI handles chat + voice. Books appointments, sends confirmations, works 24/7 — no staff answering phones.",
+    },
+  ]
+
+  const benefits = [
+    { icon: X, text: "No website needed", crossed: true },
+    { icon: X, text: "No app to download", crossed: true },
+    { icon: X, text: "No missed calls", crossed: true },
+    { icon: X, text: "No staff answering phones", crossed: true },
+    { icon: Check, text: "Works 24/7", crossed: false },
+  ]
+
+  return (
+    <section className="py-20" id="how-it-works">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="text-center mb-16">
+          <Badge variant="neon" className="mb-4">
+            <Sparkles className="w-3 h-3 mr-1" />
+            For Business Owners
+          </Badge>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            How this works <span className="gradient-text">without a website</span>
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Convo turns your Google Maps listing into a 24/7 booking machine.
+            Chat or call — same AI, same result: booked appointments.
+          </p>
+        </AnimatedSection>
+
+        {/* Benefits strip */}
+        <AnimatedSection delay={0.1} className="mb-16">
+          <div className="flex flex-wrap justify-center gap-3 md:gap-6">
+            {benefits.map((benefit, index) => (
+              <div 
+                key={index}
+                className={`flex items-center gap-2 ${benefit.crossed ? 'text-muted-foreground' : 'text-neon-mint font-medium'}`}
+              >
+                {benefit.crossed ? (
+                  <div className="w-5 h-5 rounded-full bg-destructive/20 flex items-center justify-center">
+                    <X className="w-3 h-3 text-destructive" />
+                  </div>
+                ) : (
+                  <div className="w-5 h-5 rounded-full bg-neon-mint/20 flex items-center justify-center">
+                    <Check className="w-3 h-3 text-neon-mint" />
+                  </div>
+                )}
+                <span className={`text-sm ${benefit.crossed ? 'line-through' : ''}`}>{benefit.text}</span>
+              </div>
+            ))}
+          </div>
+        </AnimatedSection>
+
+        {/* Feature cards */}
+        <StaggeredContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.15}>
+          {features.map((feature, index) => (
+            <StaggeredItem key={index}>
+              <HoverLift>
+                <Card glass className="p-6 h-full relative overflow-hidden">
+                  <div className="absolute top-4 right-4 text-6xl font-bold text-white/5">
+                    {index + 1}
+                  </div>
+                  <div className="relative">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                      <feature.icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                    <p className="text-sm text-muted-foreground">{feature.description}</p>
+                  </div>
+                </Card>
+              </HoverLift>
+            </StaggeredItem>
+          ))}
+        </StaggeredContainer>
+
+        {/* CTA */}
+        <AnimatedSection delay={0.4} className="mt-12 text-center">
+          <Card glass className="inline-block p-6 md:p-8">
+            <p className="text-lg font-medium mb-4">Ready to add Convo to your Google listing?</p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button variant="neon" size="lg" asChild>
+                <Link href="/contact">
+                  Get Started Free
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
+              <Button variant="glass" size="lg" asChild>
+                <Link href="/pricing">
+                  See Pricing
+                </Link>
+              </Button>
+            </div>
+          </Card>
+        </AnimatedSection>
       </div>
     </section>
   )
@@ -749,6 +1676,9 @@ export default function DemoPage() {
   return (
     <>
       <DemoHero />
+      <GoogleMapsDemo />
+      <CustomerFlowVisual />
+      <OwnerEducationSection />
       <ChatDemoMock />
       <VoiceDemoMock />
       <DashboardDemoMock />
