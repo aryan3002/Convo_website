@@ -85,7 +85,7 @@ function ContactForm() {
     const body = encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}`
     )
-    window.location.href = `mailto:hello@convo.ai?subject=${subject}&body=${body}`
+    window.location.href = `mailto:triaryan3002@gmail.com?subject=${subject}&body=${body}`
     setSubmitted(true)
   }
 
@@ -246,10 +246,10 @@ function ContactForm() {
                     <h3 className="font-semibold mb-1">Email Us</h3>
                     <p className="text-muted-foreground mb-2">For general inquiries</p>
                     <a 
-                      href="mailto:hello@convo.ai" 
+                      href="mailto:triaryan3002@gmail.com" 
                       className="text-primary hover:underline"
                     >
-                      hello@convo.ai
+                      triaryan3002@gmail.com
                     </a>
                   </div>
                 </div>
@@ -266,10 +266,10 @@ function ContactForm() {
                     <h3 className="font-semibold mb-1">Sales Inquiries</h3>
                     <p className="text-muted-foreground mb-2">For enterprise and custom plans</p>
                     <a 
-                      href="mailto:sales@convo.ai" 
+                      href="mailto:triaryan3002@gmail.com" 
                       className="text-primary hover:underline"
                     >
-                      sales@convo.ai
+                      triaryan3002@gmail.com
                     </a>
                   </div>
                 </div>
