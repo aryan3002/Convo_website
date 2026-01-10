@@ -135,11 +135,10 @@ function HeroSection() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6 leading-tight"
             >
-              Convo is the{" "}
-              <span className="gradient-text neon-glow">AI front desk.</span>
+              Stop running your{" "}
+              <span className="gradient-text neon-glow">front desk.</span>
               <br />
-              MangoMint and Fresha are{" "}
-              <span className="text-muted-foreground">management tools.</span>
+              Let Convo run it.
             </motion.h1>
 
             <motion.p
@@ -148,8 +147,8 @@ function HeroSection() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-lg md:text-xl text-muted-foreground mb-8"
             >
-              Convo answers calls & chats, books appointments, keeps staff in sync, 
-              and surfaces next actions — so you stop running the front desk.
+              Convo answers every call and chat. Books appointments. Keeps your team in sync. 
+              Spots patterns. Recommends what to do next.
             </motion.p>
 
             {/* Badges */}
@@ -303,24 +302,24 @@ function HeroSection() {
 function DifferenceGlanceSection() {
   const cards = [
     {
-      icon: Zap,
-      title: "Tools wait. Convo acts.",
-      description: "Traditional systems wait for input. Convo proactively answers, books, and follows up.",
-      example: "e.g., Auto-captures after-hours calls",
+      icon: MessageSquare,
+      title: "Convo speaks customer.",
+      description: 'No forms. Customers say "tomorrow afternoon" and Convo suggests slots. Natural conversation, instant booking.',
+      example: "Captures bookings other tools miss",
       color: "neon-mint",
     },
     {
-      icon: MessageSquare,
-      title: "Forms ask. Convo understands.",
-      description: "No rigid dropdowns. Customers type naturally and Convo handles the ambiguity.",
-      example: 'e.g., "tomorrow afternoon" → suggests slots',
+      icon: Users,
+      title: "Convo keeps everyone in sync.",
+      description: "Staff sees updates in real-time. Acknowledges bookings. Marks when they're running late. Customers stay informed.",
+      example: "Reduces interruptions and confusion",
       color: "neon-blue",
     },
     {
       icon: Lightbulb,
-      title: "Reports show. Convo recommends.",
-      description: "Beyond dashboards. Convo surfaces insights with clear next actions.",
-      example: "e.g., No-show spike → suggests deposit policy",
+      title: "Convo recommends what to do.",
+      description: "Spots no-show patterns. Suggests policy changes. Flags opportunities. More than analytics — actionable guidance.",
+      example: "Turns data into decisions",
       color: "neon-purple",
     },
   ]
@@ -330,10 +329,10 @@ function DifferenceGlanceSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            The Difference in One Glance
+            Why Convo is different
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Three fundamental shifts that set Convo apart.
+            Most tools record what happened. Convo tells you what to do next.
           </p>
         </AnimatedSection>
 
@@ -517,13 +516,13 @@ function ComparisonMatrixSection() {
         <AnimatedSection className="text-center mb-12">
           <Badge variant="neon" className="mb-4">
             <Layers className="w-3 h-3 mr-1" />
-            Feature Comparison
+            The Details
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Comparison Matrix
+            Where Convo fits in your stack
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-            A clear view of what each platform does best.
+            Convo handles conversations and operations. Your POS handles transactions. They work together.
           </p>
 
           {/* Legend */}
@@ -725,10 +724,10 @@ function ScenariosSection() {
             Real World
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Real-Life Scenarios
+            How Convo solves real problems
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            See how Convo handles the messy reality of running a salon.
+            The messy scenarios where traditional tools fall short.
           </p>
         </AnimatedSection>
 
@@ -782,6 +781,27 @@ function ScenariosSection() {
             </StaggeredItem>
           ))}
         </StaggeredContainer>
+
+        {/* Mid-page CTA */}
+        <AnimatedSection delay={0.4} className="text-center mt-16">
+          <Card glass className="inline-block px-8 py-6">
+            <p className="text-lg font-medium mb-4">Ready to see Convo in action?</p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button variant="neon" size="lg" asChild>
+                <Link href="/demo">
+                  <Play className="w-4 h-4 mr-2" />
+                  Watch Demo
+                </Link>
+              </Button>
+              <Button variant="glass" size="lg" asChild>
+                <Link href="/contact">
+                  Request Access
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
+            </div>
+          </Card>
+        </AnimatedSection>
       </div>
     </section>
   )
@@ -822,7 +842,7 @@ function SwitchingSection() {
             </Badge>
             
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Switching Without Pain
+              Start without switching
             </h2>
             
             <p className="text-lg text-muted-foreground mb-8">
@@ -1053,11 +1073,11 @@ function FinalCTASection() {
             className="glass rounded-3xl p-8 md:p-12 shadow-neon"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to see Convo run your front desk?
+              Stop answering calls. Stop chasing staff updates.
             </h2>
             
             <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-              Experience how AI can handle calls, book appointments, and keep your team in sync.
+              Let Convo handle your front desk while you run your business.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
