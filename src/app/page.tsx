@@ -42,7 +42,7 @@ function HeroSection() {
           >
             <Badge variant="neon" className="mb-6">
               <Sparkles className="w-3 h-3 mr-1" />
-              Coming Soon
+              Private Beta
             </Badge>
           </motion.div>
           
