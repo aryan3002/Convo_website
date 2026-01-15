@@ -56,28 +56,14 @@ function HeroSection() {
             <span className="gradient-text neon-glow">texting</span>
           </motion.h1>
           
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="mb-6"
-          >
-            <div className="inline-block relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink blur-xl opacity-30 animate-pulse-glow"></div>
-              <h2 className="relative text-2xl md:text-3xl font-bold tracking-wider uppercase gradient-text neon-glow px-6 py-2">
-                Coming Soon
-              </h2>
-            </div>
-          </motion.div>
-          
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto"
           >
-            The AI-powered booking front desk for modern salons. Let your customers 
-            book through chat or voice—anytime, anywhere. No more phone tag.
+            The AI-powered booking front desk for modern salons. Let your customers book through 
+            chat or voice—anytime, anywhere. No more phone tag.
           </motion.p>
           
           <motion.div
@@ -87,7 +73,7 @@ function HeroSection() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Button variant="neon" size="xl" asChild>
-              <Link href="/contact">
+              <Link href="/demo">
                 Request a Demo
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>

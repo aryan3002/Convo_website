@@ -1,4 +1,21 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://convo.ai/sitemap.xml
+# AI Crawlers - Explicitly Allow
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Sitemap
+Sitemap: https://convoaiservices.com/sitemap.xml

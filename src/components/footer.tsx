@@ -4,20 +4,20 @@ import { MessageSquare, Twitter, Linkedin, Github } from "lucide-react"
 const footerLinks = {
   product: [
     { name: "Features", href: "/product" },
+    { name: "AI Salon Booking", href: "/ai-salon-appointment-booking" },
+    { name: "AI Receptionist", href: "/ai-receptionist-for-salons" },
     { name: "Demo", href: "/demo" },
     { name: "Pricing", href: "/pricing" },
-    { name: "Integrations", href: "/product#integrations" },
   ],
   company: [
-    { name: "About", href: "/about" },
+    { name: "Why Convo?", href: "/differentiators" },
+    { name: "Onboarding", href: "/onboarding" },
+    { name: "FAQ", href: "/faq" },
     { name: "Contact", href: "/contact" },
-    { name: "Careers", href: "/careers" },
-    { name: "Blog", href: "/blog" },
   ],
   legal: [
     { name: "Privacy Policy", href: "/privacy" },
     { name: "Terms of Service", href: "/terms" },
-    { name: "Cookie Policy", href: "/cookies" },
   ],
 }
 
