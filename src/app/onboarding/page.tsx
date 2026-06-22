@@ -9,36 +9,25 @@ import {
   CheckCircle2,
   Calendar,
   Users,
-  Sparkles,
-  Clock,
   Shield,
   Play,
   LayoutDashboard,
   Zap,
   Settings,
-  HelpCircle,
   ChevronRight,
   Lock,
   Eye,
   FileText,
   Building,
-  MapPin,
-  Globe,
-  DollarSign,
   Briefcase,
   UserCheck,
-  Bell,
-  CreditCard,
-  Layers,
   BarChart3,
   TrendingUp,
-  Activity,
   Radio,
   Workflow,
   ToggleLeft,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 import { AnimatedSection, StaggeredContainer, StaggeredItem } from "@/components/animations"
@@ -51,38 +40,29 @@ function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Copy */}
           <AnimatedSection>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-wrap gap-2 mb-6"
+              transition={{ duration: 0.45 }}
+              className="mb-5 text-sm font-medium text-muted-foreground"
             >
-              <Badge variant="neon">
-                <Sparkles className="w-3 h-3 mr-1" />
-                Private beta
-              </Badge>
-              <Badge variant="secondary">
-                Guided setup
-              </Badge>
-              <Badge variant="secondary">
-                Start alongside your current tools
-              </Badge>
-            </motion.div>
+              Private beta · Guided setup · Start alongside your current tools
+            </motion.p>
 
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6 leading-tight"
+              transition={{ duration: 0.5, delay: 0.08 }}
+              className="font-display text-4xl md:text-5xl font-semibold leading-[1.1] tracking-tight mb-6"
             >
               Getting started with Convo is{" "}
-              <span className="gradient-text neon-glow">simple.</span>
+              <span className="text-primary">simple.</span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.16 }}
               className="text-lg md:text-xl text-muted-foreground mb-8"
             >
               We'll help you get Convo running alongside your current system — no rip-and-replace required.
@@ -90,18 +70,18 @@ function HeroSection() {
 
             {/* CTAs */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.24 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <Button variant="neon" size="lg" asChild>
+              <Button size="lg" asChild>
                 <Link href="/contact">
                   Request Access
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
-              <Button variant="glass" size="lg" asChild>
+              <Button variant="outline" size="lg" asChild>
                 <Link href="/demo">
                   <Play className="w-4 h-4 mr-2" />
                   Watch Demo
@@ -112,43 +92,49 @@ function HeroSection() {
 
           {/* Right: Abstract Onboarding Flow Visual */}
           <AnimatedSection delay={0.2}>
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-neon-blue/20 via-neon-purple/20 to-neon-mint/20 blur-3xl opacity-50" />
-              
-              <div className="relative glass rounded-2xl p-8">
-                {/* Flow visualization */}
-                <div className="flex flex-col gap-4">
-                  {[
-                    { icon: MessageSquare, label: "Chat", color: "neon-mint", desc: "Customer reaches out" },
-                    { icon: Calendar, label: "Calendar", color: "neon-blue", desc: "Booking confirmed" },
-                    { icon: Users, label: "Team", color: "neon-purple", desc: "Staff notified" },
-                    { icon: BarChart3, label: "Insights", color: "neon-pink", desc: "Actions surfaced" },
-                  ].map((step, index) => (
-                    <motion.div
-                      key={step.label}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                      className="flex items-center gap-4"
-                    >
-                      <div className={`w-12 h-12 rounded-xl bg-${step.color}/10 flex items-center justify-center shrink-0`}>
-                        <step.icon className={`w-6 h-6 text-${step.color}`} />
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3">
-                          <p className="font-medium">{step.label}</p>
-                          {index < 3 && (
-                            <ChevronRight className="w-4 h-4 text-muted-foreground" />
-                          )}
-                        </div>
-                        <p className="text-sm text-muted-foreground">{step.desc}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
+            <div className="rounded-xl border border-border bg-card p-8">
+              {/* Card header */}
+              <div className="mb-5 flex items-center gap-2.5 border-b border-border pb-4">
+                <Workflow className="h-4 w-4 text-primary" />
+                <span className="font-mono text-xs font-medium text-muted-foreground uppercase tracking-widest">
+                  convo flow · live
+                </span>
+              </div>
 
-                {/* Connection line */}
-                <div className="absolute left-14 top-[4.5rem] bottom-[4.5rem] w-0.5 bg-gradient-to-b from-neon-mint via-neon-blue via-neon-purple to-neon-pink opacity-30" />
+              <div className="relative flex flex-col gap-5">
+                {[
+                  { icon: MessageSquare, label: "Chat", desc: "Customer reaches out" },
+                  { icon: Calendar, label: "Calendar", desc: "Booking confirmed" },
+                  { icon: Users, label: "Team", desc: "Staff notified" },
+                  { icon: BarChart3, label: "Insights", desc: "Actions surfaced" },
+                ].map((step, index) => (
+                  <motion.div
+                    key={step.label}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                    className="flex items-center gap-4"
+                  >
+                    <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center shrink-0">
+                      <step.icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <p className="font-medium text-sm">{step.label}</p>
+                        {index < 3 && (
+                          <ChevronRight className="w-3.5 h-3.5 text-muted-foreground" />
+                        )}
+                      </div>
+                      <p className="text-xs text-muted-foreground">{step.desc}</p>
+                    </div>
+                    {index === 0 && (
+                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary" />
+                    )}
+                  </motion.div>
+                ))}
+
+                {/* Flat connector line */}
+                <div className="absolute left-5 top-10 bottom-2 w-px bg-border" />
               </div>
             </div>
           </AnimatedSection>
@@ -204,17 +190,14 @@ function HowItWorksSection() {
   ]
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-16">
-          <Badge variant="neon" className="mb-4">
-            <Workflow className="w-3 h-3 mr-1" />
-            Simple Process
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <AnimatedSection className="mb-16 max-w-2xl">
+          <p className="mb-3 text-sm font-medium text-muted-foreground">Simple Process</p>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
             How onboarding works
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground">
             Four straightforward steps. You're in control the whole way.
           </p>
         </AnimatedSection>
@@ -225,24 +208,24 @@ function HowItWorksSection() {
             {steps.map((step, index) => (
               <StaggeredItem key={step.number}>
                 <div className="relative h-full">
-                  {/* Connector line */}
+                  {/* Flat connector line */}
                   {index < steps.length - 1 && (
-                    <div className="absolute top-10 left-[calc(50%+2rem)] right-0 h-0.5 bg-gradient-to-r from-primary/50 to-transparent hidden lg:block" />
+                    <div className="absolute top-10 left-[calc(50%+2rem)] right-0 h-px bg-border hidden lg:block" />
                   )}
-                  
-                  <Card glass className="p-6 h-full group hover:border-white/20 transition-all duration-300">
+
+                  <div className="rounded-xl border border-border bg-card p-6 h-full group hover:border-primary/30 transition-colors duration-300">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                        {step.number}
+                      <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-primary font-mono text-sm font-semibold group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                        {String(step.number).padStart(2, "0")}
                       </div>
-                      <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center">
                         <step.icon className="w-5 h-5 text-primary" />
                       </div>
                     </div>
-                    
-                    <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
+
+                    <h3 className="font-display text-base font-semibold mb-2">{step.title}</h3>
                     <p className="text-muted-foreground text-sm mb-4">{step.description}</p>
-                    
+
                     <ul className="space-y-2">
                       {step.bullets.map((bullet, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -251,7 +234,7 @@ function HowItWorksSection() {
                         </li>
                       ))}
                     </ul>
-                  </Card>
+                  </div>
                 </div>
               </StaggeredItem>
             ))}
@@ -263,21 +246,21 @@ function HowItWorksSection() {
           {steps.map((step, index) => (
             <AnimatedSection key={step.number} delay={index * 0.1}>
               <div className="relative flex gap-4">
-                {/* Vertical line */}
+                {/* Flat vertical line */}
                 {index < steps.length - 1 && (
-                  <div className="absolute left-5 top-16 bottom-0 w-0.5 bg-gradient-to-b from-primary/50 to-transparent" />
+                  <div className="absolute left-5 top-14 bottom-0 w-px bg-border" />
                 )}
-                
+
                 {/* Step number */}
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold shrink-0 z-10">
-                  {step.number}
+                <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-primary font-mono text-xs font-semibold shrink-0 z-10">
+                  {String(step.number).padStart(2, "0")}
                 </div>
-                
+
                 {/* Content */}
-                <Card glass className="flex-1 p-5">
+                <div className="flex-1 rounded-xl border border-border bg-card p-5">
                   <div className="flex items-center gap-2 mb-2">
                     <step.icon className="w-4 h-4 text-primary" />
-                    <h3 className="font-semibold">{step.title}</h3>
+                    <h3 className="font-display font-semibold text-sm">{step.title}</h3>
                   </div>
                   <p className="text-sm text-muted-foreground mb-3">{step.description}</p>
                   <ul className="space-y-1.5">
@@ -288,7 +271,7 @@ function HowItWorksSection() {
                       </li>
                     ))}
                   </ul>
-                </Card>
+                </div>
               </div>
             </AnimatedSection>
           ))}
@@ -327,26 +310,21 @@ function ChecklistSection() {
     },
     {
       title: "Existing system",
-      icon: Layers,
+      icon: Settings,
       items: ["If you use Fresha, MangoMint, or something else — Convo can layer on top."],
       required: false,
     },
   ]
 
   return (
-    <section className="py-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neon-blue/5 to-transparent" />
-      
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-12">
-          <Badge variant="neon" className="mb-4">
-            <CheckCircle2 className="w-3 h-3 mr-1" />
-            Quick Setup
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+    <section className="py-20 border-t border-border">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="mb-12 max-w-2xl">
+          <p className="mb-3 text-sm font-medium text-muted-foreground">Quick Setup</p>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
             What we need from you
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground">
             A short checklist to get you started. Nothing complicated.
           </p>
         </AnimatedSection>
@@ -354,19 +332,19 @@ function ChecklistSection() {
         <StaggeredContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
           {categories.map((category, index) => (
             <StaggeredItem key={index}>
-              <Card glass className="p-5 h-full group hover:border-white/20 transition-all duration-300">
+              <div className="rounded-xl border border-border bg-card p-5 h-full group hover:border-primary/30 transition-colors duration-300">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center group-hover:bg-primary/10 transition-colors">
                     <category.icon className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">{category.title}</h3>
+                    <h3 className="font-display font-semibold text-sm">{category.title}</h3>
                     {!category.required && (
                       <span className="text-xs text-muted-foreground">Optional</span>
                     )}
                   </div>
                 </div>
-                
+
                 <ul className="space-y-2">
                   {category.items.map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -375,13 +353,13 @@ function ChecklistSection() {
                     </li>
                   ))}
                 </ul>
-              </Card>
+              </div>
             </StaggeredItem>
           ))}
         </StaggeredContainer>
 
-        <AnimatedSection delay={0.3} className="text-center">
-          <p className="text-muted-foreground">
+        <AnimatedSection delay={0.3}>
+          <p className="text-muted-foreground text-sm">
             Most owners already have this info. No migration required.
           </p>
         </AnimatedSection>
@@ -402,7 +380,6 @@ function DayOneSection() {
         "View team schedules",
         "Access insights and trends",
       ],
-      color: "neon-purple",
     },
     {
       title: "Employee Portal",
@@ -413,7 +390,6 @@ function DayOneSection() {
         "Acknowledge bookings",
         "Update status in real-time",
       ],
-      color: "neon-blue",
     },
     {
       title: "Customer Booking",
@@ -424,7 +400,6 @@ function DayOneSection() {
         "Voice when you're ready",
         "24/7 availability",
       ],
-      color: "neon-mint",
     },
     {
       title: "Insights & Actions",
@@ -435,22 +410,18 @@ function DayOneSection() {
         "Booking patterns",
         "Recommended next steps",
       ],
-      color: "neon-pink",
     },
   ]
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-20 border-t border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-12">
-          <Badge variant="neon" className="mb-4">
-            <Zap className="w-3 h-3 mr-1" />
-            Day One
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <AnimatedSection className="mb-12 max-w-2xl">
+          <p className="mb-3 text-sm font-medium text-muted-foreground">Day One</p>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
             What you get on day one
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground">
             Everything you need to start running your front desk with Convo.
           </p>
         </AnimatedSection>
@@ -458,14 +429,14 @@ function DayOneSection() {
         <StaggeredContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {features.map((feature, index) => (
             <StaggeredItem key={index}>
-              <Card glass className="p-6 h-full group hover:border-white/20 transition-all duration-300 hover:-translate-y-1">
-                <div className={`w-12 h-12 rounded-xl bg-${feature.color}/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                  <feature.icon className={`w-6 h-6 text-${feature.color}`} />
+              <div className="rounded-xl border border-border bg-card p-6 h-full group hover:border-primary/30 hover:-translate-y-1 transition-all duration-300">
+                <div className="w-11 h-11 rounded-lg bg-secondary flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
+                  <feature.icon className="w-5 h-5 text-primary" />
                 </div>
-                
-                <h3 className="text-lg font-semibold mb-1">{feature.title}</h3>
+
+                <h3 className="font-display text-base font-semibold mb-1">{feature.title}</h3>
                 <p className="text-sm text-muted-foreground mb-4">{feature.description}</p>
-                
+
                 <ul className="space-y-2">
                   {feature.bullets.map((bullet, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm">
@@ -474,7 +445,7 @@ function DayOneSection() {
                     </li>
                   ))}
                 </ul>
-              </Card>
+              </div>
             </StaggeredItem>
           ))}
         </StaggeredContainer>
@@ -507,22 +478,17 @@ function GoLiveSection() {
   ]
 
   return (
-    <section className="py-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neon-purple/5 to-transparent" />
-      
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="py-20 border-t border-border">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Copy */}
           <AnimatedSection>
-            <Badge variant="neon" className="mb-6">
-              <Shield className="w-3 h-3 mr-1" />
-              Low Risk
-            </Badge>
-            
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <p className="mb-3 text-sm font-medium text-muted-foreground">Low Risk</p>
+
+            <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
               Go live without risk
             </h2>
-            
+
             <p className="text-lg text-muted-foreground mb-6">
               You don't have to flip a switch and hope for the best. Roll out Convo at your own pace.
             </p>
@@ -531,40 +497,40 @@ function GoLiveSection() {
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-success shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-medium">Start internal only</p>
+                  <p className="font-medium text-sm">Start internal only</p>
                   <p className="text-sm text-muted-foreground">Your team tests before customers see it.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-success shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-medium">Keep your current booking tool</p>
+                  <p className="font-medium text-sm">Keep your current booking tool</p>
                   <p className="text-sm text-muted-foreground">Convo layers on top — no replacement needed.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-success shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-medium">Enable features gradually</p>
+                  <p className="font-medium text-sm">Enable features gradually</p>
                   <p className="text-sm text-muted-foreground">Chat first, then voice, then SMS. Your choice.</p>
                 </div>
               </div>
             </div>
 
-            <Card glass className="p-4 border-neon-mint/20 inline-flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-neon-mint/10 flex items-center justify-center">
-                <Shield className="w-4 h-4 text-neon-mint" />
+            <div className="inline-flex items-center gap-3 rounded-lg border border-border bg-card p-4">
+              <div className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
+                <Shield className="w-4 h-4 text-primary" />
               </div>
               <p className="text-sm font-medium">You're always in control.</p>
-            </Card>
+            </div>
           </AnimatedSection>
 
           {/* Right: Timeline */}
           <AnimatedSection delay={0.2}>
             <div className="relative">
-              {/* Vertical connector */}
-              <div className="absolute left-6 top-8 bottom-8 w-0.5 bg-gradient-to-b from-neon-mint via-neon-blue to-neon-purple opacity-50" />
-              
+              {/* Flat vertical connector */}
+              <div className="absolute left-6 top-8 bottom-8 w-px bg-border" />
+
               <div className="space-y-6">
                 {phases.map((phase, index) => (
                   <motion.div
@@ -575,19 +541,19 @@ function GoLiveSection() {
                     viewport={{ once: true }}
                     className="relative flex gap-5"
                   >
-                    <div className={`w-12 h-12 rounded-xl glass flex items-center justify-center shrink-0 z-10 ${index === 0 ? 'shadow-neon' : ''}`}>
-                      <phase.icon className={`w-6 h-6 ${index === 0 ? 'text-primary' : 'text-muted-foreground'}`} />
+                    <div className={`w-12 h-12 rounded-xl border border-border bg-card flex items-center justify-center shrink-0 z-10 ${index === 0 ? "border-primary/30 bg-primary/5" : ""}`}>
+                      <phase.icon className={`w-6 h-6 ${index === 0 ? "text-primary" : "text-muted-foreground"}`} />
                     </div>
-                    
-                    <Card glass className={`flex-1 p-5 ${index === 0 ? 'border-primary/30' : ''}`}>
+
+                    <div className={`flex-1 rounded-xl border border-border bg-card p-5 ${index === 0 ? "border-primary/30" : ""}`}>
                       <div className="flex items-center gap-2 mb-1">
-                        <h3 className="font-semibold">{phase.stage}</h3>
+                        <h3 className="font-display font-semibold text-sm">{phase.stage}</h3>
                         {index === 0 && (
                           <Badge variant="success" className="text-xs">Start here</Badge>
                         )}
                       </div>
                       <p className="text-sm text-muted-foreground">{phase.description}</p>
-                    </Card>
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -625,13 +591,13 @@ function SecuritySection() {
   ]
 
   return (
-    <section className="py-16 relative overflow-hidden">
+    <section className="py-16 border-t border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">
+        <AnimatedSection className="mb-10 max-w-xl">
+          <h2 className="font-display text-2xl md:text-3xl font-semibold mb-3">
             Security & control
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <p className="text-muted-foreground">
             Built with trust in mind.
           </p>
         </AnimatedSection>
@@ -639,8 +605,8 @@ function SecuritySection() {
         <StaggeredContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {points.map((point, index) => (
             <StaggeredItem key={index}>
-              <div className="flex items-start gap-3 p-4 glass rounded-xl">
-                <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
+              <div className="flex items-start gap-3 rounded-xl border border-border bg-card p-4 hover:border-primary/30 transition-colors duration-300">
+                <div className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center shrink-0">
                   <point.icon className="w-4 h-4 text-primary" />
                 </div>
                 <div>
@@ -690,16 +656,11 @@ function FAQSection() {
   ]
 
   return (
-    <section className="py-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-t from-transparent via-neon-blue/5 to-transparent" />
-      
-      <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-12">
-          <Badge variant="neon" className="mb-4">
-            <HelpCircle className="w-3 h-3 mr-1" />
-            Questions
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+    <section className="py-20 border-t border-border">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="mb-12">
+          <p className="mb-3 text-sm font-medium text-muted-foreground">Questions</p>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
             Onboarding FAQ
           </h2>
           <p className="text-lg text-muted-foreground">
@@ -708,20 +669,20 @@ function FAQSection() {
         </AnimatedSection>
 
         <AnimatedSection delay={0.1}>
-          <Card glass className="p-2">
+          <div className="rounded-xl border border-border bg-card p-2">
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border-white/10">
-                  <AccordionTrigger className="text-left hover:no-underline px-4">
+                <AccordionItem key={index} value={`item-${index}`} className="border-border">
+                  <AccordionTrigger className="text-left hover:no-underline px-4 font-medium text-sm">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="px-4">
+                  <AccordionContent className="px-4 text-sm text-muted-foreground">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
-          </Card>
+          </div>
         </AnimatedSection>
       </div>
     </section>
@@ -731,39 +692,34 @@ function FAQSection() {
 // Final CTA Section
 function FinalCTASection() {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/10 via-neon-purple/10 to-neon-mint/10" />
-      
-      <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+    <section className="py-24 border-t border-border">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
         <AnimatedSection>
           <motion.div
-            initial={{ scale: 0.95, opacity: 0 }}
+            initial={{ scale: 0.97, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="glass rounded-3xl p-8 md:p-12 shadow-neon"
+            className="rounded-2xl border border-border bg-card p-8 md:p-14"
           >
-            <Badge variant="neon" className="mb-6">
-              <Sparkles className="w-3 h-3 mr-1" />
-              Private beta
-            </Badge>
-            
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <p className="mb-4 text-sm font-medium text-muted-foreground">Private beta</p>
+
+            <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
               Ready to get started?
             </h2>
-            
+
             <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
               We onboard a limited number of businesses at a time to ensure everyone gets the attention they deserve.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button variant="neon" size="lg" asChild>
+              <Button size="lg" asChild>
                 <Link href="/contact">
                   Request Access
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
-              <Button variant="glass" size="lg" asChild>
+              <Button variant="outline" size="lg" asChild>
                 <Link href="/demo">
                   <Play className="w-4 h-4 mr-2" />
                   Watch Demo
