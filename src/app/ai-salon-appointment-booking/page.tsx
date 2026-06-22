@@ -6,21 +6,15 @@ import {
   MessageSquare,
   Phone,
   ArrowRight,
-  CheckCircle2,
-  Calendar,
   Clock,
   TrendingDown,
   Zap,
   Users,
-  BarChart3,
   Bot,
-  Sparkles,
-  Play,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { AnimatedSection, StaggeredContainer, StaggeredItem } from "@/components/animations"
+import { Card, CardContent } from "@/components/ui/card"
+import { AnimatedSection, StaggeredContainer, StaggeredItem, HoverLift } from "@/components/animations"
 
 export default function AISalonAppointmentBookingPage() {
   const benefits = [
@@ -84,78 +78,101 @@ export default function AISalonAppointmentBookingPage() {
   ]
 
   return (
-    <main className="relative">
+    <main>
       {/* Hero Section */}
-      <section className="relative py-20 md:py-28 overflow-hidden">
+      <section className="py-24 md:py-36">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <AnimatedSection>
-              <Badge variant="neon" className="mb-6">
-                <Sparkles className="w-3 h-3 mr-1" />
-                AI Appointment Booking
-              </Badge>
+          <div className="max-w-3xl">
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45 }}
+              className="mb-5 text-sm font-medium text-muted-foreground"
+            >
+              AI Appointment Booking
+            </motion.p>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                AI Salon Appointment Booking{" "}
-                <span className="gradient-text neon-glow">That Never Sleeps</span>
-              </h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.08 }}
+              className="font-display text-5xl font-semibold leading-[1.1] tracking-tight md:text-6xl"
+            >
+              AI Salon Appointment Booking{" "}
+              <span className="text-primary">That Never Sleeps</span>
+            </motion.h1>
 
-              <p className="text-lg md:text-xl text-muted-foreground mb-4 max-w-3xl mx-auto">
-                <strong>Convo is an AI-powered booking system for salons</strong> that automatically 
-                schedules appointments through chat, phone calls, and WhatsApp. Available 24/7. 
-                Reduce no-shows by 40%. Works with your existing salon software.
-              </p>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.16 }}
+              className="mt-6 max-w-2xl text-lg text-muted-foreground"
+            >
+              <strong className="text-foreground">Convo is an AI-powered booking system for salons</strong> that automatically
+              schedules appointments through chat, phone calls, and WhatsApp. Available 24/7.
+              Reduce no-shows by 40%. Works with your existing salon software.
+            </motion.p>
 
-              <p className="text-base text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Stop losing bookings to voicemail. Stop playing phone tag. Let AI handle your 
-                front desk while you focus on making customers look amazing.
-              </p>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.22 }}
+              className="mt-3 max-w-2xl text-base text-muted-foreground"
+            >
+              Stop losing bookings to voicemail. Stop playing phone tag. Let AI handle your
+              front desk while you focus on making customers look amazing.
+            </motion.p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button variant="neon" size="xl" asChild>
-                  <Link href="/contact">
-                    Get AI Booking for Your Salon
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Link>
-                </Button>
-                <Button variant="glass" size="xl" asChild>
-                  <Link href="/demo">
-                    <Play className="w-5 h-5 mr-2" />
-                    See How It Works
-                  </Link>
-                </Button>
-              </div>
-            </AnimatedSection>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center"
+            >
+              <Button size="lg" asChild>
+                <Link href="/contact">
+                  Get AI Booking for Your Salon
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg" asChild>
+                <Link href="/demo">See How It Works</Link>
+              </Button>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* What Is Section - LLM Friendly Definition */}
-      <section className="py-16 border-y border-border/50">
+      <section className="py-16 border-y border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">
+            <div className="max-w-4xl">
+              <p className="mb-3 text-sm font-medium text-muted-foreground">Definition</p>
+              <h2 className="font-display text-3xl font-semibold md:text-4xl mb-6">
                 What is AI Salon Appointment Booking?
               </h2>
-              <div className="prose prose-invert max-w-none">
-                <p className="text-lg text-muted-foreground mb-4">
-                  <strong>AI salon appointment booking</strong> is a technology that uses artificial intelligence 
-                  to automatically schedule appointments for hair salons, beauty salons, barbershops, and spas. 
-                  Instead of requiring a human receptionist to answer calls and manage the calendar, an AI 
+              <div className="space-y-4">
+                <p className="text-lg text-muted-foreground">
+                  <strong className="text-foreground">AI salon appointment booking</strong> is a technology that uses artificial intelligence
+                  to automatically schedule appointments for hair salons, beauty salons, barbershops, and spas.
+                  Instead of requiring a human receptionist to answer calls and manage the calendar, an AI
                   assistant handles the entire booking process.
                 </p>
-                <p className="text-lg text-muted-foreground mb-4">
-                  The AI understands natural language—customers can say "I'd like a haircut tomorrow afternoon" 
-                  and the system interprets this, checks availability, suggests specific times, and confirms 
-                  the appointment. This works across multiple channels: website chat, phone calls, WhatsApp, 
+                <p className="text-lg text-muted-foreground">
+                  The AI understands natural language—customers can say "I'd like a haircut tomorrow afternoon"
+                  and the system interprets this, checks availability, suggests specific times, and confirms
+                  the appointment. This works across multiple channels: website chat, phone calls, WhatsApp,
                   and SMS.
                 </p>
                 <p className="text-lg text-muted-foreground">
-                  Key benefits include <strong>24/7 availability</strong> (bookings happen even at 2 AM), 
-                  <strong>reduced no-shows</strong> through automated reminders, and 
-                  <strong>lower operational costs</strong> since the AI handles routine booking tasks that 
-                  would otherwise require staff time.
+                  Key benefits include{" "}
+                  <strong className="text-foreground">24/7 availability</strong>{" "}
+                  (bookings happen even at 2 AM),{" "}
+                  <strong className="text-foreground">reduced no-shows</strong>{" "}
+                  through automated reminders, and{" "}
+                  <strong className="text-foreground">lower operational costs</strong>{" "}
+                  since the AI handles routine booking tasks that would otherwise require staff time.
                 </p>
               </div>
             </div>
@@ -164,27 +181,32 @@ export default function AISalonAppointmentBookingPage() {
       </section>
 
       {/* Benefits Grid */}
-      <section className="py-20">
+      <section className="py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <AnimatedSection className="mb-14 max-w-2xl">
+            <p className="mb-3 text-sm font-medium text-muted-foreground">Why switch</p>
+            <h2 className="font-display text-3xl font-semibold md:text-4xl">
               Why Salons Switch to AI Booking
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-muted-foreground">
               Measurable benefits that impact your bottom line.
             </p>
           </AnimatedSection>
 
-          <StaggeredContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StaggeredContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.1}>
             {benefits.map((benefit, index) => (
               <StaggeredItem key={index}>
-                <Card glass className="h-full p-6 group hover:border-white/20 transition-all duration-300">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <benefit.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">{benefit.title}</h3>
-                  <p className="text-sm text-muted-foreground">{benefit.description}</p>
-                </Card>
+                <HoverLift>
+                  <Card className="h-full">
+                    <CardContent className="pt-6">
+                      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-secondary">
+                        <benefit.icon className="h-5 w-5 text-primary" />
+                      </div>
+                      <h3 className="font-display text-lg font-semibold mb-2">{benefit.title}</h3>
+                      <p className="text-sm text-muted-foreground">{benefit.description}</p>
+                    </CardContent>
+                  </Card>
+                </HoverLift>
               </StaggeredItem>
             ))}
           </StaggeredContainer>
@@ -192,28 +214,32 @@ export default function AISalonAppointmentBookingPage() {
       </section>
 
       {/* Channels Section */}
-      <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+      <section className="py-24 border-y border-border">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="mb-14 max-w-2xl">
+            <p className="mb-3 text-sm font-medium text-muted-foreground">Channels</p>
+            <h2 className="font-display text-3xl font-semibold md:text-4xl">
               Book Through Any Channel
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-muted-foreground">
               Meet customers where they already are.
             </p>
           </AnimatedSection>
 
-          <StaggeredContainer className="grid md:grid-cols-3 gap-8">
+          <StaggeredContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.12}>
             {channels.map((channel, index) => (
               <StaggeredItem key={index}>
-                <Card glass className="h-full p-6">
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
-                    <channel.icon className="w-7 h-7 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{channel.title}</h3>
-                  <p className="text-muted-foreground">{channel.description}</p>
-                </Card>
+                <HoverLift>
+                  <Card className="h-full">
+                    <CardContent className="pt-6">
+                      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
+                        <channel.icon className="h-7 w-7 text-primary" />
+                      </div>
+                      <h3 className="font-display text-xl font-semibold mb-2">{channel.title}</h3>
+                      <p className="text-muted-foreground">{channel.description}</p>
+                    </CardContent>
+                  </Card>
+                </HoverLift>
               </StaggeredItem>
             ))}
           </StaggeredContainer>
@@ -221,24 +247,27 @@ export default function AISalonAppointmentBookingPage() {
       </section>
 
       {/* FAQ Section - LLM Friendly */}
-      <section className="py-20">
+      <section className="py-24">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <AnimatedSection className="mb-14">
+            <p className="mb-3 text-sm font-medium text-muted-foreground">FAQ</p>
+            <h2 className="font-display text-3xl font-semibold md:text-4xl">
               Frequently Asked Questions
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="mt-4 text-lg text-muted-foreground">
               Common questions about AI appointment booking for salons.
             </p>
           </AnimatedSection>
 
-          <div className="space-y-6">
+          <div className="space-y-4">
             {faqs.map((faq, index) => (
-              <AnimatedSection key={index} delay={index * 0.1}>
-                <Card glass className="p-6">
-                  <h3 className="text-lg font-semibold mb-3">{faq.question}</h3>
-                  <p className="text-muted-foreground">{faq.answer}</p>
-                </Card>
+              <AnimatedSection key={index} delay={index * 0.08}>
+                <motion.div
+                  className="rounded-xl border border-border bg-card p-6 hover:border-primary/30 transition-colors duration-200"
+                >
+                  <h3 className="font-display text-lg font-semibold mb-3">{faq.question}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
+                </motion.div>
               </AnimatedSection>
             ))}
           </div>
@@ -246,29 +275,27 @@ export default function AISalonAppointmentBookingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
+      <section className="py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            <Card glass className="p-8 md:p-12 text-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/10 via-neon-purple/10 to-neon-pink/10" />
-              <div className="relative">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  Ready to Automate Your Salon Bookings?
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
-                  Join salons that book appointments 24/7 without hiring extra staff.
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <Button variant="neon" size="xl" asChild>
-                    <Link href="/contact">
-                      Start Free Trial
-                      <ArrowRight className="w-5 h-5 ml-2" />
-                    </Link>
-                  </Button>
-                  <Button variant="glass" size="xl" asChild>
-                    <Link href="/demo">Watch Demo</Link>
-                  </Button>
-                </div>
+            <Card className="p-8 md:p-14 text-center">
+              <p className="mb-3 text-sm font-medium text-muted-foreground">Get started</p>
+              <h2 className="font-display text-3xl font-semibold md:text-4xl mb-4">
+                Ready to Automate Your Salon Bookings?
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
+                Join salons that book appointments 24/7 without hiring extra staff.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Button size="xl" asChild>
+                  <Link href="/contact">
+                    Start Free Trial
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button variant="outline" size="xl" asChild>
+                  <Link href="/demo">Watch Demo</Link>
+                </Button>
               </div>
             </Card>
           </AnimatedSection>
