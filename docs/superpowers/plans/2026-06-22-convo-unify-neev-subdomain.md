@@ -705,3 +705,57 @@ Run (in `Saas`): `npm run build && npm run start`.
 - **Cabs honesty (Global Constraint):** cabs only ever links to `/contact` with an "In production" badge — no fabricated page. ✓
 - **Type consistency:** `VerticalCardProps` (Task 3) is consumed verbatim in Task 4; `Badge` variants `live`/`soon`/`demo` (Task 2) are used by `VerticalCard` (Task 3) and its `status` prop. ✓
 - **No-placeholder check:** copy strings, token values, DNS record, and component code are concrete; the only delegated work (pixel-level restyle of decorative sections) is explicitly routed to frontend-design with fixed constraints, not left as "TODO".
+
+---
+
+# Phase 2 — Bespoke restyle of all secondary pages
+
+The Task 1 theme overhaul removed `gradient-text`, `neon-glow`, `shadow-neon`, and the `neon.*` palette globally. Nine route pages (plus the now-fixed `tabs.tsx`) still referenced those classes and now render degraded. The user chose a **full bespoke restyle** of each page to homepage-level quality — not a token swap.
+
+## Shared restyle contract (every Phase 2 task MUST follow)
+
+**Reference implementation:** `src/app/page.tsx` (the restyled homepage) is the canonical example of the target look. Match its rhythm, hierarchy, and restraint.
+
+**Preserve:** all existing copy, routes, links, page sections, and functional behavior. This is a VISUAL restyle, not a content rewrite. These pages are mostly salon-specific — keep their salon content; do NOT force the engine/verticals rewrite here (that was the homepage's job).
+
+**Retire/replace every dead class on the page:**
+- `gradient-text` → for emphasized words use `text-primary` (indigo accent); never reintroduce a gradient.
+- `neon-glow` → remove.
+- `bg-neon-{blue,purple,pink,mint}/X` → token tints: `bg-primary/10` for accent chips, `bg-secondary` for neutral surfaces.
+- `text-neon-*` → `text-primary` (accent) or `text-muted-foreground` (neutral).
+- `shadow-neon` / `shadow-neon-strong` → remove; use `border border-border` for definition.
+- `glass` → fine to keep (now flat `bg-card border border-border`) or make explicit.
+- decorative `animate-pulse` glows → remove or keep extremely subtle.
+
+**Elevate (Engineered Dark language):** headings `font-display` weight 500–600 (no 700/800 hero weights); quiet eyebrow labels (muted small text) instead of a `Badge` on every section (keep `Badge` only for genuine status); generous whitespace; hairline `border-border`; ONE indigo accent; flat `bg-card` surfaces; subtle `fade-in`/`slide-up` only, respect `prefers-reduced-motion`. Invoke the `anthropic-skills:frontend-design` skill for each page.
+
+**Verify:** `npm run build` clean (the only gate — no test harness; `npm run lint` is broken pre-existing). Then `grep -nE "gradient-text|neon-glow|bg-neon-|text-neon-|shadow-neon" <file>` must return nothing on the restyled page. Commit per page.
+
+## Tasks (one page each — independent)
+
+## Task 11: Restyle /product
+**File:** `src/app/product/page.tsx` (large). Dead classes present: `gradient-text`, `bg-neon-{mint,blue,purple}/X`, `text-neon-blue`, `animate-pulse`. Apply the shared contract. Commit: `feat(product): Engineered Dark restyle`.
+
+## Task 12: Restyle /differentiators
+**File:** `src/app/differentiators/page.tsx` (large). Dead classes: `gradient-text neon-glow`, `bg-neon-{mint,blue,purple}/X`, `glass shadow-neon`, `gradient-text`. Apply the shared contract. Commit: `feat(differentiators): Engineered Dark restyle`.
+
+## Task 13: Restyle /pricing
+**File:** `src/app/pricing/page.tsx`. Dead classes: `gradient-text`, `shadow-neon` (on popular plan card). Apply the shared contract; the "popular" plan card should use `border-primary/50` (not `shadow-neon`) for emphasis. Commit: `feat(pricing): Engineered Dark restyle`.
+
+## Task 14: Restyle /demo
+**File:** `src/app/demo/page.tsx` (very large, ~1400 lines). Dead classes: `gradient-text neon-glow`, `bg-neon-{mint,blue,purple}/X` (many), `gradient-text`. Apply the shared contract. If the file is unwieldy, restyle section-by-section but keep it one file and one commit. Commit: `feat(demo): Engineered Dark restyle`.
+
+## Task 15: Restyle /contact
+**File:** `src/app/contact/page.tsx`. Dead classes: `gradient-text`, `bg-neon-{mint,blue,purple}/X`. Apply the shared contract. Commit: `feat(contact): Engineered Dark restyle`.
+
+## Task 16: Restyle /faq
+**File:** `src/app/faq/page.tsx`. Dead classes: `gradient-text neon-glow`. Apply the shared contract. Commit: `feat(faq): Engineered Dark restyle`.
+
+## Task 17: Restyle /onboarding
+**File:** `src/app/onboarding/page.tsx` (large). Dead classes: `gradient-text neon-glow`, `bg-neon-mint/X`, `glass shadow-neon`. Apply the shared contract. Commit: `feat(onboarding): Engineered Dark restyle`.
+
+## Task 18: Restyle /ai-salon-appointment-booking
+**File:** `src/app/ai-salon-appointment-booking/page.tsx`. Dead classes: `gradient-text neon-glow` (and any `bg-neon-*` present). Apply the shared contract. Commit: `feat(ai-salon-booking): Engineered Dark restyle`.
+
+## Task 19: Restyle /ai-receptionist-for-salons
+**File:** `src/app/ai-receptionist-for-salons/page.tsx`. Dead classes: `gradient-text neon-glow` (and any `bg-neon-*` present). Apply the shared contract. Commit: `feat(ai-receptionist): Engineered Dark restyle`.
