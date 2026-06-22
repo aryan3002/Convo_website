@@ -8,37 +8,28 @@ import {
   LayoutDashboard,
   ArrowRight,
   CheckCircle2,
-  Calendar,
-  Bell,
   Users,
   Sparkles,
   Clock,
   Shield,
-  Zap,
   XCircle,
   AlertCircle,
   MinusCircle,
-  Bot,
-  TrendingUp,
-  TrendingDown,
-  BarChart3,
   Lightbulb,
   Play,
   PhoneCall,
   CalendarCheck,
   UserCheck,
-  ClipboardCheck,
   Timer,
   RefreshCw,
-  Settings,
   HelpCircle,
-  ChevronDown,
-  ChevronUp,
   Layers,
   MessageCircle,
   Workflow,
   Target,
   Activity,
+  BarChart3,
+  TrendingDown,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -50,7 +41,7 @@ import { useState, useEffect } from "react"
 // Navigation Anchor Bar
 function NavAnchorBar() {
   const [activeSection, setActiveSection] = useState("")
-  
+
   const sections = [
     { id: "matrix", label: "Matrix" },
     { id: "scenarios", label: "Real-life scenarios" },
@@ -89,15 +80,15 @@ function NavAnchorBar() {
     <div className="sticky top-20 z-40 py-4">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex justify-center">
-          <div className="inline-flex items-center gap-2 p-1.5 glass rounded-full">
+          <div className="inline-flex items-center gap-1 p-1 bg-card border border-border rounded-full">
             {sections.map(({ id, label }) => (
               <button
                 key={id}
                 onClick={() => scrollToSection(id)}
-                className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
+                className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 ${
                   activeSection === id
-                    ? "bg-primary/20 text-primary"
-                    : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+                    ? "bg-primary/15 text-primary"
+                    : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                 }`}
               >
                 {label}
@@ -118,25 +109,23 @@ function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Copy */}
           <AnimatedSection>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.45 }}
+              className="mb-5 text-sm font-medium text-muted-foreground"
             >
-              <Badge variant="neon" className="mb-6">
-                <Sparkles className="w-3 h-3 mr-1" />
-                Understanding the Difference
-              </Badge>
-            </motion.div>
+              Understanding the Difference
+            </motion.p>
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6 leading-tight"
+              transition={{ duration: 0.5, delay: 0.08 }}
+              className="font-display text-4xl md:text-5xl font-semibold tracking-tight leading-[1.1] mb-6"
             >
               Stop running your{" "}
-              <span className="gradient-text neon-glow">front desk.</span>
+              <span className="text-primary">front desk.</span>
               <br />
               Let Convo run it.
             </motion.h1>
@@ -144,48 +133,50 @@ function HeroSection() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.16 }}
               className="text-lg md:text-xl text-muted-foreground mb-8"
             >
-              Convo answers every call and chat. Books appointments. Keeps your team in sync. 
+              Convo answers every call and chat. Books appointments. Keeps your team in sync.
               Spots patterns. Recommends what to do next.
             </motion.p>
 
-            {/* Badges */}
+            {/* Quiet feature labels */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.25 }}
+              transition={{ duration: 0.5, delay: 0.22 }}
               className="flex flex-wrap gap-3 mb-8"
             >
-              <Badge variant="secondary" className="text-sm py-1.5 px-4">
-                <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
+              <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                <MessageCircle className="w-3.5 h-3.5 text-primary" />
                 Conversation-first
-              </Badge>
-              <Badge variant="secondary" className="text-sm py-1.5 px-4">
-                <Activity className="w-3.5 h-3.5 mr-1.5" />
+              </div>
+              <span className="text-border">·</span>
+              <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                <Activity className="w-3.5 h-3.5 text-primary" />
                 Real-time ops
-              </Badge>
-              <Badge variant="secondary" className="text-sm py-1.5 px-4">
-                <Target className="w-3.5 h-3.5 mr-1.5" />
+              </div>
+              <span className="text-border">·</span>
+              <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                <Target className="w-3.5 h-3.5 text-primary" />
                 Actionable insights
-              </Badge>
+              </div>
             </motion.div>
 
             {/* CTAs */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4"
+              transition={{ duration: 0.5, delay: 0.28 }}
+              className="flex flex-col sm:flex-row gap-3"
             >
-              <Button variant="neon" size="lg" asChild>
+              <Button size="lg" asChild>
                 <Link href="/demo">
                   <Play className="w-4 h-4 mr-2" />
                   Watch Demo
                 </Link>
               </Button>
-              <Button variant="glass" size="lg" asChild>
+              <Button variant="outline" size="lg" asChild>
                 <Link href="/contact">
                   Request Access
                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -196,100 +187,96 @@ function HeroSection() {
 
           {/* Right: Stacked Device Mock */}
           <AnimatedSection delay={0.2}>
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-neon-blue/20 via-neon-purple/20 to-neon-pink/20 blur-3xl opacity-50" />
-              
-              <div className="relative space-y-4">
-                {/* Chat booking bubble */}
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="glass rounded-2xl p-5 ml-8"
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-neon-mint/20 flex items-center justify-center">
-                      <MessageSquare className="w-5 h-5 text-neon-mint" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-sm">Chat Booking</p>
-                      <p className="text-xs text-muted-foreground">Just now</p>
-                    </div>
+            <div className="relative space-y-4">
+              {/* Chat booking bubble */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="rounded-2xl border border-border bg-card p-5 ml-8"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center">
+                    <MessageSquare className="w-5 h-5 text-primary" />
                   </div>
-                  <div className="space-y-2">
-                    <div className="bg-white/5 rounded-lg p-2.5 text-sm">
-                      "Can I get a cut tomorrow afternoon?"
-                    </div>
-                    <div className="bg-neon-mint/10 border border-neon-mint/20 rounded-lg p-2.5 text-sm ml-4">
-                      "Sure! Alex has 2pm or 4pm open. Which works?"
-                    </div>
+                  <div>
+                    <p className="font-medium text-sm">Chat Booking</p>
+                    <p className="text-xs text-muted-foreground">Just now</p>
                   </div>
-                </motion.div>
+                </div>
+                <div className="space-y-2">
+                  <div className="bg-secondary rounded-lg p-2.5 text-sm">
+                    "Can I get a cut tomorrow afternoon?"
+                  </div>
+                  <div className="bg-primary/10 border border-primary/20 rounded-lg p-2.5 text-sm ml-4">
+                    "Sure! Alex has 2pm or 4pm open. Which works?"
+                  </div>
+                </div>
+              </motion.div>
 
-                {/* Employee schedule card */}
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                  className="glass rounded-2xl p-5 mr-8"
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-neon-blue/20 flex items-center justify-center">
-                      <Users className="w-5 h-5 text-neon-blue" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-sm">Staff Updates</p>
-                      <p className="text-xs text-muted-foreground">Real-time sync</p>
-                    </div>
+              {/* Employee schedule card */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="rounded-2xl border border-border bg-card p-5 mr-8"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center">
+                    <Users className="w-5 h-5 text-primary" />
                   </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="bg-white/5 rounded-lg p-2 text-center">
-                      <div className="w-6 h-6 rounded-full bg-success/20 mx-auto mb-1 flex items-center justify-center">
-                        <CheckCircle2 className="w-3 h-3 text-success" />
-                      </div>
-                      <p className="text-xs">Alex: Acknowledged</p>
-                    </div>
-                    <div className="bg-white/5 rounded-lg p-2 text-center">
-                      <div className="w-6 h-6 rounded-full bg-neon-blue/20 mx-auto mb-1 flex items-center justify-center">
-                        <Clock className="w-3 h-3 text-neon-blue" />
-                      </div>
-                      <p className="text-xs">Maria: In session</p>
-                    </div>
+                  <div>
+                    <p className="font-medium text-sm">Staff Updates</p>
+                    <p className="text-xs text-muted-foreground">Real-time sync</p>
                   </div>
-                </motion.div>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="bg-secondary rounded-lg p-2 text-center">
+                    <div className="w-6 h-6 rounded-full bg-success/15 mx-auto mb-1 flex items-center justify-center">
+                      <CheckCircle2 className="w-3 h-3 text-success" />
+                    </div>
+                    <p className="text-xs">Alex: Acknowledged</p>
+                  </div>
+                  <div className="bg-secondary rounded-lg p-2 text-center">
+                    <div className="w-6 h-6 rounded-full bg-primary/10 mx-auto mb-1 flex items-center justify-center">
+                      <Clock className="w-3 h-3 text-primary" />
+                    </div>
+                    <p className="text-xs">Maria: In session</p>
+                  </div>
+                </div>
+              </motion.div>
 
-                {/* Owner analytics tile */}
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.7 }}
-                  className="glass rounded-2xl p-5 ml-12"
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-neon-purple/20 flex items-center justify-center">
-                      <LayoutDashboard className="w-5 h-5 text-neon-purple" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-sm">Owner Insights</p>
-                      <p className="text-xs text-muted-foreground">This week</p>
-                    </div>
+              {/* Owner analytics tile */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="rounded-2xl border border-border bg-card p-5 ml-12"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center">
+                    <LayoutDashboard className="w-5 h-5 text-primary" />
                   </div>
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="text-center">
-                      <p className="text-2xl font-bold text-neon-mint">24</p>
-                      <p className="text-xs text-muted-foreground">Bookings</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-2xl font-bold text-neon-blue">8</p>
-                      <p className="text-xs text-muted-foreground">Calls</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-2xl font-bold text-success">↓12%</p>
-                      <p className="text-xs text-muted-foreground">No-shows</p>
-                    </div>
+                  <div>
+                    <p className="font-medium text-sm">Owner Insights</p>
+                    <p className="text-xs text-muted-foreground">This week</p>
                   </div>
-                </motion.div>
-              </div>
+                </div>
+                <div className="flex items-center justify-between gap-4">
+                  <div className="text-center">
+                    <p className="text-2xl font-semibold text-primary">24</p>
+                    <p className="text-xs text-muted-foreground">Bookings</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-2xl font-semibold text-foreground">8</p>
+                    <p className="text-xs text-muted-foreground">Calls</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-2xl font-semibold text-success">↓12%</p>
+                    <p className="text-xs text-muted-foreground">No-shows</p>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </AnimatedSection>
         </div>
@@ -306,46 +293,45 @@ function DifferenceGlanceSection() {
       title: "Convo speaks customer.",
       description: 'No forms. Customers say "tomorrow afternoon" and Convo suggests slots. Natural conversation, instant booking.',
       example: "Captures bookings other tools miss",
-      color: "neon-mint",
     },
     {
       icon: Users,
       title: "Convo keeps everyone in sync.",
       description: "Staff sees updates in real-time. Acknowledges bookings. Marks when they're running late. Customers stay informed.",
       example: "Reduces interruptions and confusion",
-      color: "neon-blue",
     },
     {
       icon: Lightbulb,
       title: "Convo recommends what to do.",
       description: "Spots no-show patterns. Suggests policy changes. Flags opportunities. More than analytics — actionable guidance.",
       example: "Turns data into decisions",
-      color: "neon-purple",
     },
   ]
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Why Convo is different
+        <AnimatedSection className="mb-4">
+          <p className="text-sm font-medium text-muted-foreground">Why Convo is different</p>
+        </AnimatedSection>
+        <AnimatedSection className="mb-12">
+          <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
+            Most tools record what happened.
+            <br />
+            Convo tells you what to do next.
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Most tools record what happened. Convo tells you what to do next.
-          </p>
         </AnimatedSection>
 
         <StaggeredContainer className="grid md:grid-cols-3 gap-6">
           {cards.map((card, index) => (
             <StaggeredItem key={index}>
-              <Card glass className="p-6 h-full group hover:border-white/20 transition-all duration-300 hover:-translate-y-1">
-                <div className={`w-12 h-12 rounded-xl bg-${card.color}/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <card.icon className={`w-6 h-6 text-${card.color}`} />
+              <Card className="p-6 h-full group hover:border-primary/30 transition-colors duration-200">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-secondary mb-5 group-hover:bg-primary/10 transition-colors duration-200">
+                  <card.icon className="w-5 h-5 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
-                <p className="text-muted-foreground mb-3">{card.description}</p>
-                <p className="text-sm text-primary/80 italic">{card.example}</p>
+                <h3 className="font-display text-xl font-semibold mb-2">{card.title}</h3>
+                <p className="text-muted-foreground mb-4 text-sm leading-relaxed">{card.description}</p>
+                <p className="text-xs text-primary/70 font-medium">{card.example}</p>
               </Card>
             </StaggeredItem>
           ))}
@@ -511,42 +497,43 @@ function ComparisonMatrixSection() {
   }
 
   return (
-    <section id="matrix" className="py-20 relative overflow-hidden scroll-mt-24">
+    <section id="matrix" className="py-20 scroll-mt-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-12">
-          <Badge variant="neon" className="mb-4">
-            <Layers className="w-3 h-3 mr-1" />
-            The Details
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <AnimatedSection className="mb-4">
+          <p className="text-sm font-medium text-muted-foreground">The Details</p>
+        </AnimatedSection>
+        <AnimatedSection className="mb-8">
+          <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
             Where Convo fits in your stack
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+          <p className="text-lg text-muted-foreground max-w-2xl">
             Convo handles conversations and operations. Your POS handles transactions. They work together.
           </p>
+        </AnimatedSection>
 
-          {/* Legend */}
-          <div className="flex flex-wrap justify-center gap-4">
+        {/* Legend */}
+        <AnimatedSection className="mb-10">
+          <div className="flex flex-wrap gap-4">
             {legend.map((item) => (
-              <div key={item.status} className="flex items-center gap-2 px-3 py-1.5 glass rounded-full text-sm">
+              <div key={item.status} className="flex items-center gap-2 text-sm text-muted-foreground">
                 <item.icon className={`w-4 h-4 ${item.color}`} />
-                <span className="text-muted-foreground">{item.label}</span>
+                <span>{item.label}</span>
               </div>
             ))}
           </div>
         </AnimatedSection>
 
         {/* Matrix Groups */}
-        <div className="space-y-8">
+        <div className="space-y-6">
           {matrixGroups.map((group, groupIndex) => (
-            <AnimatedSection key={group.name} delay={groupIndex * 0.1}>
-              <Card glass className="overflow-hidden">
-                <CardHeader className="border-b border-white/10 bg-white/[0.02]">
+            <AnimatedSection key={group.name} delay={groupIndex * 0.08}>
+              <Card className="overflow-hidden">
+                <CardHeader className="border-b border-border bg-secondary/30 py-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <group.icon className="w-5 h-5 text-primary" />
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-secondary">
+                      <group.icon className="w-4 h-4 text-primary" />
                     </div>
-                    <CardTitle className="text-lg">{group.name}</CardTitle>
+                    <CardTitle className="font-display text-base font-semibold">{group.name}</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="p-0">
@@ -554,16 +541,16 @@ function ComparisonMatrixSection() {
                   <div className="hidden md:block">
                     <table className="w-full">
                       <thead>
-                        <tr className="border-b border-white/10">
-                          <th className="text-left p-4 text-muted-foreground font-medium w-[40%]">Feature</th>
-                          <th className="text-center p-4 font-semibold gradient-text w-[20%]">Convo</th>
-                          <th className="text-center p-4 text-muted-foreground font-medium w-[20%]">MangoMint</th>
-                          <th className="text-center p-4 text-muted-foreground font-medium w-[20%]">Fresha</th>
+                        <tr className="border-b border-border">
+                          <th className="text-left p-4 text-muted-foreground font-medium text-sm w-[40%]">Feature</th>
+                          <th className="text-center p-4 text-primary font-semibold text-sm w-[20%]">Convo</th>
+                          <th className="text-center p-4 text-muted-foreground font-medium text-sm w-[20%]">MangoMint</th>
+                          <th className="text-center p-4 text-muted-foreground font-medium text-sm w-[20%]">Fresha</th>
                         </tr>
                       </thead>
                       <tbody>
                         {group.rows.map((row, rowIndex) => (
-                          <tr key={rowIndex} className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                          <tr key={rowIndex} className="border-b border-border/50 last:border-0 hover:bg-secondary/20 transition-colors">
                             <td className="p-4 text-sm">{row.feature}</td>
                             <td className="p-4 text-center">
                               <div className="flex flex-col items-center gap-1">
@@ -598,7 +585,7 @@ function ComparisonMatrixSection() {
                   {/* Mobile Cards */}
                   <div className="md:hidden p-4 space-y-4">
                     {group.rows.map((row, rowIndex) => (
-                      <div key={rowIndex} className="glass rounded-xl p-4 space-y-3">
+                      <div key={rowIndex} className="rounded-xl border border-border bg-secondary/20 p-4 space-y-3">
                         <p className="font-medium text-sm">{row.feature}</p>
                         <div className="grid grid-cols-3 gap-2 text-center">
                           <div className="space-y-1">
@@ -649,7 +636,7 @@ function ScenariosSection() {
         "Books the appointment on the spot",
       ],
       outcome: "Captured booking",
-      outcomeColor: "success",
+      outcomeVariant: "success" as const,
     },
     {
       title: 'Customer is vague: "tomorrow afternoon"',
@@ -664,7 +651,7 @@ function ScenariosSection() {
         "Customer picks, booking confirmed",
       ],
       outcome: "Reduced friction",
-      outcomeColor: "neon-blue",
+      outcomeVariant: "secondary" as const,
     },
     {
       title: "Stylist running late",
@@ -679,7 +666,7 @@ function ScenariosSection() {
         "Offers reschedule options proactively",
       ],
       outcome: "Reduced interruption",
-      outcomeColor: "neon-purple",
+      outcomeVariant: "secondary" as const,
     },
     {
       title: "No-show spike this week",
@@ -694,7 +681,7 @@ function ScenariosSection() {
         "Recommends deposit policy adjustment",
       ],
       outcome: "Fewer no-shows",
-      outcomeColor: "neon-mint",
+      outcomeVariant: "success" as const,
     },
     {
       title: "Busy Saturday: last-minute cancellations",
@@ -709,24 +696,21 @@ function ScenariosSection() {
         "Slot filled without staff effort",
       ],
       outcome: "Maximized revenue",
-      outcomeColor: "success",
+      outcomeVariant: "success" as const,
     },
   ]
 
   return (
-    <section id="scenarios" className="py-20 relative overflow-hidden scroll-mt-24">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neon-purple/5 to-transparent" />
-      
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-12">
-          <Badge variant="neon" className="mb-4">
-            <Workflow className="w-3 h-3 mr-1" />
-            Real World
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+    <section id="scenarios" className="py-20 scroll-mt-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="mb-4">
+          <p className="text-sm font-medium text-muted-foreground">Real World</p>
+        </AnimatedSection>
+        <AnimatedSection className="mb-12">
+          <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
             How Convo solves real problems
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl">
             The messy scenarios where traditional tools fall short.
           </p>
         </AnimatedSection>
@@ -734,36 +718,39 @@ function ScenariosSection() {
         <StaggeredContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {scenarios.map((scenario, index) => (
             <StaggeredItem key={index}>
-              <Card glass className="p-6 h-full group hover:border-white/20 transition-all duration-300 hover:-translate-y-1">
-                <h3 className="font-semibold mb-4 text-lg">{scenario.title}</h3>
-                
-                <div className="space-y-4 mb-4">
+              <Card className="p-6 h-full group hover:border-primary/30 transition-colors duration-200">
+                <h3 className="font-display font-semibold mb-4 text-base">{scenario.title}</h3>
+
+                <div className="space-y-4 mb-5">
                   {/* Typical System */}
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-2">
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-1.5">
                       <MinusCircle className="w-3 h-3" />
                       Typical system
                     </p>
                     <ul className="space-y-1.5">
                       {scenario.typical.map((item, i) => (
                         <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                          <span className="text-muted-foreground/50 mt-1">•</span>
+                          <span className="text-muted-foreground/40 mt-0.5 shrink-0">–</span>
                           {item}
                         </li>
                       ))}
                     </ul>
                   </div>
 
+                  {/* Hairline divider */}
+                  <div className="h-px bg-border" />
+
                   {/* Convo */}
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-primary mb-2 flex items-center gap-2">
+                    <p className="text-xs uppercase tracking-wider text-primary mb-2 flex items-center gap-1.5">
                       <CheckCircle2 className="w-3 h-3" />
                       Convo
                     </p>
                     <ul className="space-y-1.5">
                       {scenario.convo.map((item, i) => (
                         <li key={i} className="text-sm flex items-start gap-2">
-                          <span className="text-primary mt-1">•</span>
+                          <span className="text-primary mt-0.5 shrink-0">+</span>
                           {item}
                         </li>
                       ))}
@@ -771,10 +758,7 @@ function ScenariosSection() {
                   </div>
                 </div>
 
-                <Badge 
-                  variant="success" 
-                  className={`text-${scenario.outcomeColor} border-${scenario.outcomeColor}/30 bg-${scenario.outcomeColor}/10`}
-                >
+                <Badge variant={scenario.outcomeVariant}>
                   {scenario.outcome}
                 </Badge>
               </Card>
@@ -783,17 +767,17 @@ function ScenariosSection() {
         </StaggeredContainer>
 
         {/* Mid-page CTA */}
-        <AnimatedSection delay={0.4} className="text-center mt-16">
-          <Card glass className="inline-block px-8 py-6">
-            <p className="text-lg font-medium mb-4">Ready to see Convo in action?</p>
+        <AnimatedSection delay={0.4} className="mt-16">
+          <Card className="p-8 text-center">
+            <p className="font-display text-lg font-semibold mb-4">Ready to see Convo in action?</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Button variant="neon" size="lg" asChild>
+              <Button size="lg" asChild>
                 <Link href="/demo">
                   <Play className="w-4 h-4 mr-2" />
                   Watch Demo
                 </Link>
               </Button>
-              <Button variant="glass" size="lg" asChild>
+              <Button variant="outline" size="lg" asChild>
                 <Link href="/contact">
                   Request Access
                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -831,29 +815,26 @@ function SwitchingSection() {
   ]
 
   return (
-    <section id="switching" className="py-20 relative overflow-hidden scroll-mt-24">
+    <section id="switching" className="py-20 scroll-mt-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Copy */}
           <AnimatedSection>
-            <Badge variant="neon" className="mb-6">
-              <RefreshCw className="w-3 h-3 mr-1" />
-              Easy Adoption
-            </Badge>
-            
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <p className="mb-3 text-sm font-medium text-muted-foreground">Easy Adoption</p>
+
+            <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
               Start without switching
             </h2>
-            
+
             <p className="text-lg text-muted-foreground mb-8">
               Convo works alongside your current tools. Start small, expand when ready.
             </p>
 
             {/* No rip-and-replace callout */}
-            <Card glass className="p-5 mb-6 border-neon-mint/20">
+            <Card className="p-5 mb-6">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-neon-mint/10 flex items-center justify-center shrink-0">
-                  <Shield className="w-5 h-5 text-neon-mint" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary shrink-0">
+                  <Shield className="w-5 h-5 text-primary" />
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">No rip-and-replace</h4>
@@ -869,8 +850,8 @@ function SwitchingSection() {
           <AnimatedSection delay={0.2}>
             <div className="relative">
               {/* Connection line */}
-              <div className="absolute left-8 top-14 bottom-14 w-0.5 bg-gradient-to-b from-neon-blue via-neon-purple to-neon-mint" />
-              
+              <div className="absolute left-8 top-14 bottom-14 w-px bg-border" />
+
               <div className="space-y-8">
                 {steps.map((step, index) => (
                   <motion.div
@@ -881,20 +862,20 @@ function SwitchingSection() {
                     viewport={{ once: true }}
                     className="relative flex items-start gap-6"
                   >
-                    {/* Step number with glow */}
+                    {/* Step icon */}
                     <div className="relative z-10">
-                      <div className="w-16 h-16 rounded-2xl glass flex items-center justify-center shadow-neon">
-                        <step.icon className="w-7 h-7 text-primary" />
+                      <div className="w-16 h-16 rounded-2xl border border-border bg-card flex items-center justify-center">
+                        <step.icon className="w-6 h-6 text-primary" />
                       </div>
                     </div>
-                    
+
                     {/* Content */}
-                    <div className="flex-1 pt-2">
+                    <div className="flex-1 pt-3">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-xs text-muted-foreground">Step {step.number}</span>
+                        <span className="text-xs text-muted-foreground font-mono">Step {step.number}</span>
                       </div>
-                      <h3 className="text-lg font-semibold mb-1">{step.title}</h3>
-                      <p className="text-muted-foreground">{step.description}</p>
+                      <h3 className="font-display text-base font-semibold mb-1">{step.title}</h3>
+                      <p className="text-sm text-muted-foreground">{step.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -943,17 +924,16 @@ function MeasurementSection() {
   ]
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-12">
-          <Badge variant="neon" className="mb-4">
-            <BarChart3 className="w-3 h-3 mr-1" />
-            Your Metrics
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <AnimatedSection className="mb-4">
+          <p className="text-sm font-medium text-muted-foreground">Your Metrics</p>
+        </AnimatedSection>
+        <AnimatedSection className="mb-12">
+          <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
             What You'll Measure
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl">
             Real metrics from your actual usage — no vanity numbers.
           </p>
         </AnimatedSection>
@@ -961,22 +941,22 @@ function MeasurementSection() {
         <StaggeredContainer className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {metrics.map((metric, index) => (
             <StaggeredItem key={index}>
-              <Card glass className="p-5 text-center h-full group hover:border-white/20 transition-all duration-300 hover:-translate-y-1">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <metric.icon className="w-6 h-6 text-primary" />
+              <Card className="p-5 text-center h-full group hover:border-primary/30 transition-colors duration-200">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-secondary mx-auto mb-4 group-hover:bg-primary/10 transition-colors duration-200">
+                  <metric.icon className="w-5 h-5 text-primary" />
                 </div>
-                <h3 className="font-semibold mb-1">{metric.label}</h3>
-                <Badge variant="secondary" className="mb-2 text-xs">
+                <h3 className="font-semibold text-sm mb-1.5">{metric.label}</h3>
+                <Badge variant="secondary" className="mb-3 text-xs">
                   {metric.type}
                 </Badge>
-                <p className="text-sm text-muted-foreground">{metric.description}</p>
+                <p className="text-xs text-muted-foreground">{metric.description}</p>
               </Card>
             </StaggeredItem>
           ))}
         </StaggeredContainer>
 
-        <AnimatedSection delay={0.3} className="mt-8 text-center">
-          <p className="text-sm text-muted-foreground italic">
+        <AnimatedSection delay={0.3} className="mt-8">
+          <p className="text-sm text-muted-foreground">
             Measured from your actual usage — no vanity metrics.
           </p>
         </AnimatedSection>
@@ -1019,16 +999,13 @@ function FAQSection() {
   ]
 
   return (
-    <section id="faq" className="py-20 relative overflow-hidden scroll-mt-24">
-      <div className="absolute inset-0 bg-gradient-to-t from-transparent via-neon-blue/5 to-transparent" />
-      
-      <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-12">
-          <Badge variant="neon" className="mb-4">
-            <HelpCircle className="w-3 h-3 mr-1" />
-            Questions
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+    <section id="faq" className="py-20 scroll-mt-24">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="mb-4">
+          <p className="text-sm font-medium text-muted-foreground">Questions</p>
+        </AnimatedSection>
+        <AnimatedSection className="mb-12">
+          <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
             Frequently Asked Questions
           </h2>
           <p className="text-lg text-muted-foreground">
@@ -1037,14 +1014,14 @@ function FAQSection() {
         </AnimatedSection>
 
         <AnimatedSection delay={0.1}>
-          <Card glass className="p-2">
+          <Card className="p-2">
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border-white/10">
-                  <AccordionTrigger className="text-left hover:no-underline px-4">
+                <AccordionItem key={index} value={`item-${index}`} className="border-border">
+                  <AccordionTrigger className="text-left hover:no-underline px-4 font-medium">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="px-4">
+                  <AccordionContent className="px-4 text-muted-foreground">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -1060,44 +1037,43 @@ function FAQSection() {
 // Final CTA Section
 function FinalCTASection() {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/10 via-neon-purple/10 to-neon-pink/10" />
-      
-      <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+    <section className="py-24">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
         <AnimatedSection>
           <motion.div
-            initial={{ scale: 0.95, opacity: 0 }}
+            initial={{ scale: 0.97, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="glass rounded-3xl p-8 md:p-12 shadow-neon"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Stop answering calls. Stop chasing staff updates.
-            </h2>
-            
-            <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-              Let Convo handle your front desk while you run your business.
-            </p>
+            <Card className="p-8 md:p-14">
+              <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
+                Stop answering calls. Stop chasing staff updates.
+              </h2>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-              <Button variant="neon" size="lg" asChild>
-                <Link href="/demo">
-                  <Play className="w-4 h-4 mr-2" />
-                  Watch Demo
-                </Link>
-              </Button>
-              <Button variant="glass" size="lg" asChild>
-                <Link href="/contact">
-                  Request Access
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Link>
-              </Button>
-            </div>
+              <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+                Let Convo handle your front desk while you run your business.
+              </p>
 
-            <p className="text-sm text-muted-foreground">
-              Private beta — we onboard a limited number of businesses at a time.
-            </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+                <Button size="lg" asChild>
+                  <Link href="/demo">
+                    <Play className="w-4 h-4 mr-2" />
+                    Watch Demo
+                  </Link>
+                </Button>
+                <Button variant="outline" size="lg" asChild>
+                  <Link href="/contact">
+                    Request Access
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </Button>
+              </div>
+
+              <p className="text-sm text-muted-foreground">
+                Private beta — we onboard a limited number of businesses at a time.
+              </p>
+            </Card>
           </motion.div>
         </AnimatedSection>
       </div>
