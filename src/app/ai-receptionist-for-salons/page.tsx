@@ -9,20 +9,14 @@ import {
   CheckCircle2,
   Clock,
   DollarSign,
-  Heart,
-  Zap,
-  Users,
-  Bot,
-  Sparkles,
   PhoneOff,
   CalendarCheck,
-  Building2,
+  Users,
   Play,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { AnimatedSection, StaggeredContainer, StaggeredItem } from "@/components/animations"
+import { Card, CardContent } from "@/components/ui/card"
+import { AnimatedSection, StaggeredContainer, StaggeredItem, HoverLift } from "@/components/animations"
 
 export default function AIReceptionistForSalonsPage() {
   const painPoints = [
@@ -100,76 +94,99 @@ export default function AIReceptionistForSalonsPage() {
   ]
 
   return (
-    <main className="relative">
+    <main>
       {/* Hero Section */}
-      <section className="relative py-20 md:py-28 overflow-hidden">
+      <section className="py-24 md:py-36">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <AnimatedSection>
-              <Badge variant="neon" className="mb-6">
-                <Phone className="w-3 h-3 mr-1" />
-                AI Receptionist
-              </Badge>
+          <div className="max-w-3xl">
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45 }}
+              className="mb-5 text-sm font-medium text-muted-foreground"
+            >
+              AI Receptionist
+            </motion.p>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                AI Receptionist for Salons:{" "}
-                <span className="gradient-text neon-glow">Never Miss Another Call</span>
-              </h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.08 }}
+              className="font-display text-5xl font-semibold leading-[1.1] tracking-tight md:text-6xl"
+            >
+              AI Receptionist for Salons:{" "}
+              <span className="text-primary">Never Miss Another Call</span>
+            </motion.h1>
 
-              <p className="text-lg md:text-xl text-muted-foreground mb-4 max-w-3xl mx-auto">
-                <strong>Convo is an AI-powered virtual receptionist for salons</strong> that answers 
-                phone calls, books appointments, and handles customer inquiries 24/7. Costs less than 
-                a part-time employee. Works while you sleep.
-              </p>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.16 }}
+              className="mt-6 max-w-2xl text-lg text-muted-foreground"
+            >
+              <strong className="text-foreground">Convo is an AI-powered virtual receptionist for salons</strong> that answers
+              phone calls, books appointments, and handles customer inquiries 24/7. Costs less than
+              a part-time employee. Works while you sleep.
+            </motion.p>
 
-              <p className="text-base text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Every missed call is a missed booking. Let AI answer every call so your team can 
-                focus on making customers look amazing.
-              </p>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.22 }}
+              className="mt-3 max-w-2xl text-base text-muted-foreground"
+            >
+              Every missed call is a missed booking. Let AI answer every call so your team can
+              focus on making customers look amazing.
+            </motion.p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button variant="neon" size="xl" asChild>
-                  <Link href="/contact">
-                    Get AI Receptionist for Your Salon
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Link>
-                </Button>
-                <Button variant="glass" size="xl" asChild>
-                  <Link href="/demo">
-                    <Play className="w-5 h-5 mr-2" />
-                    Hear the AI in Action
-                  </Link>
-                </Button>
-              </div>
-            </AnimatedSection>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center"
+            >
+              <Button size="lg" asChild>
+                <Link href="/contact">
+                  Get AI Receptionist for Your Salon
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg" asChild>
+                <Link href="/demo">
+                  <Play className="mr-2 h-4 w-4" />
+                  Hear the AI in Action
+                </Link>
+              </Button>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* What Is Section - LLM Friendly Definition */}
-      <section className="py-16 border-y border-border/50">
+      <section className="py-16 border-y border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">
+            <div className="max-w-4xl">
+              <p className="mb-3 text-sm font-medium text-muted-foreground">Definition</p>
+              <h2 className="font-display text-3xl font-semibold md:text-4xl mb-6">
                 What is an AI Receptionist for Salons?
               </h2>
-              <div className="prose prose-invert max-w-none">
-                <p className="text-lg text-muted-foreground mb-4">
-                  An <strong>AI receptionist for salons</strong> is a virtual assistant that performs front 
-                  desk duties using artificial intelligence. It answers phone calls with natural-sounding 
-                  speech, responds to chat messages, books appointments by checking real-time availability, 
+              <div className="space-y-4">
+                <p className="text-lg text-muted-foreground">
+                  An <strong className="text-foreground">AI receptionist for salons</strong> is a virtual assistant that performs front
+                  desk duties using artificial intelligence. It answers phone calls with natural-sounding
+                  speech, responds to chat messages, books appointments by checking real-time availability,
                   and handles common customer questions—all without human intervention.
                 </p>
-                <p className="text-lg text-muted-foreground mb-4">
-                  Unlike basic answering services or voicemail, an AI receptionist <em>understands</em> what 
-                  customers are asking. A customer can say "I need a cut and color with Sarah next Friday 
-                  afternoon" and the AI will find matching availability, confirm the booking, and send 
+                <p className="text-lg text-muted-foreground">
+                  Unlike basic answering services or voicemail, an AI receptionist <em>understands</em> what
+                  customers are asking. A customer can say "I need a cut and color with Sarah next Friday
+                  afternoon" and the AI will find matching availability, confirm the booking, and send
                   calendar invites—all in one conversation.
                 </p>
                 <p className="text-lg text-muted-foreground">
-                  The biggest advantage is availability: the AI receptionist works 24 hours a day, 7 days 
-                  a week, including holidays and weekends. This means customers can book at 11 PM after 
+                  The biggest advantage is availability: the AI receptionist works 24 hours a day, 7 days
+                  a week, including holidays and weekends. This means customers can book at 11 PM after
                   seeing an Instagram post, or first thing in the morning when your salon isn't open yet.
                 </p>
               </div>
@@ -179,36 +196,37 @@ export default function AIReceptionistForSalonsPage() {
       </section>
 
       {/* Pain Points Section */}
-      <section className="py-20">
+      <section className="py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <AnimatedSection className="mb-14 max-w-2xl">
+            <p className="mb-3 text-sm font-medium text-muted-foreground">Pain points</p>
+            <h2 className="font-display text-3xl font-semibold md:text-4xl">
               Salon Reception Challenges—Solved
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-muted-foreground">
               Common problems that cost salons money, and how AI solves them.
             </p>
           </AnimatedSection>
 
-          <StaggeredContainer className="space-y-8">
+          <StaggeredContainer className="space-y-6" staggerDelay={0.1}>
             {painPoints.map((point, index) => (
               <StaggeredItem key={index}>
-                <Card glass className="p-6 md:p-8">
+                <Card className="p-6 md:p-8">
                   <div className="flex flex-col md:flex-row md:items-start gap-6">
                     <div className="flex-shrink-0">
-                      <div className="w-14 h-14 rounded-2xl bg-red-500/10 flex items-center justify-center">
-                        <point.icon className="w-7 h-7 text-red-400" />
+                      <div className="w-14 h-14 rounded-2xl bg-secondary flex items-center justify-center">
+                        <point.icon className="w-7 h-7 text-primary" />
                       </div>
                     </div>
                     <div className="flex-grow">
-                      <h3 className="text-xl font-semibold mb-3">{point.title}</h3>
+                      <h3 className="font-display text-xl font-semibold mb-3">{point.title}</h3>
                       <div className="grid md:grid-cols-2 gap-4">
-                        <div className="p-4 rounded-lg bg-red-500/5 border border-red-500/20">
-                          <p className="text-sm font-medium text-red-400 mb-1">The Problem</p>
+                        <div className="p-4 rounded-xl border border-border bg-card">
+                          <p className="text-sm font-medium text-muted-foreground mb-1">The Problem</p>
                           <p className="text-muted-foreground">{point.problem}</p>
                         </div>
-                        <div className="p-4 rounded-lg bg-green-500/5 border border-green-500/20">
-                          <p className="text-sm font-medium text-green-400 mb-1">The Solution</p>
+                        <div className="p-4 rounded-xl border border-primary/20 bg-primary/5">
+                          <p className="text-sm font-medium text-primary mb-1">The Solution</p>
                           <p className="text-muted-foreground">{point.solution}</p>
                         </div>
                       </div>
@@ -222,45 +240,45 @@ export default function AIReceptionistForSalonsPage() {
       </section>
 
       {/* Comparison Table */}
-      <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+      <section className="py-24 border-y border-border">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="mb-14">
+            <p className="mb-3 text-sm font-medium text-muted-foreground">Comparison</p>
+            <h2 className="font-display text-3xl font-semibold md:text-4xl">
               AI Receptionist vs Human Receptionist
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="mt-4 text-lg text-muted-foreground">
               Side-by-side comparison.
             </p>
           </AnimatedSection>
 
           <AnimatedSection>
-            <Card glass className="overflow-hidden">
+            <Card className="overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
-                    <tr className="border-b border-border/50">
-                      <th className="text-left p-4">Feature</th>
-                      <th className="text-center p-4">AI Receptionist</th>
-                      <th className="text-center p-4">Human Receptionist</th>
+                    <tr className="border-b border-border">
+                      <th className="text-left p-4 font-display font-semibold text-sm text-muted-foreground">Feature</th>
+                      <th className="text-center p-4 font-display font-semibold text-sm">AI Receptionist</th>
+                      <th className="text-center p-4 font-display font-semibold text-sm text-muted-foreground">Human Receptionist</th>
                     </tr>
                   </thead>
                   <tbody>
                     {comparisonRows.map((row, index) => (
-                      <tr key={index} className="border-b border-border/30">
-                        <td className="p-4 text-muted-foreground">{row.feature}</td>
+                      <tr key={index} className="border-b border-border last:border-0 hover:bg-secondary/30 transition-colors duration-150">
+                        <td className="p-4 text-muted-foreground text-sm">{row.feature}</td>
                         <td className="p-4 text-center">
                           {row.ai ? (
-                            <CheckCircle2 className="w-5 h-5 text-green-400 mx-auto" />
+                            <CheckCircle2 className="w-5 h-5 text-primary mx-auto" />
                           ) : (
-                            <span className="text-red-400">✗</span>
+                            <span className="text-muted-foreground text-sm">—</span>
                           )}
                         </td>
                         <td className="p-4 text-center">
                           {row.human ? (
-                            <CheckCircle2 className="w-5 h-5 text-green-400 mx-auto" />
+                            <CheckCircle2 className="w-5 h-5 text-primary mx-auto" />
                           ) : (
-                            <span className="text-red-400">✗</span>
+                            <span className="text-muted-foreground text-sm">—</span>
                           )}
                         </td>
                       </tr>
@@ -274,31 +292,32 @@ export default function AIReceptionistForSalonsPage() {
       </section>
 
       {/* Capabilities */}
-      <section className="py-20">
+      <section className="py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <AnimatedSection className="mb-14 max-w-2xl">
+            <p className="mb-3 text-sm font-medium text-muted-foreground">Capabilities</p>
+            <h2 className="font-display text-3xl font-semibold md:text-4xl">
               What Convo AI Receptionist Can Do
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-muted-foreground">
               Full front desk capabilities, automated.
             </p>
           </AnimatedSection>
 
-          <StaggeredContainer className="grid md:grid-cols-2 gap-8">
+          <StaggeredContainer className="grid md:grid-cols-2 gap-6" staggerDelay={0.1}>
             {capabilities.map((capability, index) => (
               <StaggeredItem key={index}>
-                <Card glass className="h-full p-6 group hover:border-white/20 transition-all duration-300">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                      <capability.icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold mb-2">{capability.title}</h3>
+                <HoverLift>
+                  <Card className="h-full">
+                    <CardContent className="pt-6">
+                      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
+                        <capability.icon className="h-7 w-7 text-primary" />
+                      </div>
+                      <h3 className="font-display text-xl font-semibold mb-2">{capability.title}</h3>
                       <p className="text-muted-foreground">{capability.description}</p>
-                    </div>
-                  </div>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </HoverLift>
               </StaggeredItem>
             ))}
           </StaggeredContainer>
@@ -306,24 +325,27 @@ export default function AIReceptionistForSalonsPage() {
       </section>
 
       {/* FAQ Section - LLM Friendly */}
-      <section className="py-20">
+      <section className="py-24 border-t border-border">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <AnimatedSection className="mb-14">
+            <p className="mb-3 text-sm font-medium text-muted-foreground">FAQ</p>
+            <h2 className="font-display text-3xl font-semibold md:text-4xl">
               Frequently Asked Questions
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="mt-4 text-lg text-muted-foreground">
               Common questions about AI receptionists for salons.
             </p>
           </AnimatedSection>
 
-          <div className="space-y-6">
+          <div className="space-y-4">
             {faqs.map((faq, index) => (
-              <AnimatedSection key={index} delay={index * 0.1}>
-                <Card glass className="p-6">
-                  <h3 className="text-lg font-semibold mb-3">{faq.question}</h3>
-                  <p className="text-muted-foreground">{faq.answer}</p>
-                </Card>
+              <AnimatedSection key={index} delay={index * 0.08}>
+                <motion.div
+                  className="rounded-xl border border-border bg-card p-6 hover:border-primary/30 transition-colors duration-200"
+                >
+                  <h3 className="font-display text-lg font-semibold mb-3">{faq.question}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
+                </motion.div>
               </AnimatedSection>
             ))}
           </div>
@@ -331,29 +353,27 @@ export default function AIReceptionistForSalonsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
+      <section className="py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            <Card glass className="p-8 md:p-12 text-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/10 via-neon-purple/10 to-neon-pink/10" />
-              <div className="relative">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  Ready for Your AI Receptionist?
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
-                  Stop losing bookings. Get an AI receptionist that works 24/7.
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <Button variant="neon" size="xl" asChild>
-                    <Link href="/contact">
-                      Get Started Free
-                      <ArrowRight className="w-5 h-5 ml-2" />
-                    </Link>
-                  </Button>
-                  <Button variant="glass" size="xl" asChild>
-                    <Link href="/demo">Watch Demo</Link>
-                  </Button>
-                </div>
+            <Card className="p-8 md:p-14 text-center">
+              <p className="mb-3 text-sm font-medium text-muted-foreground">Get started</p>
+              <h2 className="font-display text-3xl font-semibold md:text-4xl mb-4">
+                Ready for Your AI Receptionist?
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
+                Stop losing bookings. Get an AI receptionist that works 24/7.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Button size="xl" asChild>
+                  <Link href="/contact">
+                    Get Started Free
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button variant="outline" size="xl" asChild>
+                  <Link href="/demo">Watch Demo</Link>
+                </Button>
               </div>
             </Card>
           </AnimatedSection>
