@@ -1,23 +1,19 @@
 "use client"
 
 import Link from "next/link"
+import { motion } from "framer-motion"
 import {
   ArrowRight,
   Sparkles,
   HelpCircle,
-  Phone,
   MessageSquare,
   DollarSign,
-  Clock,
   Settings,
   Shield,
   Zap,
-  Users,
-  CalendarCheck,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { AnimatedSection, StaggeredContainer, StaggeredItem } from "@/components/animations"
 import Script from "next/script"
 
@@ -163,27 +159,40 @@ export default function FAQPage() {
         {/* Hero Section */}
         <section className="relative py-20 md:py-28 overflow-hidden">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center">
-              <AnimatedSection>
-                <Badge variant="neon" className="mb-6">
-                  <HelpCircle className="w-3 h-3 mr-1" />
-                  Help Center
-                </Badge>
+            <div className="max-w-3xl">
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45 }}
+                className="mb-5 flex items-center gap-2 text-sm font-medium text-muted-foreground"
+              >
+                <HelpCircle className="w-4 h-4 text-primary" />
+                Help Center
+              </motion.p>
 
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                  Frequently Asked{" "}
-                  <span className="gradient-text neon-glow">Questions</span>
-                </h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.08 }}
+                className="font-display text-5xl font-semibold leading-[1.1] tracking-tight md:text-6xl"
+              >
+                Frequently asked{" "}
+                <span className="text-primary">questions</span>
+              </motion.h1>
 
-                <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-                  Everything you need to know about Convo, AI appointment booking for salons, 
-                  and how to get started. Can't find what you're looking for?{" "}
-                  <Link href="/contact" className="text-primary hover:underline">
-                    Contact us
-                  </Link>
-                  .
-                </p>
-              </AnimatedSection>
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.16 }}
+                className="mt-6 max-w-2xl text-lg text-muted-foreground"
+              >
+                Everything you need to know about Convo, AI appointment booking for salons,
+                and how to get started. Can&apos;t find what you&apos;re looking for?{" "}
+                <Link href="/contact" className="text-primary hover:underline">
+                  Contact us
+                </Link>
+                .
+              </motion.p>
             </div>
           </div>
         </section>
@@ -192,22 +201,22 @@ export default function FAQPage() {
         {faqCategories.map((category, categoryIndex) => (
           <section
             key={categoryIndex}
-            className={`py-16 ${categoryIndex % 2 === 1 ? "bg-white/[0.02]" : ""}`}
+            className={`py-16 ${categoryIndex % 2 === 1 ? "bg-secondary/30" : ""}`}
           >
             <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-              <AnimatedSection className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+              <AnimatedSection className="flex items-center gap-3 mb-10">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
                   <category.icon className="w-5 h-5 text-primary" />
                 </div>
-                <h2 className="text-2xl font-bold">{category.title}</h2>
+                <h2 className="font-display text-2xl font-semibold">{category.title}</h2>
               </AnimatedSection>
 
-              <StaggeredContainer className="space-y-4">
+              <StaggeredContainer className="space-y-4" staggerDelay={0.08}>
                 {category.faqs.map((faq, faqIndex) => (
                   <StaggeredItem key={faqIndex}>
-                    <Card glass className="p-6">
-                      <h3 className="text-lg font-semibold mb-3">{faq.question}</h3>
-                      <p className="text-muted-foreground whitespace-pre-line">{faq.answer}</p>
+                    <Card className="p-6 hover:border-primary/30 transition-colors duration-200">
+                      <h3 className="font-display text-base font-semibold mb-3">{faq.question}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{faq.answer}</p>
                     </Card>
                   </StaggeredItem>
                 ))}
@@ -220,26 +229,24 @@ export default function FAQPage() {
         <section className="py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
-              <Card glass className="p-8 md:p-12 text-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/10 via-neon-purple/10 to-neon-pink/10" />
-                <div className="relative">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                    Still Have Questions?
-                  </h2>
-                  <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
-                    Our team is happy to help. Get in touch and we'll respond within 24 hours.
-                  </p>
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <Button variant="neon" size="xl" asChild>
-                      <Link href="/contact">
-                        Contact Us
-                        <ArrowRight className="w-5 h-5 ml-2" />
-                      </Link>
-                    </Button>
-                    <Button variant="glass" size="xl" asChild>
-                      <Link href="/demo">Watch Demo</Link>
-                    </Button>
-                  </div>
+              <Card className="p-8 md:p-12 text-center">
+                <p className="mb-3 text-sm font-medium text-muted-foreground">Still have questions?</p>
+                <h2 className="font-display text-3xl font-semibold md:text-4xl mb-4">
+                  Our team is here to help
+                </h2>
+                <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
+                  Get in touch and we&apos;ll respond within 24 hours.
+                </p>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <Button size="xl" asChild>
+                    <Link href="/contact">
+                      Contact Us
+                      <ArrowRight className="w-5 h-5 ml-2" />
+                    </Link>
+                  </Button>
+                  <Button variant="outline" size="xl" asChild>
+                    <Link href="/demo">Watch Demo</Link>
+                  </Button>
                 </div>
               </Card>
             </AnimatedSection>
