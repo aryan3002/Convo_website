@@ -28,16 +28,6 @@ import {
 function PricingHero() {
   return (
     <section className="relative py-24 md:py-32 overflow-hidden">
-      {/* Subtle radial accent — same technique as homepage */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 40% at 20% 60%, hsl(239 84% 67% / 0.06) 0%, transparent 70%)",
-        }}
-      />
-
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <motion.p
@@ -326,8 +316,6 @@ function FeatureComparison() {
 
   return (
     <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="mb-12">
           <p className="mb-3 text-sm font-medium text-muted-foreground">Side by side</p>
