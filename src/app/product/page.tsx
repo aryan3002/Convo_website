@@ -11,7 +11,6 @@ import {
   Calendar,
   Bell,
   Users,
-  Sparkles,
   Clock,
   Shield,
   Zap,
@@ -427,7 +426,7 @@ function OwnerDashboardSection() {
                             <p className="text-sm text-muted-foreground">{call.time}</p>
                           </div>
                         </div>
-                        <Badge variant={call.status === "Booked" ? "live" : "secondary"}>
+                        <Badge variant={call.status === "Booked" ? "success" : "secondary"}>
                           {call.status}
                         </Badge>
                       </div>
