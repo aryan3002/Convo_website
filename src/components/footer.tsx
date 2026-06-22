@@ -9,6 +9,11 @@ const footerLinks = {
     { name: "Demo", href: "/demo" },
     { name: "Pricing", href: "/pricing" },
   ],
+  solutions: [
+    { name: "Salons & barbershops", href: "/product" },
+    { name: "Cabs & fleets", href: "/contact" },
+    { name: "Construction — Neev", href: "https://neev.convoaiservices.com" },
+  ],
   company: [
     { name: "Why Convo?", href: "/differentiators" },
     { name: "Onboarding", href: "/onboarding" },
@@ -30,23 +35,19 @@ const socialLinks = [
 export function Footer() {
   return (
     <footer className="relative border-t border-border/50">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none" />
-      
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12">
             {/* Brand section */}
             <div className="lg:col-span-2">
               <Link href="/" className="flex items-center space-x-2 group mb-6">
-                <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center shadow-neon group-hover:shadow-neon-strong transition-shadow duration-300">
+                <div className="relative w-10 h-10 rounded-xl bg-primary flex items-center justify-center transition-opacity duration-300 group-hover:opacity-80">
                   <MessageSquare className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-xl font-bold gradient-text">Convo</span>
+                <span className="text-xl font-display font-semibold">Convo</span>
               </Link>
               <p className="text-muted-foreground max-w-sm mb-6">
-                The AI-powered booking front desk for modern salons. 
-                Chat-first. Voice-first. Always available.
+                The conversation-to-action engine for real-world businesses — salons, fleets, and construction sites.
               </p>
               <div className="flex space-x-4">
                 {socialLinks.map((item) => (
@@ -55,7 +56,7 @@ export function Footer() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-lg glass flex items-center justify-center text-muted-foreground hover:text-primary hover:shadow-neon transition-all duration-300"
+                    className="w-10 h-10 rounded-lg bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-all duration-300"
                   >
                     <item.icon className="w-5 h-5" />
                     <span className="sr-only">{item.name}</span>
@@ -76,6 +77,34 @@ export function Footer() {
                     >
                       {link.name}
                     </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Solutions links */}
+            <div>
+              <h3 className="text-sm font-semibold text-foreground mb-4">Solutions</h3>
+              <ul className="space-y-3">
+                {footerLinks.solutions.map((link) => (
+                  <li key={link.name}>
+                    {link.href.startsWith("http") ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300"
+                      >
+                        {link.name} ↗
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300"
+                      >
+                        {link.name}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -124,7 +153,7 @@ export function Footer() {
               © {new Date().getFullYear()} Convo. All rights reserved.
             </p>
             <p className="text-sm text-muted-foreground">
-              Built with ❤️ for modern salons
+              Capture · Coordinate · Commit
             </p>
           </div>
         </div>
