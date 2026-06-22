@@ -30,6 +30,7 @@ export function Navbar() {
   const pathname = usePathname()
   const { theme, setTheme } = useTheme()
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,14 +51,22 @@ export function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])
 
-  // Close dropdown on Escape
+  // Close dropdown on Escape and return focus to trigger
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSolutionsOpen(false)
+      if (e.key === "Escape") {
+        setSolutionsOpen(false)
+        triggerRef.current?.focus()
+      }
     }
     document.addEventListener("keydown", handleKeyDown)
     return () => document.removeEventListener("keydown", handleKeyDown)
   }, [])
+
+  // Reset solutionsOpen when mobile menu opens
+  useEffect(() => {
+    if (mobileMenuOpen) setSolutionsOpen(false)
+  }, [mobileMenuOpen])
 
   return (
     <header
@@ -81,23 +90,24 @@ export function Navbar() {
           {/* Desktop navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {/* Solutions dropdown */}
-            <div className="relative" ref={dropdownRef}>
+            <div
+              className="relative"
+              ref={dropdownRef}
+              onBlur={(e) => {
+                if (!dropdownRef.current?.contains(e.relatedTarget as Node)) setSolutionsOpen(false)
+              }}
+            >
               <button
                 type="button"
-                aria-haspopup="true"
+                ref={triggerRef}
+                aria-haspopup="menu"
                 aria-expanded={solutionsOpen}
                 onClick={() => setSolutionsOpen((prev) => !prev)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault()
-                    setSolutionsOpen((prev) => !prev)
-                  }
-                }}
                 className={cn(
                   "flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300",
                   solutionsOpen
                     ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+                    : "text-muted-foreground hover:text-foreground hover:bg-primary/5"
                 )}
               >
                 Solutions
@@ -163,7 +173,7 @@ export function Navbar() {
                   "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300",
                   pathname === item.href
                     ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+                    : "text-muted-foreground hover:text-foreground hover:bg-primary/5"
                 )}
               >
                 {item.name}
@@ -282,7 +292,7 @@ export function Navbar() {
                     "block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300",
                     pathname === item.href
                       ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+                      : "text-muted-foreground hover:text-foreground hover:bg-primary/5"
                   )}
                 >
                   {item.name}
