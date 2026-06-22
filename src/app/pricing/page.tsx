@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import {
@@ -10,9 +9,7 @@ import {
   ArrowRight,
   MessageSquare,
   Phone,
-  LayoutDashboard,
   Users,
-  Zap,
   Shield,
   HelpCircle,
 } from "lucide-react"
@@ -27,49 +24,47 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 
-// Pricing Hero
+// ─── Pricing Hero ─────────────────────────────────────────────────────────────
 function PricingHero() {
   return (
-    <section className="relative py-20 md:py-28 overflow-hidden">
+    <section className="relative py-24 md:py-32 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+        <div className="max-w-2xl">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.45 }}
+            className="mb-5 text-sm font-medium text-muted-foreground"
           >
-            <Badge variant="neon" className="mb-6">
-              <Sparkles className="w-3 h-3 mr-1" />
-              Early Access
-            </Badge>
-          </motion.div>
+            <Sparkles className="inline w-3.5 h-3.5 mr-1.5 text-primary" />
+            Early Access
+          </motion.p>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6"
+            transition={{ duration: 0.5, delay: 0.08 }}
+            className="font-display text-5xl font-semibold leading-[1.1] tracking-tight md:text-6xl"
           >
-            Plans that{" "}
-            <span className="gradient-text">scale with you</span>
+            Plans that scale with you
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground"
+            transition={{ duration: 0.5, delay: 0.16 }}
+            className="mt-6 text-lg text-muted-foreground"
           >
             Early Access Pricing — we&apos;re onboarding our first customers and finalizing pricing based on real usage.
           </motion.p>
-          
+
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-4"
+            transition={{ duration: 0.5, delay: 0.24 }}
+            className="mt-5"
           >
-            <Badge variant="secondary" className="text-xs">
+            <Badge variant="secondary">
               Founding customers receive preferential rates
             </Badge>
           </motion.div>
@@ -79,18 +74,7 @@ function PricingHero() {
   )
 }
 
-// Pricing Disclaimer
-function PricingDisclaimer() {
-  return (
-    <div className="text-center mb-8">
-      <p className="text-sm text-muted-foreground">
-        Early Access Pricing — we&apos;re onboarding our first customers and finalizing pricing based on real usage.
-      </p>
-    </div>
-  )
-}
-
-// Pricing Cards
+// ─── Pricing Cards ─────────────────────────────────────────────────────────────
 function PricingCards() {
   const plans = [
     {
@@ -112,7 +96,7 @@ function PricingCards() {
         { name: "Custom branding", included: false },
       ],
       cta: "Request Early Access",
-      ctaVariant: "glass" as const,
+      ctaVariant: "outline" as const,
     },
     {
       name: "Pro",
@@ -133,7 +117,7 @@ function PricingCards() {
         { name: "Custom branding", included: false },
       ],
       cta: "Request Early Access",
-      ctaVariant: "neon" as const,
+      ctaVariant: "default" as const,
     },
     {
       name: "Enterprise",
@@ -154,45 +138,56 @@ function PricingCards() {
         { name: "Custom branding", included: true },
       ],
       cta: "Talk to Us",
-      ctaVariant: "glass" as const,
+      ctaVariant: "outline" as const,
     },
   ]
 
   return (
-    <section className="py-12">
+    <section className="py-8 pb-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <PricingDisclaimer />
+        {/* Disclaimer */}
+        <div className="mb-10">
+          <p className="text-sm text-muted-foreground">
+            Early Access Pricing — we&apos;re onboarding our first customers and finalizing pricing based on real usage.
+          </p>
+        </div>
 
-        <StaggeredContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.15}>
+        <StaggeredContainer className="grid md:grid-cols-3 gap-6" staggerDelay={0.12}>
           {plans.map((plan, index) => (
             <StaggeredItem key={index}>
               <HoverLift>
-                <Card 
-                  glass 
-                  className={`h-full flex flex-col relative overflow-hidden ${
-                    plan.popular ? 'border-primary/50 shadow-neon' : ''
+                <Card
+                  className={`h-full flex flex-col relative ${
+                    plan.popular
+                      ? "border-2 border-primary/50 bg-card"
+                      : "border border-border bg-card"
                   }`}
                 >
+                  {/* Popular accent line */}
                   {plan.popular && (
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink" />
+                    <div className="absolute top-0 left-0 right-0 h-[2px] rounded-t-xl bg-primary/60" />
                   )}
-                  
-                  <CardHeader>
+
+                  <CardHeader className="pb-4">
                     {plan.foundingBadge && (
-                      <Badge variant="neon" className="w-fit mb-2">Founding Plan</Badge>
+                      <Badge variant="neon" className="w-fit mb-3">Founding Plan</Badge>
                     )}
                     {plan.popular && !plan.foundingBadge && (
-                      <Badge variant="neon" className="w-fit mb-2">Most Popular</Badge>
+                      <Badge variant="neon" className="w-fit mb-3">Most Popular</Badge>
                     )}
-                    <CardTitle className="text-2xl">{plan.name}</CardTitle>
+                    <CardTitle className="font-display text-xl font-semibold">
+                      {plan.name}
+                    </CardTitle>
                     <CardDescription>{plan.description}</CardDescription>
                   </CardHeader>
 
-                  <CardContent className="flex-1">
-                    <div className="mb-6">
-                      <div className="text-4xl font-bold gradient-text mb-2">{plan.priceText}</div>
+                  <CardContent className="flex-1 pt-0">
+                    <div className="mb-7 pb-6 border-b border-border">
+                      <div className="font-display text-3xl font-semibold text-primary">
+                        {plan.priceText}
+                      </div>
                       {plan.priceSubtext && (
-                        <p className="text-sm text-muted-foreground">
+                        <p className="mt-1 text-sm text-muted-foreground">
                           {plan.priceSubtext}
                         </p>
                       )}
@@ -202,11 +197,11 @@ function PricingCards() {
                       {plan.features.map((feature, i) => (
                         <li key={i} className="flex items-center gap-3">
                           {feature.included ? (
-                            <Check className="w-5 h-5 text-neon-mint shrink-0" />
+                            <Check className="w-4 h-4 text-primary shrink-0" />
                           ) : (
-                            <X className="w-5 h-5 text-muted-foreground/50 shrink-0" />
+                            <X className="w-4 h-4 text-muted-foreground/40 shrink-0" />
                           )}
-                          <span className={feature.included ? '' : 'text-muted-foreground/50'}>
+                          <span className={`text-sm ${feature.included ? "text-foreground" : "text-muted-foreground/50"}`}>
                             {feature.name}
                           </span>
                         </li>
@@ -214,10 +209,10 @@ function PricingCards() {
                     </ul>
                   </CardContent>
 
-                  <CardFooter>
-                    <Button 
-                      variant={plan.ctaVariant} 
-                      className="w-full" 
+                  <CardFooter className="pt-6">
+                    <Button
+                      variant={plan.ctaVariant}
+                      className="w-full"
                       size="lg"
                       asChild
                     >
@@ -237,7 +232,7 @@ function PricingCards() {
   )
 }
 
-// Add-ons Section
+// ─── Add-ons Section ──────────────────────────────────────────────────────────
 function AddOnsSection() {
   const addons = [
     {
@@ -269,23 +264,24 @@ function AddOnsSection() {
   return (
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Optional Add-ons</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <AnimatedSection className="mb-12">
+          <p className="mb-3 text-sm font-medium text-muted-foreground">Extend your plan</p>
+          <h2 className="font-display text-3xl font-semibold md:text-4xl">Optional Add-ons</h2>
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
             Customize your plan with additional features as needed.
           </p>
         </AnimatedSection>
 
-        <StaggeredContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.1}>
+        <StaggeredContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5" staggerDelay={0.1}>
           {addons.map((addon, index) => (
             <StaggeredItem key={index}>
               <HoverLift>
-                <Card glass className="h-full">
+                <Card className="h-full">
                   <CardContent className="pt-6">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                      <addon.icon className="w-6 h-6 text-primary" />
+                    <div className="w-11 h-11 rounded-xl bg-secondary flex items-center justify-center mb-5">
+                      <addon.icon className="w-5 h-5 text-primary" />
                     </div>
-                    <h3 className="font-semibold mb-2">{addon.name}</h3>
+                    <h3 className="font-display text-base font-semibold mb-2">{addon.name}</h3>
                     <p className="text-sm text-muted-foreground mb-4">{addon.description}</p>
                     <Badge variant="secondary">{addon.price}</Badge>
                   </CardContent>
@@ -299,7 +295,7 @@ function AddOnsSection() {
   )
 }
 
-// Feature Comparison
+// ─── Feature Comparison ───────────────────────────────────────────────────────
 function FeatureComparison() {
   const features = [
     { feature: "Chat booking widget", starter: true, pro: true, enterprise: true },
@@ -321,64 +317,66 @@ function FeatureComparison() {
   return (
     <section className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-      
+
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Compare Plans</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <AnimatedSection className="mb-12">
+          <p className="mb-3 text-sm font-medium text-muted-foreground">Side by side</p>
+          <h2 className="font-display text-3xl font-semibold md:text-4xl">Compare Plans</h2>
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
             See exactly what&apos;s included in each plan.
           </p>
         </AnimatedSection>
 
         <AnimatedSection delay={0.2}>
-          <Card glass className="overflow-hidden">
+          <Card className="overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-white/10">
-                    <th className="text-left p-4 font-semibold">Feature</th>
-                    <th className="text-center p-4 font-semibold">Starter</th>
-                    <th className="text-center p-4 font-semibold">
-                      <span className="gradient-text">Pro</span>
-                    </th>
-                    <th className="text-center p-4 font-semibold">Enterprise</th>
+                  <tr className="border-b border-border">
+                    <th className="text-left p-4 text-sm font-medium text-muted-foreground">Feature</th>
+                    <th className="text-center p-4 text-sm font-semibold">Starter</th>
+                    <th className="text-center p-4 text-sm font-semibold text-primary">Pro</th>
+                    <th className="text-center p-4 text-sm font-semibold">Enterprise</th>
                   </tr>
                 </thead>
                 <tbody>
                   {features.map((row, index) => (
-                    <tr key={index} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                    <tr
+                      key={index}
+                      className="border-b border-border/50 hover:bg-secondary/30 transition-colors"
+                    >
                       <td className="p-4 text-sm">{row.feature}</td>
                       <td className="p-4 text-center">
-                        {typeof row.starter === 'boolean' ? (
+                        {typeof row.starter === "boolean" ? (
                           row.starter ? (
-                            <Check className="w-5 h-5 text-neon-mint mx-auto" />
+                            <Check className="w-4 h-4 text-primary mx-auto" />
                           ) : (
-                            <X className="w-5 h-5 text-muted-foreground/30 mx-auto" />
+                            <X className="w-4 h-4 text-muted-foreground/30 mx-auto" />
                           )
                         ) : (
                           <span className="text-sm text-muted-foreground">{row.starter}</span>
                         )}
                       </td>
                       <td className="p-4 text-center">
-                        {typeof row.pro === 'boolean' ? (
+                        {typeof row.pro === "boolean" ? (
                           row.pro ? (
-                            <Check className="w-5 h-5 text-neon-mint mx-auto" />
+                            <Check className="w-4 h-4 text-primary mx-auto" />
                           ) : (
-                            <X className="w-5 h-5 text-muted-foreground/30 mx-auto" />
+                            <X className="w-4 h-4 text-muted-foreground/30 mx-auto" />
                           )
                         ) : (
-                          <span className="text-sm">{row.pro}</span>
+                          <span className="text-sm font-medium">{row.pro}</span>
                         )}
                       </td>
                       <td className="p-4 text-center">
-                        {typeof row.enterprise === 'boolean' ? (
+                        {typeof row.enterprise === "boolean" ? (
                           row.enterprise ? (
-                            <Check className="w-5 h-5 text-neon-mint mx-auto" />
+                            <Check className="w-4 h-4 text-primary mx-auto" />
                           ) : (
-                            <X className="w-5 h-5 text-muted-foreground/30 mx-auto" />
+                            <X className="w-4 h-4 text-muted-foreground/30 mx-auto" />
                           )
                         ) : (
-                          <span className="text-sm">{row.enterprise}</span>
+                          <span className="text-sm text-muted-foreground">{row.enterprise}</span>
                         )}
                       </td>
                     </tr>
@@ -393,58 +391,64 @@ function FeatureComparison() {
   )
 }
 
-// FAQ Section
+// ─── FAQ Section ──────────────────────────────────────────────────────────────
 function FAQSection() {
   const faqs = [
     {
       question: "How does Early Access pricing work?",
-      answer: "We're currently onboarding our first customers and finalizing pricing based on real usage patterns. Early Access customers will get preferential rates and be locked into founding customer pricing even after we set final prices.",
+      answer:
+        "We're currently onboarding our first customers and finalizing pricing based on real usage patterns. Early Access customers will get preferential rates and be locked into founding customer pricing even after we set final prices.",
     },
     {
       question: "What are founding customer benefits?",
-      answer: "Founding customers receive special pricing, priority support, direct input into product development, and long-term rate protection. You'll be grandfathered into your initial pricing structure.",
+      answer:
+        "Founding customers receive special pricing, priority support, direct input into product development, and long-term rate protection. You'll be grandfathered into your initial pricing structure.",
     },
     {
       question: "When will final pricing be announced?",
-      answer: "We're finalizing pricing based on real usage from our early access period. Final pricing will be announced after we've gathered sufficient data from founding customers. Early customers may receive long-term discounts.",
+      answer:
+        "We're finalizing pricing based on real usage from our early access period. Final pricing will be announced after we've gathered sufficient data from founding customers. Early customers may receive long-term discounts.",
     },
     {
       question: "How do I request early access?",
-      answer: "Click 'Request Early Access' on any plan to start a conversation with our team. We'll discuss your salon's needs and get you set up quickly.",
+      answer:
+        "Click 'Request Early Access' on any plan to start a conversation with our team. We'll discuss your salon's needs and get you set up quickly.",
     },
     {
       question: "Can I switch plans later?",
-      answer: "Yes! During early access, we're flexible with plan changes as we learn what works best for different salon sizes. Your founding customer benefits will carry over.",
+      answer:
+        "Yes! During early access, we're flexible with plan changes as we learn what works best for different salon sizes. Your founding customer benefits will carry over.",
     },
     {
       question: "What happens after early access ends?",
-      answer: "Early access customers will be notified before any pricing changes. You'll have the option to lock in founding customer rates or adjust your plan as needed.",
+      answer:
+        "Early access customers will be notified before any pricing changes. You'll have the option to lock in founding customer rates or adjust your plan as needed.",
     },
   ]
 
   return (
     <section className="py-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-12">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <HelpCircle className="w-5 h-5 text-primary" />
+        <AnimatedSection className="mb-12">
+          <div className="flex items-center gap-2 mb-4">
+            <HelpCircle className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-muted-foreground">FAQ</span>
           </div>
-          <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
-          <p className="text-lg text-muted-foreground">
+          <h2 className="font-display text-3xl font-semibold md:text-4xl">Frequently Asked Questions</h2>
+          <p className="mt-4 text-lg text-muted-foreground">
             Got questions? We&apos;ve got answers.
           </p>
         </AnimatedSection>
 
         <AnimatedSection delay={0.2}>
-          <Card glass className="p-6">
+          <Card className="p-6">
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left">
+                  <AccordionTrigger className="text-left text-sm font-medium">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent>
+                  <AccordionContent className="text-sm text-muted-foreground">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -457,43 +461,42 @@ function FAQSection() {
   )
 }
 
-// CTA Section
+// ─── CTA Section ──────────────────────────────────────────────────────────────
 function CTASection() {
   return (
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
-          <Card glass className="p-8 md:p-12 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/10 via-neon-purple/10 to-neon-pink/10" />
+          <Card className="p-8 md:p-14 text-center">
+            <h2 className="font-display text-3xl font-semibold md:text-4xl">
+              Ready to modernize your bookings?
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground max-w-xl mx-auto">
+              Join our founding customers and get preferential rates.
+            </p>
 
-            <div className="relative">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Ready to modernize your bookings?
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
-                Join our founding customers and get preferential rates.
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button variant="neon" size="xl" asChild>
-                  <Link href="/contact">
-                    Request Early Access
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Link>
-                </Button>
-                <Button variant="glass" size="xl" asChild>
-                  <Link href="/demo">Watch Demo</Link>
-                </Button>
-              </div>
-
-              <p className="text-sm text-muted-foreground mt-6">
-                Questions? <Link href="/contact" className="text-primary hover:underline">Talk to our team</Link>
-              </p>
-              
-              <p className="text-xs text-muted-foreground mt-8 max-w-2xl mx-auto">
-                Pricing will be finalized after early access. Early customers may receive long-term discounts.
-              </p>
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button size="xl" asChild>
+                <Link href="/contact">
+                  Request Early Access
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Link>
+              </Button>
+              <Button variant="outline" size="xl" asChild>
+                <Link href="/demo">Watch Demo</Link>
+              </Button>
             </div>
+
+            <p className="text-sm text-muted-foreground mt-6">
+              Questions?{" "}
+              <Link href="/contact" className="text-primary hover:underline">
+                Talk to our team
+              </Link>
+            </p>
+
+            <p className="text-xs text-muted-foreground mt-8 max-w-2xl mx-auto">
+              Pricing will be finalized after early access. Early customers may receive long-term discounts.
+            </p>
           </Card>
         </AnimatedSection>
       </div>
@@ -501,7 +504,7 @@ function CTASection() {
   )
 }
 
-// Main Page Component
+// ─── Main Page ─────────────────────────────────────────────────────────────────
 export default function PricingPage() {
   return (
     <>
