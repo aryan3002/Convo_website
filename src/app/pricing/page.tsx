@@ -28,15 +28,25 @@ import {
 function PricingHero() {
   return (
     <section className="relative py-24 md:py-32 overflow-hidden">
+      {/* Subtle radial accent — same technique as homepage */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 40% at 20% 60%, hsl(239 84% 67% / 0.06) 0%, transparent 70%)",
+        }}
+      />
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
-            className="mb-5 text-sm font-medium text-muted-foreground"
+            className="mb-5 flex items-center gap-1.5 text-sm font-medium text-muted-foreground"
           >
-            <Sparkles className="inline w-3.5 h-3.5 mr-1.5 text-primary" />
+            <Sparkles className="inline w-3.5 h-3.5 text-primary" />
             Early Access
           </motion.p>
 
@@ -163,17 +173,17 @@ function PricingCards() {
                       : "border border-border bg-card"
                   }`}
                 >
-                  {/* Popular accent line */}
+                  {/* Popular accent line — top border highlight */}
                   {plan.popular && (
                     <div className="absolute top-0 left-0 right-0 h-[2px] rounded-t-xl bg-primary/60" />
                   )}
 
                   <CardHeader className="pb-4">
                     {plan.foundingBadge && (
-                      <Badge variant="neon" className="w-fit mb-3">Founding Plan</Badge>
+                      <Badge variant="secondary" className="w-fit mb-3 border border-primary/20 text-primary bg-primary/10">Founding Plan</Badge>
                     )}
                     {plan.popular && !plan.foundingBadge && (
-                      <Badge variant="neon" className="w-fit mb-3">Most Popular</Badge>
+                      <Badge variant="secondary" className="w-fit mb-3">Most Popular</Badge>
                     )}
                     <CardTitle className="font-display text-xl font-semibold">
                       {plan.name}
