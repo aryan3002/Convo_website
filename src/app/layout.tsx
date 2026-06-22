@@ -8,11 +8,11 @@ import { FloatingBlobs, GridBackground } from "@/components/background-effects"
 export const metadata: Metadata = {
   metadataBase: new URL("https://convoaiservices.com"),
   title: {
-    default: "Convo AI — AI Salon Appointment Booking | Automated Receptionist for Salons",
+    default: "Convo — conversation-to-action AI for bookings, dispatch & site records",
     template: "%s | Convo AI Services",
   },
   description:
-    "Convo is an AI receptionist for salons that automatically books appointments via chat, WhatsApp, and voice. Available 24/7. Reduce no-shows by 40%. No phone tag. Works with any salon software.",
+    "Convo captures texts, calls, voice notes and site photos and turns them into booked appointments, dispatched rides, and evidence-anchored construction records. One engine, three verticals.",
   keywords: [
     "AI salon appointment booking",
     "AI receptionist for salons",
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://convoaiservices.com",
-    title: "Convo AI — AI Salon Appointment Booking | Automated Receptionist",
+    title: "Convo — turn conversations into action",
     description:
-      "Convo is an AI receptionist that automatically books salon appointments via chat, WhatsApp, and voice. Available 24/7. Reduce no-shows by 40%.",
+      "Convo captures texts, calls, voice notes and site photos and turns them into booked appointments, dispatched rides, and evidence-anchored construction records. One engine, three verticals.",
     siteName: "Convo AI Services",
     images: [
       {
@@ -53,9 +53,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Convo AI — AI Salon Appointment Booking | Automated Receptionist",
+    title: "Convo — turn conversations into action",
     description:
-      "Convo is an AI receptionist that automatically books salon appointments via chat, WhatsApp, and voice. Available 24/7.",
+      "Convo captures texts, calls, voice notes and site photos and turns them into booked appointments, dispatched rides, and evidence-anchored construction records. One engine, three verticals.",
     images: ["/og-image.png"],
     creator: "@convoaiservices",
   },
