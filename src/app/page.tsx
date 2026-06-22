@@ -7,9 +7,7 @@ import {
   Phone,
   LayoutDashboard,
   ArrowRight,
-  Clock,
   CalendarCheck,
-  TrendingDown,
   Zap,
   Shield,
   Bell,
@@ -277,48 +275,6 @@ function SalonProofLeadIn() {
       <p className="text-sm font-medium text-muted-foreground">See the engine at work</p>
       <h2 className="font-display text-3xl font-semibold md:text-4xl">The salon front desk, in depth</h2>
     </div>
-  )
-}
-
-// ─── Social Proof Strip ────────────────────────────────────────────────────────
-function SocialProofStrip() {
-  const proofs = [
-    { icon: Users, text: "One engine, three verticals", highlight: true },
-    { icon: TrendingDown, text: "Reduce No-Shows by 40%" },
-    { icon: Clock, text: "24/7 Booking" },
-    { icon: MessageSquare, text: "Voice + Chat" },
-  ]
-
-  return (
-    <AnimatedSection>
-      <section className="py-12 border-y border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-            {proofs.map((proof, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="flex items-center justify-center gap-3 py-4"
-              >
-                <proof.icon
-                  className={`w-5 h-5 ${proof.highlight ? "text-primary" : "text-muted-foreground"}`}
-                />
-                <span
-                  className={`text-sm font-medium ${
-                    proof.highlight ? "text-foreground" : "text-muted-foreground"
-                  }`}
-                >
-                  {proof.text}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </AnimatedSection>
   )
 }
 
