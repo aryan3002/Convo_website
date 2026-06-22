@@ -2,11 +2,10 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { 
-  MessageSquare, 
-  Phone, 
-  LayoutDashboard, 
-  Play,
+import {
+  MessageSquare,
+  Phone,
+  LayoutDashboard,
   ArrowRight,
   Clock,
   CalendarCheck,
@@ -18,160 +17,130 @@ import {
   BarChart3,
   FileText,
   Calendar,
-  Sparkles,
   CheckCircle2,
   Star,
   ChevronRight,
-  Bot
+  Bot,
+  Scissors,
+  Car,
+  HardHat,
+  Cpu,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { AnimatedSection, StaggeredContainer, StaggeredItem, HoverLift } from "@/components/animations"
+import { VerticalCard } from "@/components/vertical-card"
 
-// Hero Section
+// ─── Hero Section ────────────────────────────────────────────────────────────
 function HeroSection() {
   return (
-    <section className="relative py-20 md:py-32 overflow-hidden">
+    <section className="relative py-24 md:py-36">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Badge variant="neon" className="mb-6">
-              <Sparkles className="w-3 h-3 mr-1" />
-              Private Beta
-            </Badge>
-          </motion.div>
-          
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
-          >
-            Bookings that feel like{" "}
-            <span className="gradient-text neon-glow">texting</span>
-          </motion.h1>
-          
+        {/* Text block */}
+        <div className="max-w-3xl">
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto"
+            transition={{ duration: 0.45 }}
+            className="mb-5 text-sm font-medium text-muted-foreground"
           >
-            The AI-powered booking front desk for modern salons. Let your customers book through 
-            chat or voice—anytime, anywhere. No more phone tag.
+            Conversation-to-action AI
           </motion.p>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            transition={{ duration: 0.5, delay: 0.08 }}
+            className="font-display text-5xl font-semibold leading-[1.1] tracking-tight md:text-6xl"
           >
-            <Button variant="neon" size="xl" asChild>
-              <Link href="/demo">
-                Request a Demo
-                <ArrowRight className="w-5 h-5 ml-2" />
+            Turn every message, call, and photo into a done deal.
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.16 }}
+            className="mt-6 max-w-2xl text-lg text-muted-foreground"
+          >
+            Convo is the engine that captures unstructured conversations — texts, calls, voice notes, site
+            photos — and turns them into booked appointments, dispatched rides, and trustworthy project
+            records. One loop: capture, coordinate, commit.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.24 }}
+            className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center"
+          >
+            <Button size="lg" asChild>
+              <Link href="/contact">
+                Request access
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button variant="glass" size="xl" asChild>
-              <Link href="/demo">
-                <Play className="w-5 h-5 mr-2" />
-                Watch Flow
-              </Link>
+            <Button variant="outline" size="lg" asChild>
+              <Link href="#verticals">See what it runs</Link>
             </Button>
           </motion.div>
         </div>
 
-        {/* Hero visual */}
+        {/* Engine log card */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-16 md:mt-24 relative"
+          transition={{ duration: 0.6, delay: 0.38 }}
+          className="mt-16 md:mt-20"
         >
-          <div className="relative mx-auto max-w-5xl">
-            <div className="glass rounded-2xl p-6 md:p-8 shadow-neon">
-              <div className="grid md:grid-cols-3 gap-6">
-                {/* Chat preview */}
-                <div className="glass rounded-xl p-4">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-3 h-3 rounded-full bg-neon-mint" />
-                    <span className="text-sm font-medium">Chat Booking</span>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="bg-white/5 rounded-lg p-3 text-sm">
-                      Hi! I&apos;d like to book a haircut
-                    </div>
-                    <div className="bg-primary/20 rounded-lg p-3 text-sm ml-8 border border-primary/30">
-                      Sure! I can help with that. Which stylist would you prefer?
-                    </div>
-                    <div className="bg-white/5 rounded-lg p-3 text-sm">
-                      Alex, if available
-                    </div>
-                  </div>
-                </div>
+          <div className="max-w-2xl rounded-xl border border-border bg-card p-6">
+            {/* card header */}
+            <div className="mb-5 flex items-center gap-2.5 border-b border-border pb-4">
+              <Cpu className="h-4 w-4 text-primary" />
+              <span className="font-mono text-xs font-medium text-muted-foreground uppercase tracking-widest">
+                convo engine · live log
+              </span>
+            </div>
 
-                {/* Voice preview */}
-                <div className="glass rounded-xl p-4">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-3 h-3 rounded-full bg-neon-blue animate-pulse" />
-                    <span className="text-sm font-medium">Voice Agent</span>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg">
-                      <Phone className="w-4 h-4 text-neon-blue" />
-                      <div className="flex-1">
-                        <div className="h-1 bg-neon-blue/30 rounded-full">
-                          <motion.div 
-                            className="h-full bg-neon-blue rounded-full"
-                            animate={{ width: ["0%", "100%", "60%"] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <p className="text-sm text-muted-foreground italic">
-                      &quot;I&apos;d like to book a men&apos;s haircut for tomorrow at 10am...&quot;
-                    </p>
-                    <Badge variant="success" className="text-xs">
-                      <CheckCircle2 className="w-3 h-3 mr-1" />
-                      Booking Confirmed
-                    </Badge>
-                  </div>
-                </div>
-
-                {/* Dashboard preview */}
-                <div className="glass rounded-xl p-4">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-3 h-3 rounded-full bg-neon-purple" />
-                    <span className="text-sm font-medium">Owner Dashboard</span>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between p-2 bg-white/5 rounded-lg">
-                      <span className="text-sm">Today&apos;s Bookings</span>
-                      <span className="text-lg font-bold text-neon-mint">12</span>
-                    </div>
-                    <div className="flex items-center justify-between p-2 bg-white/5 rounded-lg">
-                      <span className="text-sm">Voice Calls</span>
-                      <span className="text-lg font-bold text-neon-blue">5</span>
-                    </div>
-                    <div className="flex items-center justify-between p-2 bg-white/5 rounded-lg">
-                      <span className="text-sm">Chat Sessions</span>
-                      <span className="text-lg font-bold text-neon-purple">7</span>
-                    </div>
-                  </div>
-                </div>
+            {/* log lines */}
+            <div className="space-y-3 font-mono text-sm">
+              <div className="flex items-start gap-3">
+                <span className="w-20 shrink-0 text-xs text-muted-foreground pt-0.5">capture</span>
+                <span className="text-foreground">
+                  Inbound WhatsApp:{" "}
+                  <span className="text-primary">&ldquo;Book me a trim Saturday 11am&rdquo;</span>
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="w-20 shrink-0 text-xs text-muted-foreground pt-0.5">coordinate</span>
+                <span className="text-foreground">
+                  Intent parsed · slot{" "}
+                  <span className="text-primary">SAT 11:00</span> with Alex · available ✓
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="w-20 shrink-0 text-xs text-muted-foreground pt-0.5">commit</span>
+                <span className="text-foreground">
+                  Booking confirmed ·{" "}
+                  <span className="text-primary">calendar invite sent</span> · record stored
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="w-20 shrink-0 text-xs text-muted-foreground pt-0.5">record</span>
+                <span className="text-foreground">
+                  Summary logged · customer notified · owner dashboard{" "}
+                  <span className="text-primary">updated</span>
+                </span>
               </div>
             </div>
-            
-            {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-neon-blue/20 rounded-full blur-2xl" />
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-neon-purple/20 rounded-full blur-2xl" />
+
+            {/* status bar */}
+            <div className="mt-5 flex items-center gap-2 border-t border-border pt-4">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary" />
+              <span className="font-mono text-xs text-muted-foreground">
+                engine running · 4 ms end-to-end
+              </span>
+            </div>
           </div>
         </motion.div>
       </div>
@@ -179,10 +148,142 @@ function HeroSection() {
   )
 }
 
-// Social Proof Strip
+// ─── Verticals Section ────────────────────────────────────────────────────────
+function VerticalsSection() {
+  return (
+    <section id="verticals" className="py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-14 max-w-2xl">
+          <p className="mb-3 text-sm font-medium text-muted-foreground">One engine, three verticals</p>
+          <h2 className="font-display text-3xl font-semibold md:text-4xl">
+            The same loop, wherever conversations turn into commitments
+          </h2>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          <VerticalCard
+            icon={Scissors}
+            title="Salons & barbershops"
+            tagline="Bookings that feel like texting. Chat or voice, 24/7, no phone tag."
+            beats={[
+              "Every call, text and DM is logged",
+              "Service, stylist and slot availability synced",
+              "Confirmed booking + calendar invite",
+            ]}
+            status="live"
+            statusLabel="Live"
+            href="/product"
+          />
+          <VerticalCard
+            icon={Car}
+            title="Cabs & fleets"
+            tagline="Ride booking and dispatch with dynamic pricing across every channel."
+            beats={[
+              "Inbound ride requests captured anywhere",
+              "Driver availability and pricing coordinated",
+              "Dispatched ride, confirmed to the rider",
+            ]}
+            status="soon"
+            statusLabel="In production"
+            href="/contact"
+          />
+          <VerticalCard
+            icon={HardHat}
+            title="Construction · Neev"
+            tagline="Turn WhatsApp messages, site photos and voice notes into one evidence-anchored record."
+            beats={[
+              "Site chatter, photos and voice notes captured",
+              "AI structures and cross-checks the evidence",
+              "A human commits the decision of record",
+            ]}
+            status="demo"
+            statusLabel="Try the demo"
+            href="https://neev.convoaiservices.com"
+            external
+          />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── How It Works Timeline ────────────────────────────────────────────────────
+function HowItWorksTimeline() {
+  const steps = [
+    {
+      step: 1,
+      title: "Capture",
+      description: "Every message, call, voice note, or photo lands in one place.",
+      icon: MessageSquare,
+    },
+    {
+      step: 2,
+      title: "Coordinate",
+      description:
+        "The AI reads intent, checks availability or evidence, and proposes the next action.",
+      icon: Bot,
+    },
+    {
+      step: 3,
+      title: "Commit",
+      description: "A human confirms — a booking, a dispatch, a logged decision — in one tap.",
+      icon: CalendarCheck,
+    },
+    {
+      step: 4,
+      title: "Record",
+      description: "Everything is summarized and stored, ready to inform the next decision.",
+      icon: LayoutDashboard,
+    },
+  ]
+
+  return (
+    <section className="py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="mb-16 max-w-2xl">
+          <p className="mb-3 text-sm font-medium text-muted-foreground">The engine loop</p>
+          <h2 className="font-display text-3xl font-semibold md:text-4xl">How it works</h2>
+          <p className="mt-4 text-lg text-muted-foreground">
+            From first contact to confirmed action in seconds.
+          </p>
+        </AnimatedSection>
+
+        <StaggeredContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.1}>
+          {steps.map((step, index) => (
+            <StaggeredItem key={index}>
+              <div className="relative flex flex-col gap-4 rounded-xl border border-border bg-card p-6">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary">
+                    <step.icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <span className="font-mono text-xs text-muted-foreground">{String(step.step).padStart(2, "0")}</span>
+                </div>
+                <div>
+                  <h3 className="font-display text-lg font-semibold">{step.title}</h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground">{step.description}</p>
+                </div>
+              </div>
+            </StaggeredItem>
+          ))}
+        </StaggeredContainer>
+      </div>
+    </section>
+  )
+}
+
+// ─── Salon Proof Lead-In ──────────────────────────────────────────────────────
+function SalonProofLeadIn() {
+  return (
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-10 pb-2">
+      <p className="text-sm font-medium text-muted-foreground">See the engine at work</p>
+      <h2 className="font-display text-3xl font-semibold md:text-4xl">The salon front desk, in depth</h2>
+    </div>
+  )
+}
+
+// ─── Social Proof Strip ────────────────────────────────────────────────────────
 function SocialProofStrip() {
   const proofs = [
-    { icon: Users, text: "Built for Salons", highlight: true },
+    { icon: Users, text: "One engine, three verticals", highlight: true },
     { icon: TrendingDown, text: "Reduce No-Shows by 40%" },
     { icon: Clock, text: "24/7 Booking" },
     { icon: MessageSquare, text: "Voice + Chat" },
@@ -190,7 +291,7 @@ function SocialProofStrip() {
 
   return (
     <AnimatedSection>
-      <section className="py-12 border-y border-border/50">
+      <section className="py-12 border-y border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {proofs.map((proof, index) => (
@@ -202,8 +303,14 @@ function SocialProofStrip() {
                 viewport={{ once: true }}
                 className="flex items-center justify-center gap-3 py-4"
               >
-                <proof.icon className={`w-5 h-5 ${proof.highlight ? 'text-neon-blue' : 'text-muted-foreground'}`} />
-                <span className={`text-sm font-medium ${proof.highlight ? 'text-foreground' : 'text-muted-foreground'}`}>
+                <proof.icon
+                  className={`w-5 h-5 ${proof.highlight ? "text-primary" : "text-muted-foreground"}`}
+                />
+                <span
+                  className={`text-sm font-medium ${
+                    proof.highlight ? "text-foreground" : "text-muted-foreground"
+                  }`}
+                >
                   {proof.text}
                 </span>
               </motion.div>
@@ -215,28 +322,25 @@ function SocialProofStrip() {
   )
 }
 
-// Product Mode Cards
+// ─── Product Mode Cards ────────────────────────────────────────────────────────
 function ProductModeCards() {
   const modes = [
     {
       icon: MessageSquare,
       title: "Chat Booking",
       description: "Conversational booking through your website. No forms, just natural chat.",
-      color: "neon-mint",
       features: ["Natural language", "Smart suggestions", "Instant confirmations"],
     },
     {
       icon: Phone,
       title: "Voice Agent",
       description: "AI phone receptionist that handles calls 24/7 with human-like conversation.",
-      color: "neon-blue",
       features: ["Twilio integration", "Call transcripts", "Low latency"],
     },
     {
       icon: LayoutDashboard,
-      title: "Owner GPT Dashboard",
+      title: "Owner Dashboard",
       description: "Manage everything with AI-powered insights and natural language commands.",
-      color: "neon-purple",
       features: ["Booking analytics", "Customer insights", "AI management"],
     },
   ]
@@ -244,33 +348,33 @@ function ProductModeCards() {
   return (
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4">Three Powerful Modes</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <AnimatedSection className="mb-16 max-w-2xl">
+          <p className="mb-3 text-sm font-medium text-muted-foreground">Three powerful modes</p>
+          <h2 className="font-display text-3xl font-semibold md:text-4xl">
             One platform, every booking channel
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Meet your customers where they are—chat, voice, or both.
+          <p className="mt-4 text-lg text-muted-foreground">
+            Meet your customers where they are — chat, voice, or both.
           </p>
         </AnimatedSection>
 
-        <StaggeredContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.15}>
+        <StaggeredContainer className="grid md:grid-cols-3 gap-6" staggerDelay={0.12}>
           {modes.map((mode, index) => (
             <StaggeredItem key={index}>
               <HoverLift>
-                <Card glass className="h-full group">
+                <Card className="h-full">
                   <CardHeader>
-                    <div className={`w-14 h-14 rounded-2xl bg-${mode.color}/10 flex items-center justify-center mb-4 group-hover:shadow-neon transition-shadow duration-300`}>
-                      <mode.icon className={`w-7 h-7 text-${mode.color}`} />
+                    <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-secondary">
+                      <mode.icon className="h-5 w-5 text-primary" />
                     </div>
-                    <CardTitle className="text-xl">{mode.title}</CardTitle>
+                    <CardTitle className="font-display text-xl font-semibold">{mode.title}</CardTitle>
                     <CardDescription className="text-base">{mode.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
                       {mode.features.map((feature, i) => (
                         <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <CheckCircle2 className="w-4 h-4 text-neon-mint" />
+                          <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
                           {feature}
                         </li>
                       ))}
@@ -286,88 +390,13 @@ function ProductModeCards() {
   )
 }
 
-// How It Works Timeline
-function HowItWorksTimeline() {
-  const steps = [
-    {
-      step: 1,
-      title: "Customer Initiates",
-      description: "Customer sends a message via chat or calls your AI phone number.",
-      icon: MessageSquare,
-    },
-    {
-      step: 2,
-      title: "AI Booking Engine",
-      description: "Our AI understands intent, checks availability, and suggests optimal slots.",
-      icon: Bot,
-    },
-    {
-      step: 3,
-      title: "Instant Confirmation",
-      description: "Customer receives confirmation with calendar invite (.ics) download.",
-      icon: CalendarCheck,
-    },
-    {
-      step: 4,
-      title: "Owner Dashboard",
-      description: "You see the booking instantly, with call/chat summary and customer details.",
-      icon: LayoutDashboard,
-    },
-  ]
-
-  return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-      
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4">Simple Flow</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            How it works
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            From first contact to confirmed booking in seconds.
-          </p>
-        </AnimatedSection>
-
-        <div className="relative">
-          {/* Connection line */}
-          <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink hidden lg:block" />
-          
-          <StaggeredContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-8" staggerDelay={0.15}>
-            {steps.map((step, index) => (
-              <StaggeredItem key={index}>
-                <div className="relative text-center">
-                  {/* Step circle */}
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="relative z-10 w-20 h-20 mx-auto mb-6 rounded-2xl glass flex items-center justify-center shadow-neon"
-                  >
-                    <step.icon className="w-8 h-8 text-primary" />
-                    <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple flex items-center justify-center text-xs font-bold">
-                      {step.step}
-                    </div>
-                  </motion.div>
-                  
-                  <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground">{step.description}</p>
-                </div>
-              </StaggeredItem>
-            ))}
-          </StaggeredContainer>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// Feature Grid
+// ─── Feature Grid ──────────────────────────────────────────────────────────────
 function FeatureGrid() {
   const features = [
     {
       icon: MessageSquare,
       title: "Natural Language Booking",
-      description: "Customers type like they text—our AI understands and responds naturally.",
+      description: "Customers type like they text — our AI understands and responds naturally.",
     },
     {
       icon: Phone,
@@ -402,7 +431,7 @@ function FeatureGrid() {
     {
       icon: Users,
       title: "Customer Profiles",
-      description: "Build customer memory—preferences, history, and notes all in one place.",
+      description: "Build customer memory — preferences, history, and notes all in one place.",
     },
     {
       icon: Zap,
@@ -414,27 +443,27 @@ function FeatureGrid() {
   return (
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4">Feature-Rich</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <AnimatedSection className="mb-16 max-w-2xl">
+          <p className="mb-3 text-sm font-medium text-muted-foreground">Feature-rich</p>
+          <h2 className="font-display text-3xl font-semibold md:text-4xl">
             Everything you need to modernize bookings
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-muted-foreground">
             Built specifically for salons, with features that actually matter.
           </p>
         </AnimatedSection>
 
-        <StaggeredContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.08}>
+        <StaggeredContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" staggerDelay={0.07}>
           {features.map((feature, index) => (
             <StaggeredItem key={index}>
               <HoverLift>
-                <Card glass className="h-full">
+                <Card className="h-full">
                   <CardContent className="pt-6">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                      <feature.icon className="w-6 h-6 text-primary" />
+                    <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-secondary">
+                      <feature.icon className="h-5 w-5 text-primary" />
                     </div>
-                    <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                    <p className="text-sm text-muted-foreground">{feature.description}</p>
+                    <h3 className="font-display text-base font-semibold">{feature.title}</h3>
+                    <p className="mt-1.5 text-sm text-muted-foreground">{feature.description}</p>
                   </CardContent>
                 </Card>
               </HoverLift>
@@ -446,51 +475,54 @@ function FeatureGrid() {
   )
 }
 
-// Call Summaries Section
+// ─── Call Summaries Section ────────────────────────────────────────────────────
 function CallSummariesSection() {
   const summaries = [
     {
       caller: "+1 (555) 123-4567",
       time: "2 min ago",
       duration: "1:42",
-      summary: "Customer requested a women's haircut with Maria for Saturday 2pm. Confirmed and sent calendar invite.",
-      status: "completed",
+      summary:
+        "Customer requested a women's haircut with Maria for Saturday 2pm. Confirmed and sent calendar invite.",
     },
     {
       caller: "+1 (555) 987-6543",
       time: "15 min ago",
       duration: "2:15",
-      summary: "New customer inquired about balayage pricing. Booked consultation with Alex for Monday 10am.",
-      status: "completed",
+      summary:
+        "New customer inquired about balayage pricing. Booked consultation with Alex for Monday 10am.",
     },
     {
       caller: "+1 (555) 456-7890",
       time: "1 hour ago",
       duration: "0:58",
-      summary: "Existing customer rescheduled from Friday to Thursday. Updated appointment confirmed.",
-      status: "completed",
+      summary:
+        "Existing customer rescheduled from Friday to Thursday. Updated appointment confirmed.",
     },
   ]
 
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
-      
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <AnimatedSection>
-            <Badge variant="secondary" className="mb-4">Voice Intelligence</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <p className="mb-3 text-sm font-medium text-muted-foreground">Voice intelligence</p>
+            <h2 className="font-display text-3xl font-semibold md:text-4xl">
               Never miss a detail from calls
             </h2>
-            <p className="text-lg text-muted-foreground mb-6">
-              Every voice call is automatically transcribed and summarized. 
-              See caller intent, booking details, and follow-up actions at a glance.
+            <p className="mt-4 text-lg text-muted-foreground">
+              Every voice call is automatically transcribed and summarized. See caller intent, booking
+              details, and follow-up actions at a glance.
             </p>
-            <ul className="space-y-3">
-              {["AI-generated call summaries", "Full transcription available", "Action items extracted", "Caller sentiment analysis"].map((item, i) => (
-                <li key={i} className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-neon-mint" />
+            <ul className="mt-6 space-y-3">
+              {[
+                "AI-generated call summaries",
+                "Full transcription available",
+                "Action items extracted",
+                "Caller sentiment analysis",
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-3 text-sm">
+                  <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -498,36 +530,36 @@ function CallSummariesSection() {
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
-            <Card glass className="p-6">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="font-semibold">Recent Call Summaries</h3>
-                <Badge variant="neon">Live</Badge>
+            <Card className="p-6">
+              <div className="mb-6 flex items-center justify-between">
+                <h3 className="font-display font-semibold">Recent Call Summaries</h3>
+                <Badge variant="live">Live</Badge>
               </div>
               <div className="space-y-4">
                 {summaries.map((summary, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, x: 20 }}
+                    initial={{ opacity: 0, x: 16 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-primary/30 transition-colors"
+                    className="rounded-lg border border-border bg-secondary/40 p-4 hover:border-primary/30 transition-colors"
                   >
-                    <div className="flex items-center justify-between mb-2">
+                    <div className="mb-2 flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Phone className="w-4 h-4 text-neon-blue" />
+                        <Phone className="h-4 w-4 text-primary" />
                         <span className="text-sm font-medium">{summary.caller}</span>
                       </div>
                       <div className="flex items-center gap-2 text-xs text-muted-foreground">
                         <span>{summary.duration}</span>
-                        <span>•</span>
+                        <span>·</span>
                         <span>{summary.time}</span>
                       </div>
                     </div>
                     <p className="text-sm text-muted-foreground">{summary.summary}</p>
                     <div className="mt-2">
-                      <Badge variant="success" className="text-xs">
-                        <CheckCircle2 className="w-3 h-3 mr-1" />
+                      <Badge variant="live" className="text-xs">
+                        <CheckCircle2 className="mr-1 h-3 w-3" />
                         Booking Confirmed
                       </Badge>
                     </div>
@@ -542,68 +574,68 @@ function CallSummariesSection() {
   )
 }
 
-// Calendar Invite Section
+// ─── Calendar Invite Section ───────────────────────────────────────────────────
 function CalendarInviteSection() {
   return (
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <AnimatedSection className="order-2 lg:order-1">
-            <Card glass className="p-6">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-neon-mint/10 flex items-center justify-center">
-                  <Calendar className="w-6 h-6 text-neon-mint" />
+            <Card className="p-6">
+              <div className="mb-6 flex items-center gap-4">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-secondary">
+                  <Calendar className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold">Booking Confirmed!</h4>
+                  <h4 className="font-display font-semibold">Booking Confirmed!</h4>
                   <p className="text-sm text-muted-foreground">Men&apos;s Haircut with Alex</p>
                 </div>
               </div>
-              
-              <div className="space-y-4 mb-6">
-                <div className="flex items-center justify-between p-3 rounded-lg bg-white/5">
-                  <span className="text-sm text-muted-foreground">Date</span>
-                  <span className="font-medium">January 12, 2026</span>
-                </div>
-                <div className="flex items-center justify-between p-3 rounded-lg bg-white/5">
-                  <span className="text-sm text-muted-foreground">Time</span>
-                  <span className="font-medium">10:00 AM</span>
-                </div>
-                <div className="flex items-center justify-between p-3 rounded-lg bg-white/5">
-                  <span className="text-sm text-muted-foreground">Duration</span>
-                  <span className="font-medium">30 minutes</span>
-                </div>
-                <div className="flex items-center justify-between p-3 rounded-lg bg-white/5">
-                  <span className="text-sm text-muted-foreground">Stylist</span>
-                  <span className="font-medium">Alex Martinez</span>
-                </div>
+
+              <div className="space-y-3 mb-6">
+                {[
+                  ["Date", "January 12, 2026"],
+                  ["Time", "10:00 AM"],
+                  ["Duration", "30 minutes"],
+                  ["Stylist", "Alex Martinez"],
+                ].map(([label, value]) => (
+                  <div
+                    key={label}
+                    className="flex items-center justify-between rounded-lg bg-secondary/50 px-3 py-2.5"
+                  >
+                    <span className="text-sm text-muted-foreground">{label}</span>
+                    <span className="text-sm font-medium">{value}</span>
+                  </div>
+                ))}
               </div>
 
-              <Button variant="neon" className="w-full">
-                <Calendar className="w-4 h-4 mr-2" />
-                Add to Calendar (.ics)
+              <Button className="w-full" asChild>
+                <span>
+                  <Calendar className="mr-2 h-4 w-4" />
+                  Add to Calendar (.ics)
+                </span>
               </Button>
             </Card>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2} className="order-1 lg:order-2">
-            <Badge variant="secondary" className="mb-4">Seamless Confirmations</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <p className="mb-3 text-sm font-medium text-muted-foreground">Seamless confirmations</p>
+            <h2 className="font-display text-3xl font-semibold md:text-4xl">
               Calendar invites that just work
             </h2>
-            <p className="text-lg text-muted-foreground mb-6">
-              Every booking confirmation includes a downloadable .ics calendar invite. 
-              Works with Google Calendar, Apple Calendar, Outlook, and more.
+            <p className="mt-4 text-lg text-muted-foreground">
+              Every booking confirmation includes a downloadable .ics calendar invite. Works with Google
+              Calendar, Apple Calendar, Outlook, and more.
             </p>
-            <ul className="space-y-3">
+            <ul className="mt-6 space-y-3">
               {[
                 "One-click calendar add",
                 "Automatic reminders",
                 "Works on all devices",
                 "Includes salon address & details",
               ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-neon-mint" />
+                <li key={i} className="flex items-center gap-3 text-sm">
+                  <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -615,7 +647,7 @@ function CalendarInviteSection() {
   )
 }
 
-// Integrations Strip
+// ─── Integrations Strip ────────────────────────────────────────────────────────
 function IntegrationsStrip() {
   const integrations = [
     { name: "Twilio", logo: "T", description: "Voice & SMS" },
@@ -625,25 +657,25 @@ function IntegrationsStrip() {
   ]
 
   return (
-    <section className="py-16 border-y border-border/50">
+    <section className="py-16 border-y border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-12">
-          <p className="text-sm text-muted-foreground uppercase tracking-wider mb-2">
+        <AnimatedSection className="mb-12 text-center">
+          <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-2">
             Powered by
           </p>
-          <h3 className="text-xl font-semibold">Enterprise-Grade Infrastructure</h3>
+          <h3 className="font-display text-xl font-semibold">Enterprise-Grade Infrastructure</h3>
         </AnimatedSection>
 
-        <StaggeredContainer className="flex flex-wrap justify-center gap-6 md:gap-12">
+        <StaggeredContainer className="flex flex-wrap justify-center gap-5 md:gap-8">
           {integrations.map((integration, index) => (
             <StaggeredItem key={index}>
               <HoverLift>
-                <div className="flex items-center gap-3 px-6 py-4 glass rounded-xl">
-                  <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-xl font-bold">
+                <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-5 py-3.5">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-secondary text-base font-bold">
                     {integration.logo}
                   </div>
                   <div>
-                    <p className="font-medium">{integration.name}</p>
+                    <p className="text-sm font-medium">{integration.name}</p>
                     <p className="text-xs text-muted-foreground">{integration.description}</p>
                   </div>
                 </div>
@@ -656,23 +688,26 @@ function IntegrationsStrip() {
   )
 }
 
-// Testimonials
+// ─── Testimonials ──────────────────────────────────────────────────────────────
 function TestimonialsSection() {
   const testimonials = [
     {
-      quote: "Convo has completely transformed how we handle appointments. Our no-show rate dropped by 35% in the first month.",
+      quote:
+        "Convo has completely transformed how we handle appointments. Our no-show rate dropped by 35% in the first month.",
       author: "Sarah Mitchell",
       role: "Owner, Luxe Hair Studio",
       rating: 5,
     },
     {
-      quote: "The voice agent is incredible. It sounds so natural that customers don't even realize they're talking to AI.",
+      quote:
+        "The voice agent is incredible. It sounds so natural that customers don't even realize they're talking to AI.",
       author: "Marcus Chen",
       role: "Manager, The Grooming Lounge",
       rating: 5,
     },
     {
-      quote: "Finally, a booking system that understands how salons actually work. The call summaries alone save me hours each week.",
+      quote:
+        "Finally, a booking system that understands how salons actually work. The call summaries alone save me hours each week.",
       author: "Jessica Rodriguez",
       role: "Owner, Bella Vita Salon & Spa",
       rating: 5,
@@ -682,34 +717,39 @@ function TestimonialsSection() {
   return (
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4">Testimonials</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <AnimatedSection className="mb-16 max-w-2xl">
+          <p className="mb-3 text-sm font-medium text-muted-foreground">Testimonials</p>
+          <h2 className="font-display text-3xl font-semibold md:text-4xl">
             Loved by salon owners
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-muted-foreground">
             See what early adopters are saying about Convo.
           </p>
         </AnimatedSection>
 
-        <StaggeredContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.15}>
+        <StaggeredContainer className="grid md:grid-cols-3 gap-6" staggerDelay={0.12}>
           {testimonials.map((testimonial, index) => (
             <StaggeredItem key={index}>
               <HoverLift>
-                <Card glass className="h-full">
+                <Card className="h-full">
                   <CardContent className="pt-6">
-                    <div className="flex gap-1 mb-4">
+                    <div className="mb-4 flex gap-0.5">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-neon-blue text-neon-blue" />
+                        <Star key={i} className="h-4 w-4 fill-primary text-primary" />
                       ))}
                     </div>
-                    <p className="text-muted-foreground mb-6">&quot;{testimonial.quote}&quot;</p>
+                    <p className="text-sm text-muted-foreground mb-6">
+                      &quot;{testimonial.quote}&quot;
+                    </p>
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center text-sm font-bold">
-                        {testimonial.author.split(' ').map(n => n[0]).join('')}
+                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-secondary text-xs font-semibold text-primary">
+                        {testimonial.author
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
                       </div>
                       <div>
-                        <p className="font-medium text-sm">{testimonial.author}</p>
+                        <p className="text-sm font-medium">{testimonial.author}</p>
                         <p className="text-xs text-muted-foreground">{testimonial.role}</p>
                       </div>
                     </div>
@@ -724,30 +764,28 @@ function TestimonialsSection() {
   )
 }
 
-// Pricing Teaser
+// ─── Pricing Teaser ────────────────────────────────────────────────────────────
 function PricingTeaser() {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-transparent" />
-      
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center">
-          <Badge variant="secondary" className="mb-4">Pricing</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+    <section className="py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="text-center max-w-2xl mx-auto">
+          <p className="mb-3 text-sm font-medium text-muted-foreground">Pricing</p>
+          <h2 className="font-display text-3xl font-semibold md:text-4xl">
             Simple, transparent pricing
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-            Plans that scale with your salon. Start free, upgrade when you&apos;re ready.
+          <p className="mt-4 text-lg text-muted-foreground">
+            Plans that scale with your business. Start free, upgrade when you&apos;re ready.
           </p>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button variant="neon" size="lg" asChild>
+
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button size="lg" asChild>
               <Link href="/pricing">
                 View Pricing
-                <ChevronRight className="w-4 h-4 ml-2" />
+                <ChevronRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button variant="glass" size="lg" asChild>
+            <Button variant="outline" size="lg" asChild>
               <Link href="/contact">Talk to Sales</Link>
             </Button>
           </div>
@@ -757,36 +795,30 @@ function PricingTeaser() {
   )
 }
 
-// Final CTA
+// ─── Final CTA ─────────────────────────────────────────────────────────────────
 function FinalCTA() {
   return (
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
-          <Card glass className="p-8 md:p-12 text-center relative overflow-hidden">
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/10 via-neon-purple/10 to-neon-pink/10" />
-            
-            <div className="relative">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Ready to modernize your salon?
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
-                Join the future of salon booking. Request early access and be among 
-                the first to experience AI-powered appointments.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button variant="neon" size="xl" asChild>
-                  <Link href="/contact">
-                    Request Early Access
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Link>
-                </Button>
-                <Button variant="glass" size="xl" asChild>
-                  <Link href="/demo">See It In Action</Link>
-                </Button>
-              </div>
+          <Card className="p-8 md:p-14 text-center">
+            <h2 className="font-display text-3xl font-semibold md:text-4xl">
+              Ready to put the engine to work?
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground max-w-xl mx-auto">
+              Request early access and be among the first to run Convo across your business.
+            </p>
+
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button size="xl" asChild>
+                <Link href="/contact">
+                  Request Early Access
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button variant="outline" size="xl" asChild>
+                <Link href="/demo">See It In Action</Link>
+              </Button>
             </div>
           </Card>
         </AnimatedSection>
@@ -795,14 +827,15 @@ function FinalCTA() {
   )
 }
 
-// Main Page Component
+// ─── Main Page ─────────────────────────────────────────────────────────────────
 export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <SocialProofStrip />
-      <ProductModeCards />
+      <VerticalsSection />
       <HowItWorksTimeline />
+      <SalonProofLeadIn />
+      <ProductModeCards />
       <FeatureGrid />
       <CallSummariesSection />
       <CalendarInviteSection />
