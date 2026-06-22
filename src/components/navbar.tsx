@@ -51,17 +51,17 @@ export function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])
 
-  // Close dropdown on Escape and return focus to trigger
+  // Close dropdown on Escape and return focus to trigger (only when dropdown is open)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (e.key === "Escape" && solutionsOpen) {
         setSolutionsOpen(false)
         triggerRef.current?.focus()
       }
     }
     document.addEventListener("keydown", handleKeyDown)
     return () => document.removeEventListener("keydown", handleKeyDown)
-  }, [])
+  }, [solutionsOpen])
 
   // Reset solutionsOpen when mobile menu opens
   useEffect(() => {

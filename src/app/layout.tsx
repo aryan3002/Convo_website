@@ -3,7 +3,6 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { FloatingBlobs, GridBackground } from "@/components/background-effects"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://convoaiservices.com"),
@@ -30,6 +29,14 @@ export const metadata: Metadata = {
     "beauty salon AI",
     "hair salon chatbot",
     "spa booking AI",
+    "construction management AI",
+    "AI dispatch for fleets",
+    "conversation to action AI",
+    "AI receptionist",
+    "site records AI",
+    "Neev construction AI",
+    "cab dispatch automation",
+    "multi-vertical AI platform",
   ],
   authors: [{ name: "Convo AI Services" }],
   creator: "Convo AI Services",
@@ -47,7 +54,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Convo AI - AI Appointment Booking for Salons",
+        alt: "Convo — conversation-to-action AI for bookings, dispatch, and site records",
       },
     ],
   },
@@ -99,7 +106,7 @@ export default function RootLayout({
           "https://twitter.com/convoaiservices",
           "https://linkedin.com/company/convoaiservices"
         ],
-        "description": "Convo AI Services provides AI-powered appointment booking solutions for salons, spas, and service businesses."
+        "description": "Convo AI Services provides conversation-to-action AI that turns texts, calls, voice notes, and site photos into booked appointments, dispatched rides, and evidence-anchored construction records."
       },
       {
         "@type": "SoftwareApplication",
@@ -107,7 +114,7 @@ export default function RootLayout({
         "name": "Convo AI",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web, iOS, Android",
-        "description": "Convo is an AI receptionist for salons that automatically books appointments via chat, WhatsApp, and voice. It works 24/7, reduces no-shows by 40%, and integrates with existing salon software.",
+        "description": "Convo is a conversation-to-action AI engine that captures texts, calls, voice notes, and site photos and turns them into booked appointments, dispatched rides, and evidence-anchored construction records. One engine, three verticals: salons & barbershops, cabs & fleets, and construction.",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -127,7 +134,11 @@ export default function RootLayout({
           "No-show reduction",
           "Calendar integration",
           "SMS and email confirmations",
-          "Owner analytics dashboard"
+          "Owner analytics dashboard",
+          "Cab and fleet dispatch automation",
+          "Construction site photo records",
+          "Evidence-anchored site documentation",
+          "Multi-vertical conversation-to-action engine"
         ],
         "provider": {
           "@id": "https://convoaiservices.com/#organization"
@@ -167,10 +178,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen bg-background font-sans antialiased noise-bg">
+      <body className="min-h-screen bg-background font-sans antialiased">
         <ThemeProvider defaultTheme="dark" storageKey="convo-theme">
-          <FloatingBlobs />
-          <GridBackground />
           <div className="relative flex min-h-screen flex-col">
             <Navbar />
             <main className="flex-1 pt-20">{children}</main>
