@@ -35,31 +35,29 @@ function ProductHero() {
     <section className="relative py-20 md:py-28 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.45 }}
+            className="mb-5 text-sm font-medium text-muted-foreground"
           >
-            <Badge variant="neon" className="mb-6">
-              <Sparkles className="w-3 h-3 mr-1" />
-              Product Deep Dive
-            </Badge>
-          </motion.div>
+            Product deep dive
+          </motion.p>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6"
+            transition={{ duration: 0.5, delay: 0.08 }}
+            className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.1] mb-6"
           >
             Three modes.{" "}
-            <span className="gradient-text">Infinite possibilities.</span>
+            <span className="text-primary">Infinite possibilities.</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.16 }}
             className="text-lg md:text-xl text-muted-foreground mb-8"
           >
             Discover how Convo transforms every touchpoint of the booking experience—for customers and salon owners alike.
@@ -105,22 +103,18 @@ function ChatBookingSection() {
   ]
 
   return (
-    <section className="py-24 relative overflow-hidden" id="chat">
-      <div className="absolute inset-0 bg-gradient-to-r from-neon-mint/5 to-transparent" />
-
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="py-24" id="chat">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <AnimatedSection>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-neon-mint/10 flex items-center justify-center">
-                <MessageSquare className="w-6 h-6 text-neon-mint" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary">
+                <MessageSquare className="h-6 w-6 text-primary" />
               </div>
-              <div>
-                <Badge variant="secondary">Feature #1</Badge>
-              </div>
+              <span className="text-sm font-medium text-muted-foreground">Feature 01</span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
               Customer Chat Booking
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
@@ -131,8 +125,8 @@ function ChatBookingSection() {
             <div className="grid sm:grid-cols-2 gap-4 mb-8">
               {features.map((feature, index) => (
                 <div key={index} className="flex gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
-                    <feature.icon className="w-5 h-5 text-neon-mint" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary shrink-0">
+                    <feature.icon className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <h4 className="font-medium mb-1">{feature.title}</h4>
@@ -142,19 +136,19 @@ function ChatBookingSection() {
               ))}
             </div>
 
-            <Button variant="neon" asChild>
+            <Button asChild>
               <Link href="/demo#chat">
                 See Chat Demo
-                <ArrowRight className="w-4 h-4 ml-2" />
+                <ArrowRight className="h-4 w-4 ml-2" />
               </Link>
             </Button>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
-            <Card glass className="p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-3 h-3 rounded-full bg-neon-mint" />
-                <span className="font-medium">Chat Booking Widget</span>
+            <Card className="p-6">
+              <div className="flex items-center gap-2 mb-4 border-b border-border pb-4">
+                <span className="inline-block h-2 w-2 rounded-full bg-primary" />
+                <span className="font-medium text-sm">Chat Booking Widget</span>
               </div>
 
               <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2">
@@ -167,8 +161,8 @@ function ChatBookingSection() {
                     viewport={{ once: true }}
                     className={`p-3 rounded-xl text-sm whitespace-pre-line ${
                       item.role === "customer"
-                        ? "bg-white/5 mr-8"
-                        : "bg-neon-mint/10 border border-neon-mint/20 ml-8"
+                        ? "bg-secondary/50 mr-8"
+                        : "bg-primary/10 border border-primary/20 ml-8"
                     }`}
                   >
                     {item.message}
@@ -180,10 +174,10 @@ function ChatBookingSection() {
                 <input
                   type="text"
                   placeholder="Type your message..."
-                  className="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-neon-mint/50"
+                  className="flex-1 bg-secondary border border-border rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-primary/50 transition-colors"
                 />
-                <Button size="icon" variant="neon">
-                  <Send className="w-4 h-4" />
+                <Button size="icon">
+                  <Send className="h-4 w-4" />
                 </Button>
               </div>
             </Card>
@@ -230,22 +224,17 @@ function VoiceAgentSection() {
   ]
 
   return (
-    <section className="py-24 relative overflow-hidden" id="voice">
-      <div className="absolute inset-0 bg-gradient-to-l from-neon-blue/5 to-transparent" />
-
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="py-24" id="voice">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <AnimatedSection delay={0.2} className="order-2 lg:order-1">
-            <Card glass className="p-6">
-              <div className="flex items-center justify-between mb-4">
+            <Card className="p-6">
+              <div className="flex items-center justify-between mb-4 border-b border-border pb-4">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-neon-blue animate-pulse" />
-                  <span className="font-medium">Voice Transcript</span>
+                  <span className="inline-block h-2 w-2 rounded-full bg-primary" />
+                  <span className="font-medium text-sm">Voice Transcript</span>
                 </div>
-                <Badge variant="neon">
-                  <Clock className="w-3 h-3 mr-1" />
-                  Latency: 320ms
-                </Badge>
+                <span className="font-mono text-xs text-muted-foreground">Latency: 320ms</span>
               </div>
 
               <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
@@ -258,12 +247,12 @@ function VoiceAgentSection() {
                     viewport={{ once: true }}
                     className="flex gap-3"
                   >
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
-                      item.speaker === "Agent" 
-                        ? "bg-neon-blue/20 text-neon-blue" 
-                        : "bg-white/10 text-muted-foreground"
+                    <div className={`flex h-8 w-8 items-center justify-center rounded-full shrink-0 text-xs font-semibold ${
+                      item.speaker === "Agent"
+                        ? "bg-primary/10 text-primary"
+                        : "bg-secondary text-muted-foreground"
                     }`}>
-                      {item.speaker === "Agent" ? <Phone className="w-4 h-4" /> : "C"}
+                      {item.speaker === "Agent" ? <Phone className="h-4 w-4" /> : "C"}
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground mb-1">{item.speaker}</p>
@@ -273,9 +262,9 @@ function VoiceAgentSection() {
                 ))}
               </div>
 
-              <div className="mt-4 p-3 rounded-lg bg-neon-mint/10 border border-neon-mint/20">
+              <div className="mt-4 p-3 rounded-lg bg-secondary border border-border">
                 <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle2 className="w-4 h-4 text-neon-mint" />
+                  <CheckCircle2 className="h-4 w-4 text-primary" />
                   <span className="text-sm font-medium">Call Summary</span>
                 </div>
                 <p className="text-sm text-muted-foreground">
@@ -287,15 +276,13 @@ function VoiceAgentSection() {
 
           <AnimatedSection className="order-1 lg:order-2">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-neon-blue/10 flex items-center justify-center">
-                <Phone className="w-6 h-6 text-neon-blue" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary">
+                <Phone className="h-6 w-6 text-primary" />
               </div>
-              <div>
-                <Badge variant="secondary">Feature #2</Badge>
-              </div>
+              <span className="text-sm font-medium text-muted-foreground">Feature 02</span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
               Voice Agent Booking
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
@@ -306,8 +293,8 @@ function VoiceAgentSection() {
             <div className="grid sm:grid-cols-2 gap-4 mb-8">
               {features.map((feature, index) => (
                 <div key={index} className="flex gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
-                    <feature.icon className="w-5 h-5 text-neon-blue" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary shrink-0">
+                    <feature.icon className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <h4 className="font-medium mb-1">{feature.title}</h4>
@@ -317,10 +304,10 @@ function VoiceAgentSection() {
               ))}
             </div>
 
-            <Button variant="neon" asChild>
+            <Button asChild>
               <Link href="/demo#voice">
                 See Voice Demo
-                <ArrowRight className="w-4 h-4 ml-2" />
+                <ArrowRight className="h-4 w-4 ml-2" />
               </Link>
             </Button>
           </AnimatedSection>
@@ -356,22 +343,18 @@ function OwnerDashboardSection() {
   ]
 
   return (
-    <section className="py-24 relative overflow-hidden" id="dashboard">
-      <div className="absolute inset-0 bg-gradient-to-r from-neon-purple/5 to-transparent" />
-
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="py-24" id="dashboard">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <AnimatedSection>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-neon-purple/10 flex items-center justify-center">
-                <LayoutDashboard className="w-6 h-6 text-neon-purple" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary">
+                <LayoutDashboard className="h-6 w-6 text-primary" />
               </div>
-              <div>
-                <Badge variant="secondary">Feature #3</Badge>
-              </div>
+              <span className="text-sm font-medium text-muted-foreground">Feature 03</span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
               Owner GPT Console
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
@@ -382,8 +365,8 @@ function OwnerDashboardSection() {
             <div className="grid sm:grid-cols-2 gap-4 mb-8">
               {features.map((feature, index) => (
                 <div key={index} className="flex gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
-                    <feature.icon className="w-5 h-5 text-neon-purple" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary shrink-0">
+                    <feature.icon className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <h4 className="font-medium mb-1">{feature.title}</h4>
@@ -393,16 +376,16 @@ function OwnerDashboardSection() {
               ))}
             </div>
 
-            <Button variant="neon" asChild>
+            <Button asChild>
               <Link href="/demo#dashboard">
                 See Dashboard Demo
-                <ArrowRight className="w-4 h-4 ml-2" />
+                <ArrowRight className="h-4 w-4 ml-2" />
               </Link>
             </Button>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
-            <Card glass className="p-6">
+            <Card className="p-6">
               <Tabs defaultValue="services" className="w-full">
                 <TabsList className="w-full mb-4">
                   <TabsTrigger value="services" className="flex-1">Services</TabsTrigger>
@@ -418,7 +401,7 @@ function OwnerDashboardSection() {
                       { name: "Balayage", price: "$180", bookings: 8 },
                       { name: "Beard Trim", price: "$15", bookings: 12 },
                     ].map((service, i) => (
-                      <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-white/5">
+                      <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-secondary/50">
                         <div>
                           <p className="font-medium">{service.name}</p>
                           <p className="text-sm text-muted-foreground">{service.price}</p>
@@ -436,15 +419,15 @@ function OwnerDashboardSection() {
                       { caller: "+1 (555) 987-6543", time: "1 hour ago", status: "Booked" },
                       { caller: "+1 (555) 456-7890", time: "2 hours ago", status: "Inquiry" },
                     ].map((call, i) => (
-                      <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-white/5">
+                      <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-secondary/50">
                         <div className="flex items-center gap-3">
-                          <Phone className="w-4 h-4 text-neon-blue" />
+                          <Phone className="h-4 w-4 text-primary" />
                           <div>
                             <p className="font-medium">{call.caller}</p>
                             <p className="text-sm text-muted-foreground">{call.time}</p>
                           </div>
                         </div>
-                        <Badge variant={call.status === "Booked" ? "success" : "secondary"}>
+                        <Badge variant={call.status === "Booked" ? "live" : "secondary"}>
                           {call.status}
                         </Badge>
                       </div>
@@ -459,9 +442,9 @@ function OwnerDashboardSection() {
                       { name: "Mike Chen", visits: 8, lastVisit: "2 weeks ago" },
                       { name: "Emily Davis", visits: 5, lastVisit: "1 month ago" },
                     ].map((customer, i) => (
-                      <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-white/5">
+                      <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-secondary/50">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center text-xs font-bold">
+                          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-secondary text-xs font-semibold text-primary">
                             {customer.name.split(' ').map(n => n[0]).join('')}
                           </div>
                           <div>
@@ -509,12 +492,12 @@ function ComingSoonSection() {
   return (
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4">Roadmap</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <AnimatedSection className="mb-16 max-w-2xl">
+          <p className="mb-3 text-sm font-medium text-muted-foreground">Roadmap</p>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
             What&apos;s coming next
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl">
             We&apos;re constantly building. Here&apos;s a peek at what&apos;s on the horizon.
           </p>
         </AnimatedSection>
@@ -523,16 +506,16 @@ function ComingSoonSection() {
           {features.map((feature, index) => (
             <StaggeredItem key={index}>
               <HoverLift>
-                <Card glass className="h-full relative overflow-hidden">
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink" />
+                <Card className="h-full relative overflow-hidden">
+                  <div className="absolute top-0 left-0 right-0 h-px bg-border" />
                   <CardHeader>
                     <div className="flex items-center justify-between mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                        <feature.icon className="w-6 h-6 text-primary" />
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary">
+                        <feature.icon className="h-6 w-6 text-primary" />
                       </div>
-                      <Badge variant="neon">{feature.status}</Badge>
+                      <Badge variant="soon">{feature.status}</Badge>
                     </div>
-                    <CardTitle className="text-xl">{feature.title}</CardTitle>
+                    <CardTitle className="font-display text-xl font-semibold">{feature.title}</CardTitle>
                     <CardDescription>{feature.description}</CardDescription>
                   </CardHeader>
                 </Card>
@@ -548,82 +531,80 @@ function ComingSoonSection() {
 // Architecture Diagram
 function ArchitectureSection() {
   return (
-    <section className="py-24 relative overflow-hidden" id="integrations">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4">Architecture</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+    <section className="py-24" id="integrations">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="mb-16 max-w-2xl">
+          <p className="mb-3 text-sm font-medium text-muted-foreground">Architecture</p>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
             Built on enterprise-grade infrastructure
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl">
             Reliable, scalable, and secure. Here&apos;s how the pieces fit together.
           </p>
         </AnimatedSection>
 
         <AnimatedSection delay={0.2}>
-          <Card glass className="p-8 md:p-12">
+          <Card className="p-8 md:p-12">
             {/* Architecture Diagram */}
             <div className="relative">
               {/* Customer Layer */}
               <div className="flex justify-center gap-4 md:gap-8 mb-8">
                 <div className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-2 rounded-xl bg-neon-mint/10 flex items-center justify-center">
-                    <MessageSquare className="w-8 h-8 text-neon-mint" />
+                  <div className="flex h-16 w-16 mx-auto mb-2 items-center justify-center rounded-xl bg-secondary">
+                    <MessageSquare className="h-8 w-8 text-primary" />
                   </div>
                   <p className="text-sm font-medium">Chat Widget</p>
                   <p className="text-xs text-muted-foreground">Web Embed</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-2 rounded-xl bg-neon-blue/10 flex items-center justify-center">
-                    <Phone className="w-8 h-8 text-neon-blue" />
+                  <div className="flex h-16 w-16 mx-auto mb-2 items-center justify-center rounded-xl bg-secondary">
+                    <Phone className="h-8 w-8 text-primary" />
                   </div>
                   <p className="text-sm font-medium">Voice Agent</p>
                   <p className="text-xs text-muted-foreground">Twilio</p>
                 </div>
               </div>
 
-              {/* Arrow down */}
+              {/* Divider down */}
               <div className="flex justify-center mb-8">
-                <div className="w-0.5 h-12 bg-gradient-to-b from-neon-blue to-neon-purple" />
+                <div className="w-px h-12 bg-border" />
               </div>
 
               {/* AI Layer */}
               <div className="flex justify-center mb-8">
-                <div className="glass rounded-2xl p-6 text-center max-w-md">
-                  <div className="w-16 h-16 mx-auto mb-3 rounded-xl bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center">
-                    <Cpu className="w-8 h-8 text-white" />
+                <div className="rounded-xl border border-border bg-card p-6 text-center max-w-md">
+                  <div className="flex h-16 w-16 mx-auto mb-3 items-center justify-center rounded-xl bg-primary/10">
+                    <Cpu className="h-8 w-8 text-primary" />
                   </div>
-                  <p className="font-semibold mb-1">Convo AI Engine</p>
+                  <p className="font-display font-semibold mb-1">Convo AI Engine</p>
                   <p className="text-sm text-muted-foreground">Natural language understanding, booking logic, slot management</p>
                 </div>
               </div>
 
-              {/* Arrow down */}
+              {/* Divider down */}
               <div className="flex justify-center mb-8">
-                <div className="w-0.5 h-12 bg-gradient-to-b from-neon-purple to-neon-pink" />
+                <div className="w-px h-12 bg-border" />
               </div>
 
               {/* Data Layer */}
               <div className="flex justify-center gap-4 md:gap-8">
                 <div className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-2 rounded-xl bg-white/10 flex items-center justify-center">
-                    <Database className="w-8 h-8 text-muted-foreground" />
+                  <div className="flex h-16 w-16 mx-auto mb-2 items-center justify-center rounded-xl bg-secondary">
+                    <Database className="h-8 w-8 text-muted-foreground" />
                   </div>
                   <p className="text-sm font-medium">Neon DB</p>
                   <p className="text-xs text-muted-foreground">PostgreSQL</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-2 rounded-xl bg-neon-purple/10 flex items-center justify-center">
-                    <LayoutDashboard className="w-8 h-8 text-neon-purple" />
+                  <div className="flex h-16 w-16 mx-auto mb-2 items-center justify-center rounded-xl bg-secondary">
+                    <LayoutDashboard className="h-8 w-8 text-primary" />
                   </div>
                   <p className="text-sm font-medium">Dashboard</p>
                   <p className="text-xs text-muted-foreground">Owner GPT</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-2 rounded-xl bg-white/10 flex items-center justify-center">
-                    <Calendar className="w-8 h-8 text-muted-foreground" />
+                  <div className="flex h-16 w-16 mx-auto mb-2 items-center justify-center rounded-xl bg-secondary">
+                    <Calendar className="h-8 w-8 text-muted-foreground" />
                   </div>
                   <p className="text-sm font-medium">Calendar</p>
                   <p className="text-xs text-muted-foreground">.ics Export</p>
@@ -643,29 +624,25 @@ function CTASection() {
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
-          <Card glass className="p-8 md:p-12 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/10 via-neon-purple/10 to-neon-pink/10" />
+          <Card className="p-8 md:p-12 text-center">
+            <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
+              Ready to see it in action?
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
+              Check out our interactive demo or get in touch to discuss how
+              Convo can transform your salon&apos;s booking experience.
+            </p>
 
-            <div className="relative">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Ready to see it in action?
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
-                Check out our interactive demo or get in touch to discuss how
-                Convo can transform your salon&apos;s booking experience.
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button variant="neon" size="xl" asChild>
-                  <Link href="/demo">
-                    View Interactive Demo
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Link>
-                </Button>
-                <Button variant="glass" size="xl" asChild>
-                  <Link href="/contact">Contact Sales</Link>
-                </Button>
-              </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button size="xl" asChild>
+                <Link href="/demo">
+                  View Interactive Demo
+                  <ArrowRight className="h-5 w-5 ml-2" />
+                </Link>
+              </Button>
+              <Button variant="outline" size="xl" asChild>
+                <Link href="/contact">Contact Sales</Link>
+              </Button>
             </div>
           </Card>
         </AnimatedSection>
