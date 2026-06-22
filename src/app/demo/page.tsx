@@ -438,7 +438,7 @@ function GoogleMapsDemo() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-30 p-4"
+                    className="absolute inset-0 bg-background/90 flex items-center justify-center z-30 p-4"
                   >
                     <motion.div
                       initial={{ scale: 0.9, opacity: 0 }}
@@ -630,7 +630,7 @@ function GoogleMapsDemo() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="absolute inset-0 bg-background/60 backdrop-blur-sm flex items-end md:items-center justify-center z-30 p-4"
+                    className="absolute inset-0 bg-background/90 flex items-end md:items-center justify-center z-30 p-4"
                   >
                     <motion.div
                       initial={{ y: 100, opacity: 0 }}
