@@ -986,7 +986,7 @@ function FAQSection() {
     },
     {
       question: "How long does setup take?",
-      answer: "Most salons are live within a week. We handle integration, customize your booking flows, and train your team on the employee portal.",
+      answer: "About a week. We handle integration, customize your booking flows, and train your team on the employee portal.",
     },
     {
       question: "What does Convo integrate with?",
@@ -1067,7 +1067,7 @@ function FinalCTASection() {
               </div>
 
               <p className="text-sm text-muted-foreground">
-                Private beta — we onboard a limited number of businesses at a time.
+                Early access — available by request.
               </p>
             </Card>
           </motion.div>

@@ -1,12 +1,10 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Contact Convo | Start Your AI Salon Booking Trial",
-  description: "Contact the Convo team to start your free trial. Get AI appointment booking for your salon. Quick setup, dedicated support, no commitment required.",
+  title: "Contact Convo | Request Access or a Demo",
+  description: "Contact the Convo team to request access or a demo of AI appointment booking for your salon.",
   keywords: [
     "contact Convo",
-    "Convo free trial",
-    "AI salon booking trial",
     "request demo",
     "salon AI setup",
   ],
@@ -14,8 +12,8 @@ export const metadata: Metadata = {
     canonical: "https://convoaiservices.com/contact",
   },
   openGraph: {
-    title: "Contact Convo | Start Free Trial",
-    description: "Get in touch to start your free AI salon booking trial.",
+    title: "Contact Convo | Request Access",
+    description: "Get in touch to request access or a demo of Convo.",
     url: "https://convoaiservices.com/contact",
     siteName: "Convo",
     type: "website",

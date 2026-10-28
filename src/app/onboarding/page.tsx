@@ -46,7 +46,7 @@ function HeroSection() {
               transition={{ duration: 0.45 }}
               className="mb-5 text-sm font-medium text-muted-foreground"
             >
-              Private beta · Guided setup · Start alongside your current tools
+              Early access · Guided setup · Start alongside your current tools
             </motion.p>
 
             <motion.h1
@@ -97,7 +97,7 @@ function HeroSection() {
               <div className="mb-5 flex items-center gap-2.5 border-b border-border pb-4">
                 <Workflow className="h-4 w-4 text-primary" />
                 <span className="font-mono text-xs font-medium text-muted-foreground uppercase tracking-widest">
-                  convo flow · live
+                  convo flow · overview
                 </span>
               </div>
 
@@ -642,12 +642,12 @@ function FAQSection() {
       answer: "Absolutely. Staff can acknowledge, reschedule, or modify any appointment through the employee portal. Convo keeps everyone in sync.",
     },
     {
-      question: "How long does onboarding usually take?",
-      answer: "Most teams are live within a week. The time depends on your setup complexity, but we guide you through every step.",
+      question: "How long does onboarding take?",
+      answer: "About a week, depending on your setup complexity. We guide you through every step.",
     },
     {
       question: "Is there a contract?",
-      answer: "During private beta, we're flexible. No long-term commitments required to get started.",
+      answer: "During early access, we're flexible. No long-term commitments required to get started.",
     },
     {
       question: "What happens after I request access?",
@@ -702,14 +702,14 @@ function FinalCTASection() {
             viewport={{ once: true }}
             className="rounded-2xl border border-border bg-card p-8 md:p-14"
           >
-            <p className="mb-4 text-sm font-medium text-muted-foreground">Private beta</p>
+            <p className="mb-4 text-sm font-medium text-muted-foreground">Early access</p>
 
             <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
               Ready to get started?
             </h2>
 
             <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-              We onboard a limited number of businesses at a time to ensure everyone gets the attention they deserve.
+              Access is by request. Tell us about your business and we&apos;ll follow up.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "AI Salon Appointment Booking | Automated Scheduling for Hair & Beauty Salons",
-  description: "Convo is an AI-powered appointment booking system for salons. Automatically schedule appointments via chat, WhatsApp, and voice calls. Available 24/7. Reduce no-shows by 40%.",
+  description: "Convo is an AI-powered appointment booking system for salons. Automatically schedule appointments via chat, WhatsApp, and voice calls. Available 24/7.",
   keywords: [
     "AI salon appointment booking",
     "automated salon scheduling",

@@ -115,17 +115,6 @@ export default function RootLayout({
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web, iOS, Android",
         "description": "Convo is a conversation-to-action AI engine that captures texts, calls, voice notes, and site photos and turns them into booked appointments, dispatched rides, and evidence-anchored construction records. One engine, three verticals: salons & barbershops, cabs & fleets, and construction.",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD",
-          "description": "Free trial available"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "ratingCount": "47"
-        },
         "featureList": [
           "AI-powered chat booking",
           "Voice call appointment scheduling",

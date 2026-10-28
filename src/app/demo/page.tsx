@@ -137,8 +137,8 @@ function GoogleMapsDemo() {
     "Tomorrow, 2:00 PM",
   ]
 
-  const aiGreeting = "Hi — welcome to Convo Salon. What would you like to book today?"
-  const voiceAiGreeting = "Hi, thanks for calling Convo Salon. I'm the AI assistant. How can I help you today?"
+  const aiGreeting = "Hi — welcome to Demo Salon. What would you like to book today?"
+  const voiceAiGreeting = "Hi, thanks for calling Demo Salon. I'm the AI assistant. How can I help you today?"
 
   const addMessage = useCallback((role: "agent" | "user", text: string) => {
     setIsTyping(true)
@@ -279,7 +279,7 @@ function GoogleMapsDemo() {
       addMessage("agent", "Perfect! Let me confirm your booking...")
       setTimeout(() => {
         setBookingStep(2)
-        addMessage("agent", `✅ You're all set!\n\n**${selectedService}**\n📅 ${time}\n📍 Convo Salon\n\nYou'll receive a confirmation text shortly. See you soon!`)
+        addMessage("agent", `✅ You're all set!\n\n**${selectedService}**\n📅 ${time}\n📍 Demo Salon\n\nYou'll receive a confirmation text shortly. See you soon!`)
       }, 1500)
     }, 1000)
   }
@@ -321,7 +321,7 @@ function GoogleMapsDemo() {
                 <div className="flex-1">
                   <input
                     type="text"
-                    value="Convo Salon"
+                    value="Demo Salon"
                     readOnly
                     className="w-full bg-secondary rounded-full px-4 py-1.5 text-sm"
                   />
@@ -380,7 +380,7 @@ function GoogleMapsDemo() {
                       <div className="p-4">
                         <div className="flex items-start justify-between mb-2">
                           <div>
-                            <h3 className="font-semibold">Convo Salon</h3>
+                            <h3 className="font-semibold">Demo Salon</h3>
                             <div className="flex items-center gap-1 mt-1">
                               <div className="flex">
                                 {[1,2,3,4,5].map((i) => (
@@ -460,7 +460,7 @@ function GoogleMapsDemo() {
                             )}
                           </div>
                           <h3 className="font-display font-semibold text-lg">
-                            {isCallActive ? "Convo Salon" : "Call Ended"}
+                            {isCallActive ? "Demo Salon" : "Call Ended"}
                           </h3>
                           <p className="text-sm text-muted-foreground">
                             {isCallActive ? "Connected to AI Assistant" : "Thank you for calling"}
@@ -646,7 +646,7 @@ function GoogleMapsDemo() {
                               <Scissors className="w-5 h-5 text-primary" />
                             </div>
                             <div>
-                              <p className="font-medium">Convo Salon</p>
+                              <p className="font-medium">Demo Salon</p>
                               <div className="flex items-center gap-1">
                                 <div className="w-2 h-2 rounded-full bg-success" />
                                 <span className="text-xs text-muted-foreground">AI Assistant</span>
@@ -960,7 +960,7 @@ function OwnerEducationSection() {
             <div className="flex flex-wrap justify-center gap-4">
               <Button size="lg" asChild>
                 <Link href="/contact">
-                  Get Started Free
+                  Request Access
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
@@ -991,7 +991,7 @@ function ChatDemoMock() {
     { role: "customer", text: "Monday at 10am works perfectly" },
     { role: "agent", text: "Perfect! I'm holding that slot for you now. Can I get your email or phone number for the confirmation?" },
     { role: "customer", text: "Sure, it's john@email.com" },
-    { role: "agent", text: "✅ All set! Your booking is confirmed:\n\n**Men's Haircut with Alex**\n📅 Monday, January 12, 2026\n⏰ 10:00 AM\n📍 Luxe Hair Studio\n\nI've sent a confirmation to john@email.com with a calendar invite. See you soon!" },
+    { role: "agent", text: "✅ All set! Your booking is confirmed:\n\n**Men's Haircut with Alex**\n📅 Monday, January 12, 2026\n⏰ 10:00 AM\n📍 Demo Salon\n\nI've sent a confirmation to john@email.com with a calendar invite. See you soon!" },
   ]
 
   useEffect(() => {
@@ -1047,7 +1047,7 @@ function ChatDemoMock() {
                   <Scissors className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium">Luxe Hair Studio</p>
+                  <p className="font-medium">Demo Salon</p>
                   <div className="flex items-center gap-1">
                     <div className="w-2 h-2 rounded-full bg-success" />
                     <span className="text-xs text-muted-foreground">Online</span>
@@ -1190,17 +1190,17 @@ function VoiceDemoMock() {
   const [callDuration, setCallDuration] = useState(0)
 
   const transcript = [
-    { speaker: "Agent", text: "Thank you for calling Luxe Hair Studio. How can I help you today?", latency: 280 },
-    { speaker: "Caller", text: "Hi, I'd like to book a haircut for tomorrow afternoon.", latency: null },
-    { speaker: "Agent", text: "Of course! I can help with that. Do you have a preferred stylist, or should I check general availability?", latency: 320 },
-    { speaker: "Caller", text: "Maria, if she's available.", latency: null },
-    { speaker: "Agent", text: "Let me check Maria's schedule for tomorrow afternoon... Maria has openings at 1 PM, 3:30 PM, and 5 PM. Which works best?", latency: 450 },
-    { speaker: "Caller", text: "3:30 would be perfect.", latency: null },
-    { speaker: "Agent", text: "Great! I've got you down with Maria at 3:30 PM tomorrow. Can I get your phone number for the confirmation?", latency: 290 },
-    { speaker: "Caller", text: "Sure, it's 555-123-4567.", latency: null },
-    { speaker: "Agent", text: "Perfect! You're all set. Maria will see you tomorrow at 3:30 PM. You'll receive a text confirmation shortly. Is there anything else I can help with?", latency: 380 },
-    { speaker: "Caller", text: "No, that's all. Thank you!", latency: null },
-    { speaker: "Agent", text: "You're welcome! We look forward to seeing you. Goodbye!", latency: 250 },
+    { speaker: "Agent", text: "Thank you for calling Demo Salon. How can I help you today?" },
+    { speaker: "Caller", text: "Hi, I'd like to book a haircut for tomorrow afternoon." },
+    { speaker: "Agent", text: "Of course! I can help with that. Do you have a preferred stylist, or should I check general availability?" },
+    { speaker: "Caller", text: "Maria, if she's available." },
+    { speaker: "Agent", text: "Let me check Maria's schedule for tomorrow afternoon... Maria has openings at 1 PM, 3:30 PM, and 5 PM. Which works best?" },
+    { speaker: "Caller", text: "3:30 would be perfect." },
+    { speaker: "Agent", text: "Great! I've got you down with Maria at 3:30 PM tomorrow. Can I get your phone number for the confirmation?" },
+    { speaker: "Caller", text: "Sure, it's 555-123-4567." },
+    { speaker: "Agent", text: "Perfect! You're all set. Maria will see you tomorrow at 3:30 PM. You'll receive a text confirmation shortly. Is there anything else I can help with?" },
+    { speaker: "Caller", text: "No, that's all. Thank you!" },
+    { speaker: "Agent", text: "You're welcome! We look forward to seeing you. Goodbye!" },
   ]
 
   useEffect(() => {
@@ -1267,7 +1267,7 @@ function VoiceDemoMock() {
                   <Phone className="w-10 h-10 text-primary" />
                 )}
               </div>
-              <p className="font-display font-semibold text-lg">Luxe Hair Studio</p>
+              <p className="font-display font-semibold text-lg">Demo Salon</p>
               <p className="text-muted-foreground">+1 (555) 000-BOOK</p>
               {isActive && (
                 <motion.div
@@ -1311,11 +1311,6 @@ function VoiceDemoMock() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-xs font-medium">{line.speaker}</span>
-                        {line.latency && (
-                          <Badge variant="secondary" className="text-[10px] px-1.5 py-0">
-                            {line.latency}ms
-                          </Badge>
-                        )}
                       </div>
                       <p className="text-sm text-muted-foreground">{line.text}</p>
                     </div>
@@ -1348,7 +1343,7 @@ function VoiceDemoMock() {
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex items-start gap-2">
                   <ChevronRight className="w-4 h-4 mt-0.5 text-primary" />
-                  Ultra-low latency (&lt;500ms average response time)
+                  Ultra-low latency
                 </li>
                 <li className="flex items-start gap-2">
                   <ChevronRight className="w-4 h-4 mt-0.5 text-primary" />
@@ -1416,7 +1411,7 @@ function DashboardDemoMock() {
                 <Scissors className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="font-semibold">Luxe Hair Studio</p>
+                <p className="font-semibold">Demo Salon</p>
                 <p className="text-xs text-muted-foreground">Owner Dashboard</p>
               </div>
             </div>
@@ -1483,7 +1478,7 @@ function DashboardDemoMock() {
               <Card className="bg-secondary border-border p-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-display font-semibold">Recent Call Summaries</h3>
-                  <Badge variant="live" className="text-xs">Live</Badge>
+                  <Badge variant="demo" className="text-xs">Example</Badge>
                 </div>
                 <div className="space-y-3">
                   {[

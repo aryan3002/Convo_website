@@ -85,11 +85,11 @@ export default function AIReceptionistForSalonsPage() {
     },
     {
       question: "Can customers tell they're talking to an AI?",
-      answer: "Modern AI voice technology is highly realistic. Many customers complete booking calls without realizing they spoke to an AI. Convo uses advanced voice synthesis and natural language understanding to create conversations that feel human. That said, we believe in transparency—if a customer asks, the AI will identify itself. Most customers care more about getting their appointment booked quickly than whether the receptionist is human or AI.",
+      answer: "Modern AI voice technology is highly realistic. Convo uses advanced voice synthesis and natural language understanding to create conversations that feel human. That said, we believe in transparency—if a customer asks, the AI will identify itself. Most customers care more about getting their appointment booked quickly than whether the receptionist is human or AI.",
     },
     {
       question: "Does the AI receptionist replace my staff?",
-      answer: "No—it augments your staff. The AI handles routine tasks like answering calls, booking appointments, and answering FAQs. This frees your team to focus on delivering great in-person service, building client relationships, and handling complex situations that need a human touch. Many salons find their staff are happier and more productive when not interrupted by constant phone calls.",
+      answer: "No—it augments your staff. The AI handles routine tasks like answering calls, booking appointments, and answering FAQs. This frees your team to focus on delivering great in-person service, building client relationships, and handling complex situations that need a human touch.",
     },
   ]
 
@@ -367,7 +367,7 @@ export default function AIReceptionistForSalonsPage() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button size="xl" asChild>
                   <Link href="/contact">
-                    Get Started Free
+                    Request Access
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>

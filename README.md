@@ -81,7 +81,7 @@ This is the **marketing site** — a high-converting, design-forward Next.js app
 
 | Route | Purpose |
 |---|---|
-| `/` | Landing — hero, product modes, how-it-works, social proof, pricing teaser, final CTA |
+| `/` | Landing — hero, product modes, how-it-works, pricing teaser, final CTA |
 | `/product` | Deep dive into Chat, Voice, Dashboard. Architecture diagram. Coming-soon roadmap. |
 | `/demo` | **Interactive** chat + voice transcript mocks with animated conversation, dashboard tabs |
 | `/differentiators` | Strategic positioning — the Intelligence Loop story, competitor comparison matrix |
@@ -257,7 +257,6 @@ The marketing site evolves with the product. Currently on the roadmap:
 - **Memory module page** — long-term customer memory for the voice agent
 - **SMS integration page** — Twilio-powered booking via text
 - **Google Maps integration page** — local discovery surface
-- **Case studies section** — real salon outcomes once Private Beta wraps
 
 ---
 
@@ -268,7 +267,7 @@ The marketing site evolves with the product. Currently on the roadmap:
 - 🔗 [LinkedIn](https://linkedin.com/in/aryan-tripathi-9254a611b)
 - 💻 [GitHub](https://github.com/aryan3002)
 - 📧 atripa38@asu.edu
-- 🌐 Live site: [convoaiservices.com](https://www.convoaiservices.com)
+- 🌐 Site: [convoaiservices.com](https://www.convoaiservices.com)
 
 ---
 

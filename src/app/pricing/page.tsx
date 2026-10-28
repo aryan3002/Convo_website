@@ -55,7 +55,7 @@ function PricingHero() {
             transition={{ duration: 0.5, delay: 0.16 }}
             className="mt-6 text-lg text-muted-foreground"
           >
-            Early Access Pricing — we&apos;re onboarding our first customers and finalizing pricing based on real usage.
+            Early Access Pricing — Convo isn&apos;t generally available, so plans and pricing aren&apos;t final.
           </motion.p>
 
           <motion.div
@@ -148,7 +148,7 @@ function PricingCards() {
         {/* Disclaimer */}
         <div className="mb-10">
           <p className="text-sm text-muted-foreground">
-            Early Access Pricing — we&apos;re onboarding our first customers and finalizing pricing based on real usage.
+            Early Access Pricing — Convo isn&apos;t generally available, so plans and pricing aren&apos;t final.
           </p>
         </div>
 
@@ -395,7 +395,7 @@ function FAQSection() {
     {
       question: "How does Early Access pricing work?",
       answer:
-        "We're currently onboarding our first customers and finalizing pricing based on real usage patterns. Early Access customers will get preferential rates and be locked into founding customer pricing even after we set final prices.",
+        "Pricing isn't final yet. Early Access customers will get preferential rates and be locked into founding customer pricing even after we set final prices.",
     },
     {
       question: "What are founding customer benefits?",
@@ -405,7 +405,7 @@ function FAQSection() {
     {
       question: "When will final pricing be announced?",
       answer:
-        "We're finalizing pricing based on real usage from our early access period. Final pricing will be announced after we've gathered sufficient data from founding customers. Early customers may receive long-term discounts.",
+        "There's no date yet. Final pricing will be announced after early access. Early customers may receive long-term discounts.",
     },
     {
       question: "How do I request early access?",
@@ -470,7 +470,7 @@ function CTASection() {
               Ready to modernize your bookings?
             </h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-xl mx-auto">
-              Join our founding customers and get preferential rates.
+              Founding customers get preferential rates.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">

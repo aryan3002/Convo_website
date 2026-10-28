@@ -78,7 +78,7 @@ function ChatBookingSection() {
     {
       icon: Zap,
       title: "Instant Responses",
-      description: "Sub-second response times keep the conversation flowing smoothly.",
+      description: "Fast responses keep the conversation flowing smoothly.",
     },
     {
       icon: Calendar,
@@ -198,7 +198,7 @@ function VoiceAgentSection() {
     {
       icon: Clock,
       title: "Ultra-Low Latency",
-      description: "Response times under 500ms for natural conversation flow.",
+      description: "Fast responses for natural conversation flow.",
     },
     {
       icon: FileText,
@@ -213,7 +213,7 @@ function VoiceAgentSection() {
   ]
 
   const transcript = [
-    { speaker: "Agent", text: "Thank you for calling Luxe Hair Studio! How can I help you today?" },
+    { speaker: "Agent", text: "Thank you for calling Demo Salon! How can I help you today?" },
     { speaker: "Caller", text: "Hi, I'd like to book a haircut for tomorrow if possible." },
     { speaker: "Agent", text: "Of course! I'd be happy to help. Do you have a preferred stylist, or would you like me to check general availability?" },
     { speaker: "Caller", text: "I usually see Maria. Is she available?" },
@@ -233,7 +233,6 @@ function VoiceAgentSection() {
                   <span className="inline-block h-2 w-2 rounded-full bg-primary" />
                   <span className="font-medium text-sm">Voice Transcript</span>
                 </div>
-                <span className="font-mono text-xs text-muted-foreground">Latency: 320ms</span>
               </div>
 
               <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
@@ -535,10 +534,10 @@ function ArchitectureSection() {
         <AnimatedSection className="mb-16 max-w-2xl">
           <p className="mb-3 text-sm font-medium text-muted-foreground">Architecture</p>
           <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
-            Built on enterprise-grade infrastructure
+            How it&apos;s built
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl">
-            Reliable, scalable, and secure. Here&apos;s how the pieces fit together.
+            Here&apos;s how the pieces fit together.
           </p>
         </AnimatedSection>
 

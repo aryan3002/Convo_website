@@ -25,8 +25,8 @@ export default function AISalonAppointmentBookingPage() {
     },
     {
       icon: TrendingDown,
-      title: "40% Fewer No-Shows",
-      description: "Automated confirmations and reminders significantly reduce missed appointments.",
+      title: "Fewer No-Shows",
+      description: "Automated confirmations and reminders help reduce missed appointments.",
     },
     {
       icon: Zap,
@@ -73,7 +73,7 @@ export default function AISalonAppointmentBookingPage() {
     },
     {
       question: "How much does AI appointment booking cost?",
-      answer: "Convo offers flexible pricing based on salon size and booking volume. Most salons start with a free trial to experience the benefits before committing. Contact us for a custom quote based on your specific needs.",
+      answer: "Convo offers flexible pricing based on salon size and booking volume. Pricing isn't final during early access. Contact us for a custom quote based on your specific needs.",
     },
   ]
 
@@ -110,7 +110,7 @@ export default function AISalonAppointmentBookingPage() {
             >
               <strong className="text-foreground">Convo is an AI-powered booking system for salons</strong> that automatically
               schedules appointments through chat, phone calls, and WhatsApp. Available 24/7.
-              Reduce no-shows by 40%. Works with your existing salon software.
+              Works with your existing salon software.
             </motion.p>
 
             <motion.p
@@ -284,12 +284,12 @@ export default function AISalonAppointmentBookingPage() {
                 Ready to Automate Your Salon Bookings?
               </h2>
               <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
-                Join salons that book appointments 24/7 without hiring extra staff.
+                Book appointments 24/7 without hiring extra staff.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button size="xl" asChild>
                   <Link href="/contact">
-                    Start Free Trial
+                    Request Access
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>

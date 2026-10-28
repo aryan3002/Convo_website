@@ -16,7 +16,6 @@ import {
   FileText,
   Calendar,
   CheckCircle2,
-  Star,
   ChevronRight,
   Bot,
   Scissors,
@@ -96,7 +95,7 @@ function HeroSection() {
             <div className="mb-5 flex items-center gap-2.5 border-b border-border pb-4">
               <Cpu className="h-4 w-4 text-primary" />
               <span className="font-mono text-xs font-medium text-muted-foreground uppercase tracking-widest">
-                convo engine · live log
+                convo engine · example log
               </span>
             </div>
 
@@ -131,14 +130,6 @@ function HeroSection() {
                 </span>
               </div>
             </div>
-
-            {/* status bar */}
-            <div className="mt-5 flex items-center gap-2 border-t border-border pt-4">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary" />
-              <span className="font-mono text-xs text-muted-foreground">
-                engine running · 4 ms end-to-end
-              </span>
-            </div>
           </div>
         </motion.div>
       </div>
@@ -167,8 +158,8 @@ function VerticalsSection() {
               "Service, stylist and slot availability synced",
               "Confirmed booking + calendar invite",
             ]}
-            status="live"
-            statusLabel="Live"
+            status="demo"
+            statusLabel="Demo"
             href="/product"
           />
           <VerticalCard
@@ -181,7 +172,7 @@ function VerticalsSection() {
               "Dispatched ride, confirmed to the rider",
             ]}
             status="soon"
-            statusLabel="In production"
+            statusLabel="Piloted"
             href="/contact"
           />
           <VerticalCard
@@ -489,7 +480,7 @@ function CallSummariesSection() {
             <Card className="p-6">
               <div className="mb-6 flex items-center justify-between">
                 <h3 className="font-display font-semibold">Recent Call Summaries</h3>
-                <Badge variant="live">Live</Badge>
+                <Badge variant="demo">Example</Badge>
               </div>
               <div className="space-y-4">
                 {summaries.map((summary, index) => (
@@ -619,7 +610,7 @@ function IntegrationsStrip() {
           <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-2">
             Powered by
           </p>
-          <h3 className="font-display text-xl font-semibold">Enterprise-Grade Infrastructure</h3>
+          <h3 className="font-display text-xl font-semibold">Built on</h3>
         </AnimatedSection>
 
         <StaggeredContainer className="flex flex-wrap justify-center gap-5 md:gap-8">
@@ -644,82 +635,6 @@ function IntegrationsStrip() {
   )
 }
 
-// ─── Testimonials ──────────────────────────────────────────────────────────────
-function TestimonialsSection() {
-  const testimonials = [
-    {
-      quote:
-        "Convo has completely transformed how we handle appointments. Our no-show rate dropped by 35% in the first month.",
-      author: "Sarah Mitchell",
-      role: "Owner, Luxe Hair Studio",
-      rating: 5,
-    },
-    {
-      quote:
-        "The voice agent is incredible. It sounds so natural that customers don't even realize they're talking to AI.",
-      author: "Marcus Chen",
-      role: "Manager, The Grooming Lounge",
-      rating: 5,
-    },
-    {
-      quote:
-        "Finally, a booking system that understands how salons actually work. The call summaries alone save me hours each week.",
-      author: "Jessica Rodriguez",
-      role: "Owner, Bella Vita Salon & Spa",
-      rating: 5,
-    },
-  ]
-
-  return (
-    <section className="py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="mb-16 max-w-2xl">
-          <p className="mb-3 text-sm font-medium text-muted-foreground">Testimonials</p>
-          <h2 className="font-display text-3xl font-semibold md:text-4xl">
-            Loved by salon owners
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            See what early adopters are saying about Convo.
-          </p>
-        </AnimatedSection>
-
-        <StaggeredContainer className="grid md:grid-cols-3 gap-6" staggerDelay={0.12}>
-          {testimonials.map((testimonial, index) => (
-            <StaggeredItem key={index}>
-              <HoverLift>
-                <Card className="h-full">
-                  <CardContent className="pt-6">
-                    <div className="mb-4 flex gap-0.5">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-primary text-primary" />
-                      ))}
-                    </div>
-                    <p className="text-sm text-muted-foreground mb-6">
-                      &quot;{testimonial.quote}&quot;
-                    </p>
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-secondary text-xs font-semibold text-primary">
-                        {testimonial.author
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium">{testimonial.author}</p>
-                        <p className="text-xs text-muted-foreground">{testimonial.role}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </HoverLift>
-            </StaggeredItem>
-          ))}
-        </StaggeredContainer>
-      </div>
-    </section>
-  )
-}
-
 // ─── Pricing Teaser ────────────────────────────────────────────────────────────
 function PricingTeaser() {
   return (
@@ -731,7 +646,7 @@ function PricingTeaser() {
             Simple, transparent pricing
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Plans that scale with your business. Start free, upgrade when you&apos;re ready.
+            Plans that scale with your business.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -796,7 +711,6 @@ export default function HomePage() {
       <CallSummariesSection />
       <CalendarInviteSection />
       <IntegrationsStrip />
-      <TestimonialsSection />
       <PricingTeaser />
       <FinalCTA />
     </>

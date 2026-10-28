@@ -29,7 +29,7 @@ const faqCategories = [
       },
       {
         question: "Who is Convo designed for?",
-        answer: "Convo is designed for service businesses that book appointments, with a primary focus on: (1) Hair salons and barbershops, (2) Beauty salons and nail salons, (3) Spas and wellness centers, (4) Med spas and aesthetics clinics, (5) Tattoo studios, (6) Any business where customers call to book time slots. Solo practitioners and multi-location chains both use Convo.",
+        answer: "Convo is designed for service businesses that book appointments, with a primary focus on: (1) Hair salons and barbershops, (2) Beauty salons and nail salons, (3) Spas and wellness centers, (4) Med spas and aesthetics clinics, (5) Tattoo studios, (6) Any business where customers call to book time slots.",
       },
       {
         question: "What makes Convo different from other booking software?",
@@ -47,7 +47,7 @@ const faqCategories = [
       },
       {
         question: "Can the AI handle phone calls?",
-        answer: "Yes. Convo includes AI voice capabilities that answer phone calls with natural-sounding speech. The AI can understand various accents, handle background noise, and engage in back-and-forth conversation. It answers questions, books appointments, and can transfer to a human staff member for complex situations. Many customers don't realize they're speaking with AI.",
+        answer: "Yes. Convo includes AI voice capabilities that answer phone calls with natural-sounding speech. The AI can understand various accents, handle background noise, and engage in back-and-forth conversation. It answers questions, books appointments, and can transfer to a human staff member for complex situations.",
       },
       {
         question: "What happens if the AI can't answer a question?",
@@ -65,7 +65,7 @@ const faqCategories = [
     faqs: [
       {
         question: "How long does it take to set up Convo?",
-        answer: "Most salons are live within 1-2 weeks. The setup process involves: (1) Connecting your salon management software (usually 24-48 hours), (2) Training the AI on your services, pricing, and policies (2-3 days), (3) Testing the system with sample calls and messages (1-2 days), (4) Going live with real customers. We handle the technical work—you just need to provide information about your business.",
+        answer: "Setup takes about 1-2 weeks. The setup process involves: (1) Connecting your salon management software (usually 24-48 hours), (2) Training the AI on your services, pricing, and policies (2-3 days), (3) Testing the system with sample calls and messages (1-2 days), (4) Going live with real customers. We handle the technical work—you just need to provide information about your business.",
       },
       {
         question: "Does Convo work with my existing salon software?",
@@ -83,15 +83,15 @@ const faqCategories = [
     faqs: [
       {
         question: "How much does Convo cost?",
-        answer: "Convo offers flexible pricing based on your salon's size and booking volume. Pricing tiers typically include: (1) A base monthly fee for the AI platform, (2) Usage-based charges for phone minutes and messages (if applicable). Most salons pay between $200-$500/month, which is significantly less than hiring a part-time receptionist. We offer a free trial so you can test the system before committing.",
+        answer: "Convo offers flexible pricing based on your salon's size and booking volume. Pricing tiers typically include: (1) A base monthly fee for the AI platform, (2) Usage-based charges for phone minutes and messages (if applicable). Pricing isn't final during early access.",
       },
       {
         question: "Is there a free trial?",
-        answer: "Yes. Convo offers a free trial period so you can experience the benefits before committing to a paid plan. During the trial, you get full access to all features including AI phone answering, chat, and WhatsApp integration. Contact us to start your trial.",
+        answer: "Not right now. Convo isn't generally available. Contact us to request access or a demo.",
       },
       {
         question: "What's the ROI of using Convo?",
-        answer: "Salons typically see ROI within the first month through: (1) Captured bookings from after-hours calls that previously went to voicemail, (2) Reduced no-shows from automated reminders (40% average reduction), (3) Staff time savings—receptionists can focus on in-salon service, (4) Lower labor costs compared to hiring additional front desk staff. Many salons report the AI pays for itself within weeks.",
+        answer: "Convo is built to pay for itself through: (1) Capturing bookings from after-hours calls that would otherwise go to voicemail, (2) Fewer no-shows from automated reminders, (3) Staff time savings—receptionists can focus on in-salon service, (4) Lower labor costs compared to hiring additional front desk staff.",
       },
     ],
   },
@@ -119,7 +119,7 @@ const faqCategories = [
       },
       {
         question: "How natural does the AI sound on phone calls?",
-        answer: "Convo uses state-of-the-art voice synthesis technology. The AI voice sounds natural and conversational—not robotic. It includes natural speech patterns, appropriate pauses, and conversational acknowledgments. Many callers complete their booking without realizing they spoke with AI. We continuously improve voice quality based on customer feedback.",
+        answer: "Convo uses state-of-the-art voice synthesis technology. The AI voice sounds natural and conversational—not robotic. It includes natural speech patterns, appropriate pauses, and conversational acknowledgments.",
       },
       {
         question: "Can I customize how the AI responds?",

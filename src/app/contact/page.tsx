@@ -162,7 +162,7 @@ function ContactForm() {
                       <Input
                         id="company"
                         type="text"
-                        placeholder="Luxe Hair Studio"
+                        placeholder="Your salon's name"
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                         className="bg-secondary border-border focus-visible:ring-primary"
@@ -293,7 +293,6 @@ function ContactForm() {
                     "Built specifically for salon businesses",
                     "Voice + Chat booking in one platform",
                     "No long-term contracts required",
-                    "14-day free trial, no credit card needed",
                     "Dedicated onboarding support",
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-2 text-sm">
